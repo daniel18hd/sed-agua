@@ -32,8 +32,11 @@ export function sb(): SupabaseClient | null {
 }
 export const usingSupabase = () => !!sb();
 
-export const phoneHash = (from: string) =>
-  crypto.createHash("sha256").update(from + (process.env.PHONE_HASH_SALT ?? "sed-dev-salt")).digest("hex");
+// Sal: PHONE_HASH_SALT si existe; si no, se deriva de un secreto que ya está en el servidor (nunca sale del backend).
+const salt = () =>
+  process.env.PHONE_HASH_SALT ||
+  crypto.createHash("sha256").update("sed-salt:" + (process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.TWILIO_AUTH_TOKEN || "sed-dev-salt")).digest("hex");
+export const phoneHash = (from: string) => crypto.createHash("sha256").update(from + salt()).digest("hex");
 
 // ---------- consultas ----------
 export function toPublica(e: Evaluacion, extra: { canal: ConsultaPublica["canal"]; geo_fuente: ConsultaPublica["geo_fuente"]; demo: boolean; coord_nota?: string; id?: string; created_at?: string }): ConsultaPublica {
