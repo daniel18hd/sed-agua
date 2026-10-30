@@ -88,7 +88,7 @@ drop policy if exists "anon lee consultas_publicas" on public.consultas_publicas
 create policy "anon lee consultas_publicas" on public.consultas_publicas for select to anon, authenticated using (true);
 
 revoke all on public.consultas, public.reportes, public.sesiones from anon, authenticated;
-revoke insert, update, delete on public.consultas_publicas from anon, authenticated;
+revoke all on public.consultas_publicas from anon, authenticated;   -- Supabase da TRUNCATE/TRIGGER/etc. por default
 grant select on public.consultas_publicas to anon, authenticated;
 
 -- Realtime
