@@ -1,0 +1,10 @@
+{
+ "_meta": {
+  "fuente": "Datos Abiertos CDMX – Alcaldías",
+  "url": "https://datos.cdmx.gob.mx/dataset/bae265a8-d1f6-4614-b399-4184bc93e027/resource/deb5c583-84e2-4e07-a706-1b3a0dbc99b0/download/deb5c583-84e2-4e07-a706-1b3a0dbc99b0.json",
+  "fecha_corte": "estático (límites oficiales)",
+  "frecuencia": "estático",
+  "verificado": "HTTP 200 30-oct-2026; simplificado tolerance 0.0008° (~80 m)"
+ },
+ "n": 16
+}

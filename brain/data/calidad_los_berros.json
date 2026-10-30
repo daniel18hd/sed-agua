@@ -1,0 +1,358 @@
+{
+ "_meta": {
+  "fuente": "CONAGUA OCAVM – Reporte diario de calidad del agua, Planta Potabilizadora Los Berros (NOM-127-SSA1-1994 mod. 2000)",
+  "url": "https://www.gob.mx/cms/uploads/attachment/file/1112797/Octubre_2026.pdf",
+  "fecha_corte": "2026-10-26",
+  "frecuencia": "diaria (PDF mensual actualizado con rezago de días)",
+  "verificado": "HTTP 200 30-oct-2026, parseado con pdftotext"
+ },
+ "limites_nom127": {
+  "turbiedad_unt": [
+   null,
+   5.0
+  ],
+  "color_upt_co": [
+   null,
+   20.0
+  ],
+  "ph": [
+   6.5,
+   8.5
+  ],
+  "cloro_residual_mg_l": [
+   0.2,
+   1.5
+  ],
+  "dureza_mg_l": [
+   null,
+   500
+  ]
+ },
+ "ultimo": {
+  "dia": 26,
+  "turbiedad_unt": 0.33,
+  "color_upt_co": 2.5,
+  "ph": 7.05,
+  "cloro_residual_mg_l": 1.1,
+  "dureza_mg_l": 67.95,
+  "sabor": "AGRADABLE",
+  "olor": "AGRADABLE",
+  "fecha": "2026-10-26",
+  "parametros_fuera_de_norma": []
+ },
+ "serie_mes": [
+  {
+   "dia": 1,
+   "turbiedad_unt": 1.53,
+   "color_upt_co": 2.5,
+   "ph": 7.07,
+   "cloro_residual_mg_l": 1.0,
+   "dureza_mg_l": 69.45,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-01",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 2,
+   "turbiedad_unt": 1.01,
+   "color_upt_co": 2.5,
+   "ph": 7.07,
+   "cloro_residual_mg_l": 0.94,
+   "dureza_mg_l": 64.95,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-02",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 3,
+   "turbiedad_unt": 1.21,
+   "color_upt_co": 2.5,
+   "ph": 7.04,
+   "cloro_residual_mg_l": 0.88,
+   "dureza_mg_l": 64.95,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-03",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 4,
+   "turbiedad_unt": 0.82,
+   "color_upt_co": 2.5,
+   "ph": 6.99,
+   "cloro_residual_mg_l": 0.92,
+   "dureza_mg_l": 62.25,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-04",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 5,
+   "turbiedad_unt": 1.77,
+   "color_upt_co": 3.75,
+   "ph": 6.82,
+   "cloro_residual_mg_l": 0.93,
+   "dureza_mg_l": 69.9,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-05",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 6,
+   "turbiedad_unt": 0.69,
+   "color_upt_co": 2.92,
+   "ph": 6.81,
+   "cloro_residual_mg_l": 1.21,
+   "dureza_mg_l": 68.7,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-06",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 7,
+   "turbiedad_unt": 0.81,
+   "color_upt_co": 2.5,
+   "ph": 6.81,
+   "cloro_residual_mg_l": 1.01,
+   "dureza_mg_l": 66.75,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-07",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 8,
+   "turbiedad_unt": 1.52,
+   "color_upt_co": 2.5,
+   "ph": 6.87,
+   "cloro_residual_mg_l": 1.01,
+   "dureza_mg_l": 66.15,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-08",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 9,
+   "turbiedad_unt": 2.52,
+   "color_upt_co": 2.71,
+   "ph": 6.79,
+   "cloro_residual_mg_l": 1.01,
+   "dureza_mg_l": 68.7,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-09",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 10,
+   "turbiedad_unt": 2.62,
+   "color_upt_co": 2.5,
+   "ph": 6.9,
+   "cloro_residual_mg_l": 1.11,
+   "dureza_mg_l": 65.85,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-10",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 11,
+   "turbiedad_unt": 3.15,
+   "color_upt_co": 4.17,
+   "ph": 6.92,
+   "cloro_residual_mg_l": 1.03,
+   "dureza_mg_l": 64.2,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-11",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 12,
+   "turbiedad_unt": 3.07,
+   "color_upt_co": 5.0,
+   "ph": 6.79,
+   "cloro_residual_mg_l": 1.0,
+   "dureza_mg_l": 63.9,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-12",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 13,
+   "turbiedad_unt": 3.34,
+   "color_upt_co": 3.33,
+   "ph": 6.8,
+   "cloro_residual_mg_l": 1.0,
+   "dureza_mg_l": 64.95,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-13",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 14,
+   "turbiedad_unt": 3.26,
+   "color_upt_co": 4.38,
+   "ph": 6.76,
+   "cloro_residual_mg_l": 1.19,
+   "dureza_mg_l": 65.1,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-14",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 15,
+   "turbiedad_unt": 0.67,
+   "color_upt_co": 2.5,
+   "ph": 6.88,
+   "cloro_residual_mg_l": 1.05,
+   "dureza_mg_l": 62.25,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-15",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 16,
+   "turbiedad_unt": 0.77,
+   "color_upt_co": 2.5,
+   "ph": 6.98,
+   "cloro_residual_mg_l": 1.06,
+   "dureza_mg_l": 65.85,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-16",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 17,
+   "turbiedad_unt": 0.37,
+   "color_upt_co": 2.5,
+   "ph": 7.02,
+   "cloro_residual_mg_l": 1.08,
+   "dureza_mg_l": 69.3,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-17",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 18,
+   "turbiedad_unt": 0.42,
+   "color_upt_co": 2.5,
+   "ph": 6.98,
+   "cloro_residual_mg_l": 0.99,
+   "dureza_mg_l": 68.25,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-18",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 19,
+   "turbiedad_unt": 0.6,
+   "color_upt_co": 2.5,
+   "ph": 6.99,
+   "cloro_residual_mg_l": 1.04,
+   "dureza_mg_l": 67.35,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-19",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 20,
+   "turbiedad_unt": 0.48,
+   "color_upt_co": 2.49,
+   "ph": 6.92,
+   "cloro_residual_mg_l": 1.21,
+   "dureza_mg_l": 63.75,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-20",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 21,
+   "turbiedad_unt": 0.33,
+   "color_upt_co": 2.5,
+   "ph": 6.93,
+   "cloro_residual_mg_l": 0.99,
+   "dureza_mg_l": 67.8,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-21",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 22,
+   "turbiedad_unt": 0.34,
+   "color_upt_co": 2.5,
+   "ph": 7.09,
+   "cloro_residual_mg_l": 1.19,
+   "dureza_mg_l": 72.6,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-22",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 23,
+   "turbiedad_unt": 0.5,
+   "color_upt_co": 2.5,
+   "ph": 7.04,
+   "cloro_residual_mg_l": 0.98,
+   "dureza_mg_l": 67.05,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-23",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 24,
+   "turbiedad_unt": 0.43,
+   "color_upt_co": 2.5,
+   "ph": 7.13,
+   "cloro_residual_mg_l": 1.13,
+   "dureza_mg_l": 64.05,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-24",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 25,
+   "turbiedad_unt": 0.48,
+   "color_upt_co": 2.5,
+   "ph": 7.05,
+   "cloro_residual_mg_l": 1.04,
+   "dureza_mg_l": 65.1,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-25",
+   "parametros_fuera_de_norma": []
+  },
+  {
+   "dia": 26,
+   "turbiedad_unt": 0.33,
+   "color_upt_co": 2.5,
+   "ph": 7.05,
+   "cloro_residual_mg_l": 1.1,
+   "dureza_mg_l": 67.95,
+   "sabor": "AGRADABLE",
+   "olor": "AGRADABLE",
+   "fecha": "2026-10-26",
+   "parametros_fuera_de_norma": []
+  }
+ ],
+ "advertencia": "Calidad A LA SALIDA DE LA PLANTA, no en la toma domiciliaria. Nunca comunicar como 'apta para beber'."
+}

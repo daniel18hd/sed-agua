@@ -1,0 +1,1643 @@
+{
+ "_meta": {
+  "fuente": "SMN-CONAGUA Monitor de Sequía de México",
+  "url": "https://smn.conagua.gob.mx/tools/RESOURCES/Monitor%20de%20Sequia%20en%20Mexico/MunicipiosSequia.xlsx",
+  "fecha_corte": "2026-10-15",
+  "frecuencia": "quincenal",
+  "verificado": "HTTP 200; categoria null = sin sequía (celda vacía en el XLSX)"
+ },
+ "por_cve_mun": {
+  "002": {
+   "alcaldia": "Azcapotzalco",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "003": {
+   "alcaldia": "Coyoacán",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "004": {
+   "alcaldia": "Cuajimalpa de Morelos",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "005": {
+   "alcaldia": "Gustavo A. Madero",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "006": {
+   "alcaldia": "Iztacalco",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "007": {
+   "alcaldia": "Iztapalapa",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "008": {
+   "alcaldia": "La Magdalena Contreras",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "009": {
+   "alcaldia": "Milpa Alta",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": "D0"
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "010": {
+   "alcaldia": "Álvaro Obregón",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "011": {
+   "alcaldia": "Tláhuac",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "012": {
+   "alcaldia": "Tlalpan",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "013": {
+   "alcaldia": "Xochimilco",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "014": {
+   "alcaldia": "Benito Juárez",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "015": {
+   "alcaldia": "Cuauhtémoc",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "016": {
+   "alcaldia": "Miguel Hidalgo",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  },
+  "017": {
+   "alcaldia": "Venustiano Carranza",
+   "categoria": null,
+   "historial_12m": [
+    {
+     "fecha": "2025-10-31",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-11-30",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-15",
+     "cat": null
+    },
+    {
+     "fecha": "2025-12-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-01-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-02-28",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-03-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-04-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-05-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-06-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-07-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-08-31",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-15",
+     "cat": null
+    },
+    {
+     "fecha": "2026-09-30",
+     "cat": null
+    },
+    {
+     "fecha": "2026-10-15",
+     "cat": null
+    }
+   ]
+  }
+ }
+}

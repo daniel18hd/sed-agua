@@ -1,0 +1,90 @@
+{
+ "alcaldias.meta.json": {
+  "fuente": "Datos Abiertos CDMX – Alcaldías",
+  "url": "https://datos.cdmx.gob.mx/dataset/bae265a8-d1f6-4614-b399-4184bc93e027/resource/deb5c583-84e2-4e07-a706-1b3a0dbc99b0/download/deb5c583-84e2-4e07-a706-1b3a0dbc99b0.json",
+  "fecha_corte": "estático (límites oficiales)",
+  "frecuencia": "estático",
+  "verificado": "HTTP 200 30-oct-2026; simplificado tolerance 0.0008° (~80 m)",
+  "generado": "2026-10-30T12:16-06:00"
+ },
+ "sequia_alcaldias.json": {
+  "fuente": "SMN-CONAGUA Monitor de Sequía de México",
+  "url": "https://smn.conagua.gob.mx/tools/RESOURCES/Monitor%20de%20Sequia%20en%20Mexico/MunicipiosSequia.xlsx",
+  "fecha_corte": "2026-10-15",
+  "frecuencia": "quincenal",
+  "verificado": "HTTP 200; categoria null = sin sequía (celda vacía en el XLSX)",
+  "generado": "2026-10-30T12:17-06:00"
+ },
+ "cutzamala_latest.json": {
+  "fuente": "CONAGUA OCAVM – Almacenamiento en presas del Sistema Cutzamala (PDF)",
+  "url": "https://www.gob.mx/cms/uploads/attachment/file/1112797/Octubre_2026.pdf",
+  "fecha_corte": "2026-10-26",
+  "frecuencia": "diaria (PDF mensual actualizado con rezago de días)",
+  "verificado": "HTTP 200 30-oct-2026, parseado con pdftotext",
+  "generado": "2026-10-30T12:21-06:00"
+ },
+ "calidad_los_berros.json": {
+  "fuente": "CONAGUA OCAVM – Reporte diario de calidad del agua, Planta Potabilizadora Los Berros (NOM-127-SSA1-1994 mod. 2000)",
+  "url": "https://www.gob.mx/cms/uploads/attachment/file/1112797/Octubre_2026.pdf",
+  "fecha_corte": "2026-10-26",
+  "frecuencia": "diaria (PDF mensual actualizado con rezago de días)",
+  "verificado": "HTTP 200 30-oct-2026, parseado con pdftotext",
+  "generado": "2026-10-30T12:21-06:00"
+ },
+ "vulnerabilidad_inegi_alcaldia.json": {
+  "fuente": "INEGI Censo de Población y Vivienda 2020, AGEB urbana (CDMX)",
+  "url": "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/datosabiertos/ageb_manzana/ageb_mza_urbana_09_cpv2020_csv.zip",
+  "fecha_corte": "2020-03-15",
+  "frecuencia": "estático (censo)",
+  "verificado": "HTTP 200; suma de AGEB urbanas; celdas '*' (reservadas) excluidas => cifras son mínimos",
+  "generado": "2026-10-30T12:18-06:00"
+ },
+ "tandeo_2019_alcaldia.json": {
+  "fuente": "Datos Abiertos CDMX – Colonias con distribución de agua por tandeo 2019 (SACMEX)",
+  "url": "https://datos.cdmx.gob.mx/dataset/cba78780-cdf0-464c-a9c2-3078c0fdf7f1/resource/33808cea-fa25-45db-becd-43d380d65e3a/download/33808cea-fa25-45db-becd-43d380d65e3a.zip",
+  "fecha_corte": "2019",
+  "frecuencia": "estático",
+  "verificado": "HTTP 200 (403 intermitente, reintentar)",
+  "generado": "2026-10-30T12:18-06:00"
+ },
+ "reportes_historicos_alcaldia.json": {
+  "fuente": "Datos Abiertos CDMX – Reportes de agua (SACMEX), recurso a8069e94-c7cb-45d7-8166-561e80884422",
+  "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+  "fecha_corte": "2024-02-01",
+  "frecuencia": "histórico (sin actualización desde 2024)",
+  "verificado": "API datastore_search_sql HTTP 200; rango 2022-01-01 a 2024-02-01",
+  "generado": "2026-10-30T12:19-06:00"
+ },
+ "abastecimiento_alcaldia.json": {
+  "fuente": "Curado de prensa (ver 'fuentes'); validar contra SEGIAGUA 'Agua en tu colonia'",
+  "url": "https://mvsnoticias.com/nacional/2025/10/17/estas-son-las-alcaldias-de-cdmx-que-reciben-agua-del-cutzamala-708745.html",
+  "fecha_corte": "2026-10-05",
+  "frecuencia": "manual",
+  "verificado": "POR VALIDAR – no es dataset oficial por alcaldía",
+  "generado": "2026-10-30T12:21-06:00"
+ },
+ "ruta_agua.geojson": {
+  "fuente": "Construcción propia para visualización; nodos aproximados (ver propiedades)",
+  "url": null,
+  "fecha_corte": "2026-10-30",
+  "frecuencia": "manual",
+  "verificado": "NO – ruta aproximada/ilustrativa",
+  "generado": "2026-10-30T12:21-06:00"
+ },
+ "lluvia_7d_alcaldia.json": {
+  "fuente": "Open-Meteo Forecast API (past_days=7), punto de etiqueta de cada alcaldía",
+  "url": "https://api.open-meteo.com/v1/forecast?daily=precipitation_sum&past_days=7&forecast_days=1&timezone=America%2FMexico_City",
+  "fecha_corte": "2026-10-29",
+  "frecuencia": "horaria (cachear 1 h)",
+  "verificado": "HTTP 200; dato modelado, no estación",
+  "generado": "2026-10-30T12:21-06:00"
+ },
+ "colonias.simplified.geojson": {
+  "fuente": "Datos Abiertos CDMX – Colonias de la Ciudad de México",
+  "url": "https://datos.cdmx.gob.mx/dataset/coloniascdmx",
+  "fecha_corte": "estático",
+  "frecuencia": "estático",
+  "verificado": "descargado 30-oct-2026; simplificado 0.00015° (~15 m)",
+  "generado": "2026-10-30T12:23-06:00"
+ }
+}

@@ -1,0 +1,173 @@
+{
+ "_meta": {
+  "fuente": "CONAGUA OCAVM – Almacenamiento en presas del Sistema Cutzamala (PDF)",
+  "url": "https://www.gob.mx/cms/uploads/attachment/file/1112797/Octubre_2026.pdf",
+  "fecha_corte": "2026-10-26",
+  "frecuencia": "diaria (PDF mensual actualizado con rezago de días)",
+  "verificado": "HTTP 200 30-oct-2026, parseado con pdftotext"
+ },
+ "capacidad_total_mm3": 782.521,
+ "ultimo": {
+  "dia": 26,
+  "villa_victoria": {
+   "mm3": 162.671,
+   "pct": 87.58,
+   "lluvia_mm": 4.5
+  },
+  "valle_de_bravo": {
+   "mm3": 381.688,
+   "pct": 96.78,
+   "lluvia_mm": 0.0
+  },
+  "el_bosque": {
+   "mm3": 199.985,
+   "pct": 98.81,
+   "lluvia_mm": 0.0
+  },
+  "total_m3": 744344000,
+  "total_pct": 95.12,
+  "fecha": "2026-10-26"
+ },
+ "inicio_mes": {
+  "dia": 1,
+  "villa_victoria": {
+   "mm3": 155.519,
+   "pct": 83.73,
+   "lluvia_mm": 4.0
+  },
+  "valle_de_bravo": {
+   "mm3": 354.701,
+   "pct": 89.94,
+   "lluvia_mm": 25.0
+  },
+  "el_bosque": {
+   "mm3": 178.42,
+   "pct": 88.15,
+   "lluvia_mm": 0.0
+  },
+  "total_m3": 688640000,
+  "total_pct": 88.0,
+  "fecha": "2026-10-01"
+ },
+ "serie_mes": [
+  {
+   "fecha": "2026-10-01",
+   "total_pct": 88.0
+  },
+  {
+   "fecha": "2026-10-02",
+   "total_pct": 88.33
+  },
+  {
+   "fecha": "2026-10-03",
+   "total_pct": 88.77
+  },
+  {
+   "fecha": "2026-10-04",
+   "total_pct": 89.22
+  },
+  {
+   "fecha": "2026-10-05",
+   "total_pct": 89.43
+  },
+  {
+   "fecha": "2026-10-06",
+   "total_pct": 89.75
+  },
+  {
+   "fecha": "2026-10-07",
+   "total_pct": 90.19
+  },
+  {
+   "fecha": "2026-10-08",
+   "total_pct": 90.59
+  },
+  {
+   "fecha": "2026-10-09",
+   "total_pct": 90.96
+  },
+  {
+   "fecha": "2026-10-10",
+   "total_pct": 91.26
+  },
+  {
+   "fecha": "2026-10-11",
+   "total_pct": 91.47
+  },
+  {
+   "fecha": "2026-10-12",
+   "total_pct": 92.04
+  },
+  {
+   "fecha": "2026-10-13",
+   "total_pct": 92.35
+  },
+  {
+   "fecha": "2026-10-14",
+   "total_pct": 92.7
+  },
+  {
+   "fecha": "2026-10-15",
+   "total_pct": 93.08
+  },
+  {
+   "fecha": "2026-10-16",
+   "total_pct": 93.27
+  },
+  {
+   "fecha": "2026-10-17",
+   "total_pct": 93.56
+  },
+  {
+   "fecha": "2026-10-18",
+   "total_pct": 93.92
+  },
+  {
+   "fecha": "2026-10-19",
+   "total_pct": 94.17
+  },
+  {
+   "fecha": "2026-10-20",
+   "total_pct": 94.37
+  },
+  {
+   "fecha": "2026-10-21",
+   "total_pct": 94.46
+  },
+  {
+   "fecha": "2026-10-22",
+   "total_pct": 94.66
+  },
+  {
+   "fecha": "2026-10-23",
+   "total_pct": 94.75
+  },
+  {
+   "fecha": "2026-10-24",
+   "total_pct": 94.94
+  },
+  {
+   "fecha": "2026-10-25",
+   "total_pct": 95.06
+  },
+  {
+   "fecha": "2026-10-26",
+   "total_pct": 95.12
+  }
+ ],
+ "presas_coords_aprox": {
+  "villa_victoria": [
+   19.4622,
+   -99.9833
+  ],
+  "valle_de_bravo": [
+   19.196,
+   -100.155
+  ],
+  "el_bosque": [
+   19.3924,
+   -100.397
+  ],
+  "_nota": "coordenadas APROXIMADAS del cuerpo de agua (OpenStreetMap/Nominatim, consultado 2026-10-30), solo para visualización"
+ }
+}

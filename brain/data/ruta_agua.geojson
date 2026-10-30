@@ -1,0 +1,543 @@
+{
+ "type": "FeatureCollection",
+ "_meta": {
+  "fuente": "Construcción propia para visualización; nodos aproximados (ver propiedades)",
+  "url": null,
+  "fecha_corte": "2026-10-30",
+  "frecuencia": "manual",
+  "verificado": "NO – ruta aproximada/ilustrativa"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -100.155,
+     19.196
+    ]
+   },
+   "properties": {
+    "id": "presa_valle_de_bravo",
+    "tipo": "nodo",
+    "aproximado": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -99.9833,
+     19.4622
+    ]
+   },
+   "properties": {
+    "id": "presa_villa_victoria",
+    "tipo": "nodo",
+    "aproximado": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -100.397,
+     19.3924
+    ]
+   },
+   "properties": {
+    "id": "presa_el_bosque",
+    "tipo": "nodo",
+    "aproximado": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -100.07,
+     19.4038
+    ]
+   },
+   "properties": {
+    "id": "planta_los_berros",
+    "tipo": "nodo",
+    "aproximado": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -99.3,
+     19.36
+    ]
+   },
+   "properties": {
+    "id": "entrada_poniente_cdmx",
+    "tipo": "nodo",
+    "aproximado": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -99.14,
+     19.555
+    ]
+   },
+   "properties": {
+    "id": "norte_chalmita",
+    "tipo": "nodo",
+    "aproximado": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -98.97,
+     19.33
+    ]
+   },
+   "properties": {
+    "id": "oriente_la_caldera",
+    "tipo": "nodo",
+    "aproximado": true
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.18426,
+      19.48889
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "002",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.15103,
+      19.32827
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "003",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.32296,
+      19.31942
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "004",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -99.14,
+      19.555
+     ],
+     [
+      -99.14461,
+      19.51923
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "005",
+    "sistema": "Chalmita",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.09646,
+      19.39908
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "006",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.04547,
+      19.34015
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "007",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -98.97,
+      19.33
+     ],
+     [
+      -99.04547,
+      19.34015
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "007",
+    "sistema": "La Caldera",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.2635,
+      19.27537
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "008",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.2784,
+      19.31777
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "010",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -98.97,
+      19.33
+     ],
+     [
+      -99.00382,
+      19.26715
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "011",
+    "sistema": "La Caldera",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.21698,
+      19.19716
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "012",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.16384,
+      19.37391
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "014",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.14841,
+      19.43305
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "015",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.19935,
+      19.43042
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "016",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -100.155,
+      19.196
+     ],
+     [
+      -100.07,
+      19.4038
+     ],
+     [
+      -99.3,
+      19.36
+     ],
+     [
+      -99.08811,
+      19.43186
+     ]
+    ]
+   },
+   "properties": {
+    "cve_mun": "017",
+    "sistema": "Cutzamala",
+    "aproximada": true,
+    "etiqueta": "ruta aproximada"
+   }
+  }
+ ]
+}

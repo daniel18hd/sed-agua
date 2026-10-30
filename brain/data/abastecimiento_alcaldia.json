@@ -1,0 +1,213 @@
+{
+ "_meta": {
+  "fuente": "Curado de prensa (ver 'fuentes'); validar contra SEGIAGUA 'Agua en tu colonia'",
+  "url": "https://mvsnoticias.com/nacional/2025/10/17/estas-son-las-alcaldias-de-cdmx-que-reciben-agua-del-cutzamala-708745.html",
+  "fecha_corte": "2026-10-05",
+  "frecuencia": "manual",
+  "verificado": "POR VALIDAR – no es dataset oficial por alcaldía"
+ },
+ "fuentes": {
+  "mvs": {
+   "t": "MVS Noticias – Estas son las alcaldías de CDMX que reciben agua del Cutzamala",
+   "url": "https://mvsnoticias.com/nacional/2025/10/17/estas-son-las-alcaldias-de-cdmx-que-reciben-agua-del-cutzamala-708745.html",
+   "fecha": "2025-10-17"
+  },
+  "milenio": {
+   "t": "Milenio – Sistema Cutzamala: ¿qué alcaldías de CdMx abastece?",
+   "url": "https://www.milenio.com/politica/comunidad/sistema-cutzamala-alcaldias-cdmx-abastece-agua",
+   "fecha": "por validar"
+  },
+  "chalmita": {
+   "t": "El Heraldo de México – megacorte por redistribución desde tanques Chalmita (GAM)",
+   "url": "https://heraldodemexico.com.mx/nacional/2026/10/3/alertan-por-megacorte-de-agua-que-durara-hasta-el-de-octubre-lista-de-colonias-afectadas-900651.html",
+   "fecha": "2026-10-03"
+  },
+  "caldera": {
+   "t": "El Heraldo de México – Iztapalapa y Tláhuac 39 h sin agua (fuga acueducto La Caldera / ramal Mixquic-Tláhuac)",
+   "url": "https://heraldodemexico.com.mx/nacional/2026/10/5/iztapalapa-tlahuac-no-tendran-agua-en-las-proximas-39-horas-lista-de-colonias-afectadas-901851.html",
+   "fecha": "2026-10-05"
+  }
+ },
+ "por_cve_mun": {
+  "002": {
+   "alcaldia": "Azcapotzalco",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "003": {
+   "alcaldia": "Coyoacán",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "004": {
+   "alcaldia": "Cuajimalpa de Morelos",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "005": {
+   "alcaldia": "Gustavo A. Madero",
+   "cutzamala": false,
+   "sistemas": [
+    "pozos locales",
+    "tanques Chalmita (redistribución)"
+   ],
+   "fuentes": [
+    "mvs",
+    "chalmita"
+   ]
+  },
+  "006": {
+   "alcaldia": "Iztacalco",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "007": {
+   "alcaldia": "Iztapalapa",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "acueducto La Caldera / ramal Mixquic-Tláhuac (oriente)",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs",
+    "caldera"
+   ]
+  },
+  "008": {
+   "alcaldia": "La Magdalena Contreras",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "009": {
+   "alcaldia": "Milpa Alta",
+   "cutzamala": false,
+   "sistemas": [
+    "pozos y manantiales locales"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "010": {
+   "alcaldia": "Álvaro Obregón",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "011": {
+   "alcaldia": "Tláhuac",
+   "cutzamala": false,
+   "sistemas": [
+    "pozos locales",
+    "acueducto La Caldera / ramal Mixquic-Tláhuac"
+   ],
+   "fuentes": [
+    "mvs",
+    "caldera",
+    "milenio"
+   ],
+   "nota": "Milenio la incluye entre alcaldías con Cutzamala; MVS no. Tratar Cutzamala como 'parcial, por validar'."
+  },
+  "012": {
+   "alcaldia": "Tlalpan",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "013": {
+   "alcaldia": "Xochimilco",
+   "cutzamala": false,
+   "sistemas": [
+    "pozos y manantiales locales"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "014": {
+   "alcaldia": "Benito Juárez",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "015": {
+   "alcaldia": "Cuauhtémoc",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "016": {
+   "alcaldia": "Miguel Hidalgo",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  },
+  "017": {
+   "alcaldia": "Venustiano Carranza",
+   "cutzamala": true,
+   "sistemas": [
+    "Cutzamala",
+    "pozos locales / otros (proporción por validar)"
+   ],
+   "fuentes": [
+    "mvs"
+   ]
+  }
+ }
+}

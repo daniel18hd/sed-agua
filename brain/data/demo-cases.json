@@ -1,0 +1,314 @@
+{
+  "_meta": {
+    "generado": "2026-10-30",
+    "regla": "Nunca afirmar que hoy no hay agua: usar 'frase'. 'reportado en prensa' ≠ 'inferido por base histórica'.",
+    "ahora_demo": {
+      "valor": "2026-10-29T09:00-06:00",
+      "uso": "Reloj de demo (env DEMO_NOW). Con este reloj el aviso oficial de CTM El Risco (fin 30-oct 12:00) está vigente. En vivo usar la hora real: si el aviso ya venció, la respuesta dice 'el aviso oficial terminó…' (no se inventa)."
+    },
+    "capacidades": {
+      "semaforo": "dato real (fuentes oficiales con fecha) + reglas de demo (umbrales hipótesis)",
+      "dias_para_agua": "oficial solo con aviso con fecha fin; si no, ESTIMADO (llegada.ts ESTIMADO_EVENTO) o 'sin dato oficial'",
+      "calidad": "real = salida de planta Los Berros y reportes vecinales; azufre/sulfatos por colonia NO existe en datos abiertos → solo escenarios_demo"
+    }
+  },
+  "casos": [
+    {
+      "id": "gam-santa-rosa",
+      "cve_col": "005-155",
+      "alcaldia": "Gustavo A. Madero",
+      "cve_mun": "005",
+      "colonia_reportada": "Joyas Vallejo / Santa Rosa",
+      "referencia": "Calz. Vallejo a la altura de Calle 34-A",
+      "tipo": "reportado en prensa",
+      "descripcion": "Vecinos bloquearon Calz. Vallejo por desabasto prolongado; denunciaron agua sucia.",
+      "fecha_nota": "2026-10-02",
+      "fuentes": [
+        "https://www.reforma.com/protestan-en-vallejo-por-desabasto-de-agua/ar3287112",
+        "https://www.reforma.com/reciben-vecinos-de-vallejo-agua-sucia/ar3287553",
+        "https://www.nmas.com.mx/ciudad-de-mexico/movilidad/marchas/bloqueo-en-avenida-vallejo-hoy-ruta-alterna-a-manifestacion-por-falta-de-agua/"
+      ],
+      "nota_coord": "Joyas Vallejo no existe en el catálogo de colonias; se usa centroide de Santa Rosa (GAM).",
+      "colonia_catalogo": "Santa Rosa",
+      "lat": 19.52494,
+      "lon": -99.17055,
+      "coord_tipo": "aproximada (punto interior de colonia, catálogo Datos CDMX)",
+      "frase": "reportado el 2026-10-02",
+      "texto_whatsapp_demo": "Joyas Vallejo / Santa Rosa, Gustavo A. Madero, CDMX (Calz. Vallejo a la altura de Calle 34-A)",
+      "llegada": {
+        "tipo": "sin_dato",
+        "nota": "Sin aviso oficial con fecha fin."
+      }
+    },
+    {
+      "id": "bj-ninos-heroes",
+      "cve_col": "014-034",
+      "alcaldia": "Benito Juárez",
+      "cve_mun": "014",
+      "colonia_reportada": "Niños Héroes (U.H. Ramos Millán)",
+      "referencia": "Eje 5 Sur Ramos Millán y Virgilio Uribe",
+      "tipo": "reportado en prensa",
+      "descripcion": "Vecinos bloquearon Eje 5 Sur; dijeron llevar semanas sin suministro y depender de pipas.",
+      "fecha_nota": "2026-10-15",
+      "fuentes": [
+        "https://www.reforma.com/exigen-agua-vecinos-de-benito-juarez-con-bloqueo/ar3295456",
+        "https://www.reforma.com/padecen-por-fallas-en-suministro-de-agua-en-la-bj/ar3296661"
+      ],
+      "nota_coord": null,
+      "colonia_catalogo": "Niños Heroes",
+      "lat": 19.38632,
+      "lon": -99.14318,
+      "coord_tipo": "aproximada (punto interior de colonia, catálogo Datos CDMX)",
+      "frase": "reportado el 2026-10-15",
+      "texto_whatsapp_demo": "Niños Héroes, Benito Juárez, CDMX (Eje 5 Sur Ramos Millán y Virgilio Uribe)",
+      "llegada": {
+        "tipo": "sin_dato",
+        "nota": "Sin aviso oficial con fecha fin."
+      }
+    },
+    {
+      "id": "izp-hacienda-flores",
+      "cve_col": null,
+      "alcaldia": "Iztapalapa",
+      "cve_mun": "007",
+      "colonia_reportada": "U.H. Hacienda de las Flores",
+      "referencia": "Eje 5 Sur y Periférico Oriente",
+      "tipo": "reportado en prensa",
+      "categoria": "calidad",
+      "descripcion": "Vecinos denunciaron agua turbia, con mal olor y gusanos desde hace ~2 años; bloquearon Eje 5 Sur y Periférico Oriente.",
+      "fecha_nota": "2026-10-28",
+      "fuentes": [
+        "https://www.nmas.com.mx/sociedad/vecinos-de-iztapalapa-bloquean-eje-5-por-denuncia-de-agua-sucia-con-gusanos/",
+        "https://www.reforma.com/protestan-sobre-eje-5-sur-por-agua-contaminada-en-iztapalapa/ar3304059"
+      ],
+      "nota_coord": "Unidad no está en catálogo de colonias ni en Nominatim: geocodificar 'Eje 5 Sur y Periférico Oriente, Iztapalapa' en el setup.",
+      "lat": null,
+      "lon": null,
+      "coord_tipo": "pendiente de geocodificar",
+      "frase": "reportado el 2026-10-28",
+      "texto_whatsapp_demo": "U.H. Hacienda de las Flores, Iztapalapa, CDMX (Eje 5 Sur y Periférico Oriente)",
+      "llegada": {
+        "tipo": "sin_dato",
+        "nota": "Sin aviso oficial con fecha fin."
+      }
+    },
+    {
+      "id": "gam-ctm-el-risco",
+      "cve_col": "005-036",
+      "alcaldia": "Gustavo A. Madero",
+      "cve_mun": "005",
+      "colonia_reportada": "CTM El Risco",
+      "referencia": "Fernando Amilpa, Andadores 18–24",
+      "tipo": "reportado en prensa",
+      "categoria": "corte_programado",
+      "descripcion": "SEGIAGUA programó cortes 8:00–12:00 por rehabilitación sin zanja (28: And. 18–20; 29: And. 20–22; 30: And. 22–24).",
+      "fecha_nota": "2026-10-27",
+      "ventana_oficial": {
+        "inicio": "2026-10-28T08:00-06:00",
+        "fin": "2026-10-30T12:00-06:00",
+        "horario": "08:00-12:00 diario"
+      },
+      "fuentes": [
+        "https://www.adn40.mx/ciudad/2026-10-27/no-habra-agua-en-estas-calles-de-la-alcaldia-gustavo-a-madero-desde-hoy-y-hasta-el-30-de-octubre/",
+        "https://www.informador.mx/mexico/cdmx-tendra-cortes-de-agua-el-29-y-30-de-octubre-conoce-donde-20261029-0214.html"
+      ],
+      "nota_coord": null,
+      "colonia_catalogo": "C T M El Risco",
+      "lat": 19.50941,
+      "lon": -99.09519,
+      "coord_tipo": "aproximada (punto interior de colonia, catálogo Datos CDMX)",
+      "frase": "reportado el 2026-10-27",
+      "texto_whatsapp_demo": "CTM El Risco, Gustavo A. Madero, CDMX (Fernando Amilpa, Andadores 18–24)",
+      "llegada": {
+        "tipo": "oficial",
+        "fin": "2026-10-30T12:00-06:00",
+        "fuente": "SEGIAGUA (aviso difundido en prensa, ver fuentes)"
+      }
+    },
+    {
+      "id": "izp-san-lorenzo-tezonco",
+      "cve_col": "007-138",
+      "alcaldia": "Iztapalapa",
+      "cve_mun": "007",
+      "colonia_reportada": "Pueblo San Lorenzo Tezonco",
+      "referencia": null,
+      "tipo": "reportado en prensa",
+      "categoria": "corte_por_fuga",
+      "descripcion": "Fuga en acueducto La Caldera / ramal Mixquic-Tláhuac: corte o baja presión ~39 h; restablecimiento gradual el 7-oct.",
+      "fecha_nota": "2026-10-05",
+      "fuentes": [
+        "https://heraldodemexico.com.mx/nacional/2026/10/5/iztapalapa-tlahuac-no-tendran-agua-en-las-proximas-39-horas-lista-de-colonias-afectadas-901851.html",
+        "https://www.ambito.com/mexico/informacion-general/corte-agua-cdmx-el-7-octubre-2026-estas-son-las-alcaldias-y-colonias-afectadas-n6330510"
+      ],
+      "nota_coord": null,
+      "colonia_catalogo": "Pueblo San Lorenzo Tezonco",
+      "lat": 19.31341,
+      "lon": -99.06557,
+      "coord_tipo": "aproximada (punto interior de colonia, catálogo Datos CDMX)",
+      "frase": "reportado el 2026-10-05",
+      "texto_whatsapp_demo": "Pueblo San Lorenzo Tezonco, Iztapalapa, CDMX",
+      "llegada": {
+        "tipo": "historico",
+        "nota": "Evento terminado: restablecimiento gradual reportado el 7-oct-2026. Hoy no hay aviso vigente → 'sin dato oficial'."
+      }
+    },
+    {
+      "id": "tlh-selene",
+      "cve_col": "011-073",
+      "alcaldia": "Tláhuac",
+      "cve_mun": "011",
+      "colonia_reportada": "Selene (también Del Mar, Zapotitla)",
+      "referencia": null,
+      "tipo": "reportado en prensa",
+      "categoria": "corte_por_fuga",
+      "descripcion": "Mismo evento La Caldera: corte/baja presión en norte de Tláhuac; restablecimiento gradual el 7-oct.",
+      "fecha_nota": "2026-10-05",
+      "fuentes": [
+        "https://heraldodemexico.com.mx/nacional/2026/10/5/iztapalapa-tlahuac-no-tendran-agua-en-las-proximas-39-horas-lista-de-colonias-afectadas-901851.html",
+        "https://www.milenio.com/comunidad/conagua-concluye-reparacion-de-fuga-en-ramal-mixquic-tlahuac"
+      ],
+      "nota_coord": null,
+      "colonia_catalogo": "Selene",
+      "lat": 19.28485,
+      "lon": -99.00495,
+      "coord_tipo": "aproximada (punto interior de colonia, catálogo Datos CDMX)",
+      "frase": "reportado el 2026-10-05",
+      "texto_whatsapp_demo": "Selene, Tláhuac, CDMX",
+      "llegada": {
+        "tipo": "historico",
+        "nota": "Evento terminado: restablecimiento gradual reportado el 7-oct-2026. Hoy no hay aviso vigente → 'sin dato oficial'."
+      }
+    },
+    {
+      "id": "ao-torres-potrero",
+      "cve_col": "010-219",
+      "alcaldia": "Álvaro Obregón",
+      "cve_mun": "010",
+      "colonia_reportada": "Torres de Potrero",
+      "referencia": "Av. de las Torres y Flor del Campo",
+      "tipo": "reportado en prensa",
+      "descripcion": "Vecinos bloquearon por más de dos meses sin agua; acusaron a desarrollos inmobiliarios.",
+      "fecha_nota": "2026-03-15",
+      "fuentes": [
+        "https://www.nmas.com.mx/movilidad/marchas/vecinos-torres-potrero-protestan-falta-agua-alvaro-obregon-cdmx/"
+      ],
+      "nota_coord": null,
+      "nota_fecha": "Fecha tomada del timestamp de publicación de la página (2026-03-15T06:55); por validar.",
+      "colonia_catalogo": "Torres De Potrero",
+      "lat": 19.33201,
+      "lon": -99.24704,
+      "coord_tipo": "aproximada (punto interior de colonia, catálogo Datos CDMX)",
+      "frase": "reportado el 2026-03-15",
+      "texto_whatsapp_demo": "Torres de Potrero, Álvaro Obregón, CDMX (Av. de las Torres y Flor del Campo)",
+      "llegada": {
+        "tipo": "sin_dato",
+        "nota": "Sin aviso oficial con fecha fin."
+      }
+    },
+    {
+      "id": "tlp-heroes-padierna",
+      "cve_col": "012-052",
+      "alcaldia": "Tlalpan",
+      "cve_mun": "012",
+      "colonia_reportada": "Héroes de Padierna (también Vistas del Pedregal, 2 de Octubre, Bosques del Pedregal, Lomas de Cuilotepec)",
+      "referencia": "Calle Sacalum casi esq. Tenosique",
+      "tipo": "reportado en prensa",
+      "categoria": "corte_por_fuga",
+      "descripcion": "Reparación de fuga de 20 pulgadas; corte del 11 al 26 de junio.",
+      "fecha_nota": "2026-06-17",
+      "fuentes": [
+        "https://www.cronica.com.mx/metropoli/2026/06/17/reparacion-de-fuga-dejara-a-vecinos-de-tlalpan-sin-agua-por-10-dias-pan-demanda-abasto/",
+        "https://www.excelsior.com.mx/ciudad-de-mexico/extiende-hasta-26-junio-corte-agua-tlalpan-por-reparacion-megafuga"
+      ],
+      "nota_coord": null,
+      "colonia_catalogo": "Heroes De Padierna",
+      "lat": 19.28278,
+      "lon": -99.2226,
+      "coord_tipo": "aproximada (punto interior de colonia, catálogo Datos CDMX)",
+      "frase": "reportado el 2026-06-17",
+      "texto_whatsapp_demo": "Héroes de Padierna, Tlalpan, CDMX (Calle Sacalum casi esq. Tenosique)",
+      "llegada": {
+        "tipo": "historico",
+        "nota": "Corte oficial 11–26 jun 2026, ya terminó → hoy 'sin dato oficial'."
+      }
+    },
+    {
+      "id": "izc-agricola-oriental",
+      "cve_col": "006-001",
+      "alcaldia": "Iztacalco",
+      "cve_mun": "006",
+      "colonia_reportada": "Agrícola Oriental",
+      "referencia": null,
+      "tipo": "inferido por base histórica",
+      "descripcion": "Colonia con más reportes 'Falta de agua' en la base SACMEX 2022-01 a 2024-02 (6,885). No implica falta de agua hoy.",
+      "fecha_nota": "2024-02-01",
+      "fuentes": [
+        "https://datos.cdmx.gob.mx/dataset/reportes-de-agua"
+      ],
+      "nota_coord": null,
+      "colonia_catalogo": "Agricola Oriental",
+      "lat": 19.39568,
+      "lon": -99.07105,
+      "coord_tipo": "aproximada (punto interior de colonia, catálogo Datos CDMX)",
+      "frase": "patrón histórico SACMEX 2022–24 (no es reporte de hoy)",
+      "texto_whatsapp_demo": "Agrícola Oriental, Iztacalco, CDMX",
+      "llegada": {
+        "tipo": "sin_dato",
+        "nota": "Sin aviso oficial con fecha fin."
+      }
+    },
+    {
+      "id": "coy-pedregal-santa-ursula",
+      "cve_col": "003-074",
+      "alcaldia": "Coyoacán",
+      "cve_mun": "003",
+      "colonia_reportada": "Pedregal de Santa Úrsula",
+      "referencia": null,
+      "tipo": "inferido por base histórica",
+      "descripcion": "Top de reportes 'Falta de agua' en Coyoacán, base SACMEX 2022–24 (2,051). No implica falta de agua hoy.",
+      "fecha_nota": "2024-02-01",
+      "fuentes": [
+        "https://datos.cdmx.gob.mx/dataset/reportes-de-agua"
+      ],
+      "nota_coord": null,
+      "colonia_catalogo": "Pedregal De Santa Ursula",
+      "lat": 19.31088,
+      "lon": -99.15403,
+      "coord_tipo": "aproximada (punto interior de colonia, catálogo Datos CDMX)",
+      "frase": "patrón histórico SACMEX 2022–24 (no es reporte de hoy)",
+      "texto_whatsapp_demo": "Pedregal de Santa Úrsula, Coyoacán, CDMX",
+      "llegada": {
+        "tipo": "sin_dato",
+        "nota": "Sin aviso oficial con fecha fin."
+      }
+    }
+  ],
+  "escenarios_demo": [
+    {
+      "id": "demo-azufre-agricola-oriental",
+      "es_demo": true,
+      "etiqueta": "CASO DE DEMOSTRACIÓN – no es un hecho real",
+      "cve_col": "006-001",
+      "colonia": "Agrícola Oriental",
+      "alcaldia": "Iztacalco",
+      "alerta_calidad_demo": {
+        "parametro": "posible exceso de azufre (olor a huevo)",
+        "tipo": "quimico"
+      },
+      "por_que": "Muestra la capacidad de aviso de calidad. No existe dato público de azufre/sulfatos por colonia; en producción vendría de reportes vecinales o de un laboratorio/organismo."
+    },
+    {
+      "id": "demo-fuga-sin-fin-santa-ursula",
+      "es_demo": true,
+      "etiqueta": "CASO DE DEMOSTRACIÓN – no es un hecho real",
+      "cve_col": "003-074",
+      "colonia": "Pedregal de Santa Úrsula",
+      "alcaldia": "Coyoacán",
+      "evento_sin_fin_demo": {
+        "inicio": "2026-10-29T06:00-06:00",
+        "tipo": "fuga"
+      },
+      "por_que": "Muestra el rango ESTIMADO (2–3 días) cuando hay corte sin fecha de fin."
+    }
+  ]
+}

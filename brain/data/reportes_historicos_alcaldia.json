@@ -1,0 +1,480 @@
+{
+ "_meta": {
+  "fuente": "Datos Abiertos CDMX – Reportes de agua (SACMEX), recurso a8069e94-c7cb-45d7-8166-561e80884422",
+  "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+  "fecha_corte": "2024-02-01",
+  "frecuencia": "histórico (sin actualización desde 2024)",
+  "verificado": "API datastore_search_sql HTTP 200; rango 2022-01-01 a 2024-02-01"
+ },
+ "p75_falta_por_1000_viviendas": 79.1,
+ "por_cve_mun": {
+  "002": {
+   "alcaldia": "Azcapotzalco",
+   "falta_de_agua": 9201,
+   "mala_calidad": 229,
+   "fuga": 4249,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Pueblo San Martin Xochinahuac",
+     "n": 624
+    },
+    {
+     "colonia": "Pueblo Santiago Ahuizotla",
+     "n": 558
+    },
+    {
+     "colonia": "Reynosa Tamaulipas",
+     "n": 520
+    },
+    {
+     "colonia": "Ampliacion San Pedro Xalpa",
+     "n": 460
+    },
+    {
+     "colonia": "Pasteros",
+     "n": 328
+    }
+   ],
+   "falta_por_1000_viviendas": 68.6,
+   "sobre_p75": false
+  },
+  "014": {
+   "alcaldia": "Benito Juárez",
+   "falta_de_agua": 14298,
+   "mala_calidad": 86,
+   "fuga": 5733,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Del Valle Sur",
+     "n": 1840
+    },
+    {
+     "colonia": "Moderna",
+     "n": 965
+    },
+    {
+     "colonia": "Actipan",
+     "n": 824
+    },
+    {
+     "colonia": "Narvarte Oriente",
+     "n": 774
+    },
+    {
+     "colonia": "Portales Sur",
+     "n": 757
+    }
+   ],
+   "falta_por_1000_viviendas": 81.2,
+   "sobre_p75": true
+  },
+  "003": {
+   "alcaldia": "Coyoacán",
+   "falta_de_agua": 15140,
+   "mala_calidad": 147,
+   "fuga": 13657,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Pedregal De Santa Ursula",
+     "n": 2051
+    },
+    {
+     "colonia": "Pedregal De Santo Domingo",
+     "n": 2036
+    },
+    {
+     "colonia": "Ajusco",
+     "n": 1617
+    },
+    {
+     "colonia": "Adolfo Ruiz Cortinez",
+     "n": 1008
+    },
+    {
+     "colonia": "Alianza Popular Revolucionaria",
+     "n": 668
+    }
+   ],
+   "falta_por_1000_viviendas": 79.1,
+   "sobre_p75": true
+  },
+  "004": {
+   "alcaldia": "Cuajimalpa de Morelos",
+   "falta_de_agua": 3467,
+   "mala_calidad": 55,
+   "fuga": 2099,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Santa Fe Cuajimalpa",
+     "n": 1010
+    },
+    {
+     "colonia": "Contadero",
+     "n": 261
+    },
+    {
+     "colonia": "Cuajimalpa",
+     "n": 246
+    },
+    {
+     "colonia": "Bosques De Las Lomas",
+     "n": 223
+    },
+    {
+     "colonia": "Pueblo San Mateo Tlaltenango",
+     "n": 145
+    }
+   ],
+   "falta_por_1000_viviendas": 58.6,
+   "sobre_p75": false
+  },
+  "015": {
+   "alcaldia": "Cuauhtémoc",
+   "falta_de_agua": 13441,
+   "mala_calidad": 130,
+   "fuga": 4718,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Doctores",
+     "n": 1946
+    },
+    {
+     "colonia": "Roma Norte",
+     "n": 1789
+    },
+    {
+     "colonia": "Obrera",
+     "n": 1016
+    },
+    {
+     "colonia": "Santa Maria La Ribera",
+     "n": 1012
+    },
+    {
+     "colonia": "Guerrero",
+     "n": 879
+    }
+   ],
+   "falta_por_1000_viviendas": 68.4,
+   "sobre_p75": false
+  },
+  "005": {
+   "alcaldia": "Gustavo A. Madero",
+   "falta_de_agua": 33059,
+   "mala_calidad": 349,
+   "fuga": 16660,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "San Felipe De Jesus",
+     "n": 2227
+    },
+    {
+     "colonia": "San Juan De Aragon I Seccion",
+     "n": 1310
+    },
+    {
+     "colonia": "San Juan De Aragon Ii Seccion",
+     "n": 1238
+    },
+    {
+     "colonia": "Nueva Industrial Vallejo",
+     "n": 1181
+    },
+    {
+     "colonia": "San Juan De Aragon Vii Seccion",
+     "n": 1104
+    }
+   ],
+   "falta_por_1000_viviendas": 97.2,
+   "sobre_p75": true
+  },
+  "006": {
+   "alcaldia": "Iztacalco",
+   "falta_de_agua": 16281,
+   "mala_calidad": 452,
+   "fuga": 2541,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Agricola Oriental",
+     "n": 6885
+    },
+    {
+     "colonia": "Agricola Pantitlan",
+     "n": 3852
+    },
+    {
+     "colonia": "Viaducto Piedad",
+     "n": 746
+    },
+    {
+     "colonia": "Gabriel Ramos Millan Seccion Bramadero",
+     "n": 541
+    },
+    {
+     "colonia": "Barrio San Pedro",
+     "n": 461
+    }
+   ],
+   "falta_por_1000_viviendas": 138.3,
+   "sobre_p75": true
+  },
+  "007": {
+   "alcaldia": "Iztapalapa",
+   "falta_de_agua": 13222,
+   "mala_calidad": 272,
+   "fuga": 10194,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Buenavista",
+     "n": 416
+    },
+    {
+     "colonia": "Desarrollo Urbano Quetzalcoatl",
+     "n": 394
+    },
+    {
+     "colonia": "Leyes De Reforma 3a Seccion",
+     "n": 375
+    },
+    {
+     "colonia": "Xalpa",
+     "n": 302
+    },
+    {
+     "colonia": "Unidad Ejercito Constitucionalista",
+     "n": 275
+    }
+   ],
+   "falta_por_1000_viviendas": 26.2,
+   "sobre_p75": false
+  },
+  "008": {
+   "alcaldia": "La Magdalena Contreras",
+   "falta_de_agua": 2688,
+   "mala_calidad": 16,
+   "fuga": 4455,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "San Jeronimo Lidice",
+     "n": 256
+    },
+    {
+     "colonia": "Pueblo San Nicolas Totolapan",
+     "n": 216
+    },
+    {
+     "colonia": "San Jeronimo Aculco",
+     "n": 166
+    },
+    {
+     "colonia": "Los Padres",
+     "n": 154
+    },
+    {
+     "colonia": "El Tanque",
+     "n": 142
+    }
+   ],
+   "falta_por_1000_viviendas": 39.7,
+   "sobre_p75": false
+  },
+  "016": {
+   "alcaldia": "Miguel Hidalgo",
+   "falta_de_agua": 3805,
+   "mala_calidad": 130,
+   "fuga": 5654,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Tacubaya",
+     "n": 326
+    },
+    {
+     "colonia": "Bosque De Las Lomas",
+     "n": 257
+    },
+    {
+     "colonia": "Lomas De Chapultepec Viii Seccion",
+     "n": 235
+    },
+    {
+     "colonia": "Escandon I Seccion",
+     "n": 189
+    },
+    {
+     "colonia": "Polanco Ii Seccion",
+     "n": 172
+    }
+   ],
+   "falta_por_1000_viviendas": 25.9,
+   "sobre_p75": false
+  },
+  "009": {
+   "alcaldia": "Milpa Alta",
+   "falta_de_agua": 1231,
+   "mala_calidad": 42,
+   "fuga": 439,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Pueblo San Bartolome Xicomulco",
+     "n": 236
+    },
+    {
+     "colonia": "Pueblo San Salvador Cuauhtenco",
+     "n": 148
+    }
+   ],
+   "falta_por_1000_viviendas": 37.3,
+   "sobre_p75": false
+  },
+  "012": {
+   "alcaldia": "Tlalpan",
+   "falta_de_agua": 18196,
+   "mala_calidad": 115,
+   "fuga": 11847,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Pueblo San Miguel Topilejo",
+     "n": 683
+    },
+    {
+     "colonia": "Pueblo Santa Ursula Xitla",
+     "n": 597
+    },
+    {
+     "colonia": "Ejidos De San Pedro Martir",
+     "n": 574
+    },
+    {
+     "colonia": "Pueblo San Pedro Martir",
+     "n": 528
+    },
+    {
+     "colonia": "Lomas De Padierna",
+     "n": 519
+    }
+   ],
+   "falta_por_1000_viviendas": 91.7,
+   "sobre_p75": true
+  },
+  "011": {
+   "alcaldia": "Tláhuac",
+   "falta_de_agua": 5826,
+   "mala_calidad": 49,
+   "fuga": 2701,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "La Conchita Zapotitlan",
+     "n": 495
+    },
+    {
+     "colonia": "Miguel Hidalgo",
+     "n": 384
+    },
+    {
+     "colonia": "Pueblo San Francisco Tlaltenco",
+     "n": 335
+    },
+    {
+     "colonia": "Selene Del Pueblo San Francisco Tlaltenco",
+     "n": 318
+    },
+    {
+     "colonia": "Selene",
+     "n": 258
+    }
+   ],
+   "falta_por_1000_viviendas": 55.4,
+   "sobre_p75": false
+  },
+  "017": {
+   "alcaldia": "Venustiano Carranza",
+   "falta_de_agua": 7526,
+   "mala_calidad": 424,
+   "fuga": 2687,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Jardin Balbuena",
+     "n": 1958
+    },
+    {
+     "colonia": "Moctezuma 1a Seccion",
+     "n": 724
+    },
+    {
+     "colonia": "Moctezuma 2a. Seccion",
+     "n": 591
+    },
+    {
+     "colonia": "5to Tramo 20 De Noviembre",
+     "n": 439
+    },
+    {
+     "colonia": "General Ignacio Zaragoza",
+     "n": 328
+    }
+   ],
+   "falta_por_1000_viviendas": 55.4,
+   "sobre_p75": false
+  },
+  "013": {
+   "alcaldia": "Xochimilco",
+   "falta_de_agua": 5033,
+   "mala_calidad": 495,
+   "fuga": 4230,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "San Lorenzo La Cebada",
+     "n": 354
+    },
+    {
+     "colonia": "Pueblo Santiago Tepalcatlalpan",
+     "n": 341
+    },
+    {
+     "colonia": "Jardines Del Sur",
+     "n": 282
+    },
+    {
+     "colonia": "Pueblo Santa Maria Tepepan",
+     "n": 205
+    },
+    {
+     "colonia": "Barrio 18",
+     "n": 176
+    }
+   ],
+   "falta_por_1000_viviendas": 44.2,
+   "sobre_p75": false
+  },
+  "010": {
+   "alcaldia": "Álvaro Obregón",
+   "falta_de_agua": 10553,
+   "mala_calidad": 134,
+   "fuga": 13354,
+   "top_colonias_falta_agua": [
+    {
+     "colonia": "Pueblo San Bartolo Ameyalco",
+     "n": 415
+    },
+    {
+     "colonia": "Jardines Del Pedregal",
+     "n": 412
+    },
+    {
+     "colonia": "Olivar De Los Padres",
+     "n": 376
+    },
+    {
+     "colonia": "Carola",
+     "n": 353
+    },
+    {
+     "colonia": "Bellavista",
+     "n": 342
+    }
+   ],
+   "falta_por_1000_viviendas": 48.1,
+   "sobre_p75": false
+  }
+ }
+}
