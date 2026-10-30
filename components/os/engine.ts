@@ -18,6 +18,9 @@ const MULTI_WINDOW = 10_000;
 const MULTI_POINTS_WINDOW = 120_000;
 const QUIET_TO_SINGLE = 10_000;
 const IDLE_AFTER = 60_000;
+// Reposo: norte arriba y México al centro; vaivén suave en longitud (±SWAY_DEG) que siempre regresa al centro.
+const SWAY_DEG = 6;
+const SWAY_PERIOD = 48_000;
 const DEBOUNCE = 400;
 const QUEUE_MAX = 20;
 const TRIP_DUR = 2500;
@@ -124,6 +127,7 @@ export class OsEngine {
   private camChain: Promise<void> = Promise.resolve();
   private gen = 0;
   private rotating = true;
+  private swayT0 = 0;
   private alc = new Map<string, { nivel: Nivel; k: number; target: number }>();
   private trips: Trip[] = [];
   private tripsOrigin = 0;
@@ -379,7 +383,7 @@ export class OsEngine {
     this.setTrips([]);
     this.focus = null;
     await this.camera((mm) => mm.flyTo({ ...IDLE, duration: 3200, essential: true, padding: { top: 0, bottom: 0, left: 0, right: 0 } }), 3200);
-    if (g === this.gen) this.rotating = true;
+    if (g === this.gen) { this.swayT0 = performance.now(); this.rotating = true; }
   }
 
   /** Demo: dispara el regreso al globo ya. */
@@ -546,7 +550,11 @@ export class OsEngine {
     this.lastFrame = now;
     const m = this.map;
     if (!m) return;
-    if (this.mode === "idle" && this.rotating && !m.isMoving()) m.setBearing(m.getBearing() + 0.02);
+    if (this.mode === "idle" && this.rotating && !m.isMoving()) {
+      if (!this.swayT0) this.swayT0 = now;
+      const k = Math.sin(((now - this.swayT0) / SWAY_PERIOD) * Math.PI * 2);
+      m.jumpTo({ center: [IDLE.center[0] + SWAY_DEG * k, IDLE.center[1]], bearing: 0, pitch: 0 });
+    }
     this.stepAlcaldias(dt);
     const bucket = Math.floor(Date.now() / 5000);
     if (bucket !== this.ageBucket) this.ageBucket = bucket;
