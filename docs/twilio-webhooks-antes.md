@@ -14,3 +14,7 @@ Cuenta: "My first Twilio account"
 
 ## WhatsApp Senders
 Ninguno registrado ("You don't have any Senders created yet").
+
+## ElevenLabs (cambio 2026-10-30 14:30, con OK de Daniel)
+- +1 832 346 6398 (`phnum_5701m4vx6vvsfz1bn8bz4nzn4320`): antes asignado a `agent_7801m4vtpb56fm6r2ev19aqzdzej` "[Neolabs] Demo · Karl Lagerfeld Residences", label "Demo KL Residences (Houston)". Ahora asignado a `agent_9501m674z09mfptt3z954cmmfrbg` "[Sed] Alerta de agua (outbound)".
+- +1 832 905 1749 (`phnum_8701…`, Sofía · Devoluciones): sin cambios.
