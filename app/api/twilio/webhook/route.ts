@@ -9,6 +9,20 @@ export const maxDuration = 30;
 
 const BUDGET_MS = 4200; // Twilio espera ≤15 s, pero queremos responder en <5 s
 
+async function sendExtras(to: string | undefined, msgs: string[], delayMs: number) {
+  const sid = process.env.TWILIO_ACCOUNT_SID, token = process.env.TWILIO_AUTH_TOKEN, from = process.env.TWILIO_WHATSAPP_NUMBER;
+  if (!sid || !token || !from || !to) return;
+  const client = twilio(sid, token);
+  for (const body of msgs) {
+    await new Promise((r) => setTimeout(r, delayMs));
+    try {
+      await client.messages.create({ from: `whatsapp:${from.replace(/^whatsapp:/, "")}`, to, body });
+    } catch (e) {
+      console.error("[twilio] no se pudo enviar el mensaje extra:", (e as Error).message);
+    }
+  }
+}
+
 export async function POST(req: Request) {
   const raw = await req.text();
   const params = Object.fromEntries(new URLSearchParams(raw)) as Record<string, string>;
@@ -30,15 +44,19 @@ export async function POST(req: Request) {
   });
   const timer = new Promise<null>((r) => setTimeout(() => r(null), BUDGET_MS));
   const first = await Promise.race([work, timer]);
-  if (first) return twiml(first.reply, ...(first.extra ?? []));
+  if (first) {
+    // El Sandbox limita a ~1 msg/3 s: la respuesta va en TwiML y los extras (oferta de llamada) por REST 3.5 s después.
+    if (first.extra?.length) after(() => sendExtras(params.From, first.extra!, 3500));
+    return twiml(first.reply);
+  }
 
   after(async () => {
     const res = await work;
     const sid = process.env.TWILIO_ACCOUNT_SID;
     const from = process.env.TWILIO_WHATSAPP_NUMBER;
     if (!sid || !token || !from || !params.From) return;
-    const client = twilio(sid, token);
-    for (const body of [res.reply, ...(res.extra ?? [])]) await client.messages.create({ from: `whatsapp:${from.replace(/^whatsapp:/, "")}`, to: params.From, body });
+    await twilio(sid, token).messages.create({ from: `whatsapp:${from.replace(/^whatsapp:/, "")}`, to: params.From, body: res.reply });
+    if (res.extra?.length) await sendExtras(params.From, res.extra, 3500);
   });
   return twiml(MSG.espera);
 }

@@ -9,6 +9,7 @@ beforeEach(() => {
   delete process.env.NEXT_PUBLIC_SUPABASE_URL;
   delete process.env.ELEVENLABS_API_KEY;
   delete process.env.VOICE_DRY_RUN;
+  delete process.env.VOICE_LIVE;
   fetchMock = vi.fn(async (url: string) => {
     if (String(url).includes("elevenlabs")) return new Response(JSON.stringify({ success: true, conversation_id: "conv_x", callSid: "CA123" }));
     return new Response("[]");
@@ -115,5 +116,14 @@ describe("flujo WhatsApp: oferta y SÍ/NO", async () => {
   });
   test("SÍ sin oferta previa → no llama", async () => {
     expect((await handleIncoming({ From: "whatsapp:+5215511100005", Body: "si" }, opts)).reply).toBe(MSG.sinOferta);
+  });
+});
+
+describe("número para llamar", async () => {
+  const { numeroParaLlamar } = await import("@/lib/voice/call");
+  test("WhatsApp MX +521 → +52", () => {
+    expect(numeroParaLlamar("whatsapp:+5215512345678")).toBe("+525512345678");
+    expect(numeroParaLlamar("whatsapp:+525512345678")).toBe("+525512345678");
+    expect(numeroParaLlamar("whatsapp:+14155550100")).toBe("+14155550100");
   });
 });

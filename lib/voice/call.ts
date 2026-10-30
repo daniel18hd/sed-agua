@@ -8,7 +8,8 @@ export const AGENT_ID = () => process.env.ELEVENLABS_AGENT_ID || "agent_9501m674
 export const PHONE_ID = () => process.env.ELEVENLABS_PHONE_NUMBER_ID || "phnum_8701m5gat1j3f38s59jpfmdg2145";
 // Nunca usar el número de KL/WhatsApp para llamar.
 const PROHIBIDO_PHONE_ID = "phnum_5701m4vx6vvsfz1bn8bz4nzn4320";
-export const dryRun = () => process.env.VOICE_DRY_RUN !== "0" || !process.env.ELEVENLABS_API_KEY;
+// Llamadas reales con VOICE_LIVE=1 (o VOICE_DRY_RUN=0) y la API key; si no, dry-run.
+export const dryRun = () => !(process.env.VOICE_LIVE === "1" || process.env.VOICE_DRY_RUN === "0") || !process.env.ELEVENLABS_API_KEY;
 
 export type VoiceResult =
   | { ok: true; dry_run: boolean; status: 200; body: Record<string, unknown> }
@@ -22,6 +23,13 @@ export interface VoiceRequest {
   consulta_id?: string;
 }
 
+/** WhatsApp entrega celulares de México como +521 + 10 dígitos; para llamar se marca +52 + 10 dígitos. */
+export function numeroParaLlamar(from: string): string {
+  const n = from.replace(/^whatsapp:/, "").replace(/[^\d+]/g, "");
+  const mx = n.match(/^\+521(\d{10})$/);
+  return mx ? `+52${mx[1]}` : n;
+}
+
 const critico = (v: VoiceVars) => v.nivel === "rojo" || v.motivo === "corte programado" || v.motivo === "alerta de calidad";
 
 export async function triggerVoiceAlert(r: VoiceRequest): Promise<VoiceResult> {
@@ -32,7 +40,7 @@ export async function triggerVoiceAlert(r: VoiceRequest): Promise<VoiceResult> {
   if ((await callsSince(r.phone_hash, Date.now() - 3_600_000)) > 0) return { ok: false, dry_run: dry, status: 429, error: "rate_limited" };
   if (PHONE_ID() === PROHIBIDO_PHONE_ID) return { ok: false, dry_run: dry, status: 422, error: "phone_number_prohibido" };
 
-  const to_number = r.to.replace(/^whatsapp:/, "");
+  const to_number = numeroParaLlamar(r.to);
   const body = {
     agent_id: AGENT_ID(),
     agent_phone_number_id: PHONE_ID(),
