@@ -143,6 +143,11 @@ export class OsEngine {
   }
 
   async start() {
+    // GeoJSON en paralelo con el estilo; el OS queda "listo" en cuanto hay estilo + capas propias (sin esperar todos los tiles).
+    const geoP = Promise.all([
+      fetch("/api/brain/geo?f=alcaldias").then((r) => r.json()),
+      fetch("/api/brain/geo?f=ruta").then((r) => r.json()),
+    ]);
     const { style, offline } = await loadStyle(this.init.styleUrl);
     if (this.destroyed) return;
     const map = new maplibregl.Map({
@@ -158,20 +163,21 @@ export class OsEngine {
       canvasContextAttributes: { antialias: true },
     } as any);
     this.map = map;
-    map.on("style.load", () => this.onStyle(offline));
-    const [alcGeo, rutaGeo] = await Promise.all([
-      fetch("/api/brain/geo?f=alcaldias").then((r) => r.json()),
-      fetch("/api/brain/geo?f=ruta").then((r) => r.json()),
-    ]);
-    this.ruta = rutaGeo.features;
-    const add = () => this.addOwnLayers(alcGeo);
-    if (map.isStyleLoaded()) add(); else map.once("load", add);
-    map.once("load", () => {
-      this.ready = true;
-      this.init.onReady?.({ offline });
-      for (const f of this.readyQ.splice(0)) f();
+    let styled = false;
+    const styleP = new Promise<void>((res) => {
+      const done = () => { if (!styled) { styled = true; this.onStyle(offline); res(); } };
+      map.once("style.load", done);
+      map.once("load", done); // respaldo
+      if (map.isStyleLoaded()) done();
     });
     this.loop(performance.now());
+    const [[alcGeo, rutaGeo]] = await Promise.all([geoP, styleP]);
+    if (this.destroyed) return;
+    this.ruta = rutaGeo.features;
+    this.addOwnLayers(alcGeo);
+    this.ready = true;
+    this.init.onReady?.({ offline });
+    for (const f of this.readyQ.splice(0)) f();
   }
 
   private readyQ: (() => void)[] = [];
@@ -255,7 +261,8 @@ export class OsEngine {
     clearTimeout(this.quietT);
     clearTimeout(this.idleT);
     this.idleT = setTimeout(() => this.goIdle(), IDLE_AFTER);
-    if (this.arrivals.length >= 2) void this.runMulti(g);
+    // ≥2 en la ventana de 10 s, o ≥2 en el mismo lote (p. ej. ráfaga que esperó a que cargara el mapa) → multi-punto
+    if (this.arrivals.length >= 2 || batch.length >= 2) void this.runMulti(g);
     else void this.runSingle(this.ptOf(batch[batch.length - 1]), g);
   }
 
