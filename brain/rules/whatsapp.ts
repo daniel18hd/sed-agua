@@ -36,7 +36,7 @@ export interface ReplyCtx {
 /** Razón del semáforo en palabras sencillas. */
 function razonSimple(r: string): string | null {
   if (/^Sequía (D\d)/.test(r)) return "hay sequía en la zona";
-  if (/^Cutzamala al ([\d.]+)%/.test(r)) return `las presas del Cutzamala están al ${Math.round(Number(r.match(/([\d.]+)%/)![1]))}%`;
+  if (/^Cutzamala al ([\d.]+)%/.test(r)) { const p = Number(r.match(/([\d.]+)%/)![1]); return p < 60 ? `las presas del Cutzamala están al ${Math.round(p)}%` : null; }
   if (/tandeo/i.test(r)) return "tu colonia ha tenido tandeos";
   if (/sin agua entubada/.test(r)) return "hay casas sin agua entubada en tu alcaldía";
   if (/histórica de reportes/.test(r)) return "es zona con muchos reportes de falta de agua";
@@ -60,7 +60,7 @@ export function abasto(res: Resultado, ctx: ReplyCtx): string {
   if (c >= 3) return `${e} En ${lugar} ${c} vecinos reportan que no les llega agua; no hay aviso oficial de corte.`;
   if (l?.tipo === "sin_dato" && /terminó/.test(l.nota)) return `${e} En ${lugar} el aviso oficial de corte ya terminó. Si sigues sin agua, repórtalo.`;
   if (res.nivel === "gris") return `${e} Aún no tengo avisos oficiales en tu zona (${lugar}). Te digo lo que sí sé:`;
-  const r = res.nivel === "ambar" ? res.razones.map(razonSimple).find(Boolean) : null;
+  const r = res.nivel === "ambar" && !ctx.calidad ? res.razones.map(razonSimple).find(Boolean) : null; // si es por calidad, el aviso va en su línea
   return `${e} Tu zona (${lugar}) hoy sin avisos de corte${r ? `, pero ${r}` : ""}.`;
 }
 
