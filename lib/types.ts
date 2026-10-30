@@ -3,6 +3,7 @@ import type { Resultado, Signals, Nivel } from "@/brain/rules/semaforo.ts";
 import type { Llegada } from "@/brain/rules/llegada.ts";
 import type { AvisoCalidad } from "@/brain/rules/calidad.ts";
 import type { OrigenAgua } from "@/brain/rules/origen.ts";
+import type { UltimoDato } from "@/brain/rules/ultimo_dato.ts";
 
 export type { Resultado, Signals, Nivel, Llegada, AvisoCalidad, OrigenAgua };
 
@@ -41,7 +42,8 @@ export interface ConsultaPublica {
     escenarios?: { id: string; etiqueta: string; por_que: string }[];
     ahora: string;
     coord_nota?: string;
-    origen?: OrigenAgua;                                   // de dónde viene el agua (aprox.)
+    origen?: OrigenAgua;
+    ultimo_dato?: { llegada: UltimoDato | null; calidad: UltimoDato | null }; // "Último dato" cuando no hay aviso                                   // de dónde viene el agua (aprox.)
     planta?: { fuera_de_norma: string[]; fecha: string; fuente?: { nombre: string; fecha: string; url?: string } } | null; // Los Berros: calidad en planta, no en la llave
     llamada?: { estado: "llamando" | "dry_run" | "error" }; // Fase 6: badge 📞
   };

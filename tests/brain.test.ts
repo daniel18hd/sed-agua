@@ -136,7 +136,7 @@ describe("mensaje WhatsApp: abasto · origen y calidad de planta · tip · acci�
     const [l1, l2, l3, l4] = lines(e.reply);
     expect(l1).toMatch(/^🔴 En CTM El Risco, GAM hay corte programado hasta el 30 oct, 12:00/);
     expect(l2).toMatch(/viene de pozos locales y tanques Chalmita; no hay medición pública/);
-    expect(l3).toMatch(/guarda agua/i);
+    expect(l3).toMatch(/^💧 .*hiérvela 5 min/); // rojo sin aviso de calidad: recomendación en casa
     expect(l4).toBe("Pide pipa gratis al *426. Fuente: SEGIAGUA vía adn40, 27 oct");
   });
   test("foco calidad: responde calidad primero", () => {

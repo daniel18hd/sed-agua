@@ -21,6 +21,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<Rec
       every={Math.max(1, Number(sp.every) || 15)}
       idleMin={Math.max(1, Number(sp.idle) || Number(process.env.OS_IDLE_MIN) || 10)}
       demoScenarios={process.env.DEMO_SCENARIOS === "1"}
+      qrParam={sp.qr === "0" || sp.qr === "1" ? sp.qr : undefined}
       qrSrc={hasQR ? "/qr.png" : "/qr-demo.png"}
       qrPlaceholder={!hasQR}
       qrNota={qrInfo?.sandbox ? `Se abre WhatsApp con «${qrInfo.texto}»: envíalo y luego manda tu colonia` : undefined}

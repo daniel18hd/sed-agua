@@ -94,7 +94,7 @@ export function toPublica(e: Evaluacion, extra: { canal: ConsultaPublica["canal"
     resultado: {
       resultado: e.resultado, llegada: e.llegada, llegada_demo: e.llegada_demo, calidad: e.calidad, reply: e.reply,
       signals: e.signals, caso: e.caso, escenarios: e.escenarios, ahora: e.ahora, coord_nota: extra.coord_nota,
-      origen: e.origen, planta: e.planta,
+      origen: e.origen, planta: e.planta, ultimo_dato: e.ultimo_dato,
     },
   };
 }
@@ -223,17 +223,17 @@ export async function reportesPublicosDesde(desde: string): Promise<ReportePubli
 /** Vecinos únicos (phone_hash) en 24 h: por colonia; si no hay, por alcaldía. sin_agua → C; turbia → calidad. */
 export async function countReportes24h(loc: Loc): Promise<Reportes24h> {
   const desde = new Date(Date.now() - 86_400_000).toISOString();
-  let rows: Pick<Reporte, "phone_hash" | "tipo" | "cve_col" | "cve_mun">[] = [];
+  let rows: Pick<Reporte, "phone_hash" | "tipo" | "cve_col" | "cve_mun" | "demo">[] = [];
   const client = sb();
   if (client) {
-    const { data, error } = await client.from("reportes").select("phone_hash,tipo,cve_col,cve_mun").eq("cve_mun", loc.cve_mun).gte("created_at", desde).limit(5000);
+    const { data, error } = await client.from("reportes").select("phone_hash,tipo,cve_col,cve_mun,demo").eq("cve_mun", loc.cve_mun).gte("created_at", desde).limit(5000);
     if (!error && data) rows = data as typeof rows;
   } else rows = mem.reportes.filter((r) => r.cve_mun === loc.cve_mun && r.created_at >= desde);
   const col = loc.cve_col ? rows.filter((r) => r.cve_col === loc.cve_col) : [];
   const use = col.length ? col : rows;
   const uniq = (t: TipoReporte) => new Set(use.filter((r) => r.tipo === t).map((r) => r.phone_hash)).size;
   const uniq2 = (ts: string[]) => new Set(use.filter((r) => ts.includes(r.tipo)).map((r) => r.phone_hash)).size;
-  return { sin_agua: uniq2(["sin_agua", "baja_presion"]), calidad: uniq2(["mala_calidad", "turbia"]) };
+  return { sin_agua: uniq2(["sin_agua", "baja_presion"]), calidad: uniq2(["mala_calidad", "turbia"]), demo: use.some((r) => r.demo) };
 }
 
 // ---------- sesiones ----------

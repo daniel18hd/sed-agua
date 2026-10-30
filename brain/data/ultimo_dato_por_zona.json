@@ -1,0 +1,1055 @@
+{
+ "_meta": {
+  "generado": "2026-10-30",
+  "nota": "derivado de demo-cases.json, reportes_historicos_alcaldia.json, calidad_los_berros.json y abastecimiento_alcaldia.json"
+ },
+ "zona": {
+  "005-155": {
+   "llegada": {
+    "valor": "reportado el 2026-10-02",
+    "fecha": "2026-10-02",
+    "fuente": "Reforma",
+    "url": "https://www.reforma.com/protestan-en-vallejo-por-desabasto-de-agua/ar3287112",
+    "tipo": "prensa",
+    "nivel": "zona"
+   }
+  },
+  "014-034": {
+   "llegada": {
+    "valor": "reportado el 2026-10-15",
+    "fecha": "2026-10-15",
+    "fuente": "Reforma",
+    "url": "https://www.reforma.com/exigen-agua-vecinos-de-benito-juarez-con-bloqueo/ar3295456",
+    "tipo": "prensa",
+    "nivel": "zona"
+   }
+  },
+  "005-036": {
+   "llegada": {
+    "valor": "corte programado 08:00-12:00 diario hasta 30 oct",
+    "fecha": "2026-10-27",
+    "fuente": "SEGIAGUA vía adn40",
+    "url": "https://www.adn40.mx/ciudad/2026-10-27/no-habra-agua-en-estas-calles-de-la-alcaldia-gustavo-a-madero-desde-hoy-y-hasta-el-30-de-octubre/",
+    "tipo": "oficial",
+    "nivel": "zona"
+   }
+  },
+  "007-138": {
+   "llegada": {
+    "valor": "reportado el 2026-10-05",
+    "fecha": "2026-10-05",
+    "fuente": "El Heraldo",
+    "url": "https://heraldodemexico.com.mx/nacional/2026/10/5/iztapalapa-tlahuac-no-tendran-agua-en-las-proximas-39-horas-lista-de-colonias-afectadas-901851.html",
+    "tipo": "prensa",
+    "nivel": "zona"
+   }
+  },
+  "011-073": {
+   "llegada": {
+    "valor": "reportado el 2026-10-05",
+    "fecha": "2026-10-05",
+    "fuente": "El Heraldo",
+    "url": "https://heraldodemexico.com.mx/nacional/2026/10/5/iztapalapa-tlahuac-no-tendran-agua-en-las-proximas-39-horas-lista-de-colonias-afectadas-901851.html",
+    "tipo": "prensa",
+    "nivel": "zona"
+   }
+  },
+  "010-219": {
+   "llegada": {
+    "valor": "reportado el 2026-03-15",
+    "fecha": "2026-03-15",
+    "fuente": "N+",
+    "url": "https://www.nmas.com.mx/movilidad/marchas/vecinos-torres-potrero-protestan-falta-agua-alvaro-obregon-cdmx/",
+    "tipo": "prensa",
+    "nivel": "zona"
+   }
+  },
+  "012-052": {
+   "llegada": {
+    "valor": "reportado el 2026-06-17",
+    "fecha": "2026-06-17",
+    "fuente": "Crónica",
+    "url": "https://www.cronica.com.mx/metropoli/2026/06/17/reparacion-de-fuga-dejara-a-vecinos-de-tlalpan-sin-agua-por-10-dias-pan-demanda-abasto/",
+    "tipo": "prensa",
+    "nivel": "zona"
+   }
+  },
+  "002-062": {
+   "llegada": {
+    "valor": "624 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "002-069": {
+   "llegada": {
+    "valor": "558 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "002-071": {
+   "llegada": {
+    "valor": "520 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "002-006": {
+   "llegada": {
+    "valor": "460 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "002-047": {
+   "llegada": {
+    "valor": "328 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "014-015": {
+   "llegada": {
+    "valor": "1,840 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "014-029": {
+   "llegada": {
+    "valor": "965 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "014-003": {
+   "llegada": {
+    "valor": "824 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "014-031": {
+   "llegada": {
+    "valor": "774 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "014-040": {
+   "llegada": {
+    "valor": "757 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "003-074": {
+   "llegada": {
+    "valor": "2,051 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "003-075": {
+   "llegada": {
+    "valor": "2,036 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "003-002": {
+   "llegada": {
+    "valor": "1,617 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "003-001": {
+   "llegada": {
+    "valor": "1,008 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "003-003": {
+   "llegada": {
+    "valor": "668 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "004-041": {
+   "llegada": {
+    "valor": "1,010 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "004-011": {
+   "llegada": {
+    "valor": "261 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "004-014": {
+   "llegada": {
+    "valor": "246 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "004-009": {
+   "llegada": {
+    "valor": "223 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "004-037": {
+   "llegada": {
+    "valor": "145 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "015-010": {
+   "llegada": {
+    "valor": "1,946 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "015-024": {
+   "llegada": {
+    "valor": "1,789 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "015-021": {
+   "llegada": {
+    "valor": "1,016 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "015-029": {
+   "llegada": {
+    "valor": "1,012 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "015-014": {
+   "llegada": {
+    "valor": "879 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "005-139": {
+   "llegada": {
+    "valor": "2,227 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "005-143": {
+   "llegada": {
+    "valor": "1,310 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "005-144": {
+   "llegada": {
+    "valor": "1,238 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "005-119": {
+   "llegada": {
+    "valor": "1,181 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "005-149": {
+   "llegada": {
+    "valor": "1,104 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "006-001": {
+   "llegada": {
+    "valor": "6,885 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "006-002": {
+   "llegada": {
+    "valor": "3,852 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "006-038": {
+   "llegada": {
+    "valor": "746 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "006-021": {
+   "llegada": {
+    "valor": "541 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "006-008": {
+   "llegada": {
+    "valor": "461 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "007-035": {
+   "llegada": {
+    "valor": "416 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "007-054": {
+   "llegada": {
+    "valor": "394 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "007-103": {
+   "llegada": {
+    "valor": "375 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "007-197": {
+   "llegada": {
+    "valor": "302 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "007-189": {
+   "llegada": {
+    "valor": "275 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "008-039": {
+   "llegada": {
+    "valor": "256 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "008-035": {
+   "llegada": {
+    "valor": "216 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "008-038": {
+   "llegada": {
+    "valor": "166 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "008-027": {
+   "llegada": {
+    "valor": "154 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "008-015": {
+   "llegada": {
+    "valor": "142 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "016-081": {
+   "llegada": {
+    "valor": "326 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "016-020": {
+   "llegada": {
+    "valor": "257 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "016-045": {
+   "llegada": {
+    "valor": "235 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "016-025": {
+   "llegada": {
+    "valor": "189 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "016-063": {
+   "llegada": {
+    "valor": "172 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "009-030": {
+   "llegada": {
+    "valor": "236 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "009-035": {
+   "llegada": {
+    "valor": "148 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "012-110": {
+   "llegada": {
+    "valor": "683 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "012-113": {
+   "llegada": {
+    "valor": "597 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "012-035": {
+   "llegada": {
+    "valor": "574 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "012-112": {
+   "llegada": {
+    "valor": "528 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "012-062": {
+   "llegada": {
+    "valor": "519 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "011-049": {
+   "llegada": {
+    "valor": "495 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "011-060": {
+   "llegada": {
+    "valor": "384 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "011-064": {
+   "llegada": {
+    "valor": "335 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "011-074": {
+   "llegada": {
+    "valor": "318 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "017-041": {
+   "llegada": {
+    "valor": "1,958 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "017-047": {
+   "llegada": {
+    "valor": "724 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "017-048": {
+   "llegada": {
+    "valor": "591 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "017-006": {
+   "llegada": {
+    "valor": "439 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "017-037": {
+   "llegada": {
+    "valor": "328 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "013-104": {
+   "llegada": {
+    "valor": "354 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "013-091": {
+   "llegada": {
+    "valor": "341 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "013-064": {
+   "llegada": {
+    "valor": "282 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "013-090": {
+   "llegada": {
+    "valor": "205 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "013-006": {
+   "llegada": {
+    "valor": "176 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "010-173": {
+   "llegada": {
+    "valor": "415 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "010-099": {
+   "llegada": {
+    "valor": "412 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "010-156": {
+   "llegada": {
+    "valor": "376 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "010-049": {
+   "llegada": {
+    "valor": "353 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  },
+  "010-040": {
+   "llegada": {
+    "valor": "342 reportes de falta de agua (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "zona"
+   }
+  }
+ },
+ "alcaldia": {
+  "002": {
+   "llegada": {
+    "valor": "9,201 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "014": {
+   "llegada": {
+    "valor": "14,298 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "003": {
+   "llegada": {
+    "valor": "15,140 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "004": {
+   "llegada": {
+    "valor": "3,467 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "015": {
+   "llegada": {
+    "valor": "13,441 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "005": {
+   "llegada": {
+    "valor": "33,059 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   },
+   "calidad": {
+    "valor": "349 reportes de mala calidad en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia",
+    "nota": "no hay medición pública de la fuente local"
+   }
+  },
+  "006": {
+   "llegada": {
+    "valor": "16,281 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "007": {
+   "llegada": {
+    "valor": "13,222 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "008": {
+   "llegada": {
+    "valor": "2,688 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "016": {
+   "llegada": {
+    "valor": "3,805 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "009": {
+   "llegada": {
+    "valor": "1,231 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   },
+   "calidad": {
+    "valor": "42 reportes de mala calidad en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia",
+    "nota": "no hay medición pública de la fuente local"
+   }
+  },
+  "012": {
+   "llegada": {
+    "valor": "18,196 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "011": {
+   "llegada": {
+    "valor": "5,826 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   },
+   "calidad": {
+    "valor": "49 reportes de mala calidad en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia",
+    "nota": "no hay medición pública de la fuente local"
+   }
+  },
+  "017": {
+   "llegada": {
+    "valor": "7,526 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  },
+  "013": {
+   "llegada": {
+    "valor": "5,033 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   },
+   "calidad": {
+    "valor": "495 reportes de mala calidad en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia",
+    "nota": "no hay medición pública de la fuente local"
+   }
+  },
+  "010": {
+   "llegada": {
+    "valor": "10,553 reportes de falta de agua en la alcaldía (2022–24)",
+    "fecha": "2024-02-01",
+    "fuente": "SACMEX (Datos Abiertos CDMX)",
+    "url": "https://datos.cdmx.gob.mx/dataset/reportes-de-agua",
+    "tipo": "historico",
+    "nivel": "alcaldia"
+   }
+  }
+ },
+ "sistema": {
+  "calidad": {
+   "valor": "Los Berros en norma (turbiedad 0.33 UNT, cloro 1.1 mg/L)",
+   "fecha": "2026-10-26",
+   "fuente": "CONAGUA",
+   "url": "https://www.gob.mx/cms/uploads/attachment/file/1112797/Octubre_2026.pdf",
+   "tipo": "oficial",
+   "nivel": "sistema",
+   "nota": "salida de planta, no tu llave"
+  },
+  "llegada": {
+   "valor": "Sistema Cutzamala al 95.1%",
+   "fecha": "2026-10-26",
+   "fuente": "CONAGUA",
+   "url": "https://www.gob.mx/cms/uploads/attachment/file/1112797/Octubre_2026.pdf",
+   "tipo": "oficial",
+   "nivel": "sistema"
+  }
+ }
+}

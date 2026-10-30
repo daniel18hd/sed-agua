@@ -3,6 +3,8 @@ import { memo } from "react";
 import { textoLlegada } from "@/brain/rules/llegada.ts";
 import type { ConsultaPublica, Nivel } from "@/lib/types";
 import type { Summary } from "@/lib/brain";
+import { antiguedad, textoUltimoDato, type UltimoDato } from "@/brain/rules/ultimo_dato.ts";
+import { RECOMENDACIONES_HOGAR_ROJO, FUENTES_HOGAR, RECOMENDACION } from "@/brain/rules/calidad.ts";
 
 const NIVEL: Record<Nivel, { t: string; c: string }> = {
   verde: { t: "SIN ALERTAS", c: "#22c55e" },
@@ -11,7 +13,7 @@ const NIVEL: Record<Nivel, { t: string; c: string }> = {
   gris: { t: "SIN DATOS", c: "#64748b" },
 };
 
-type BadgeKind = "oficial" | "estimado" | "sindato" | "planta" | "vecinos" | "nota" | "demo" | "prensa" | "historico" | "validar" | "aprox";
+type BadgeKind = "oficial" | "estimado" | "sindato" | "planta" | "vecinos" | "nota" | "demo" | "prensa" | "historico" | "validar" | "aprox" | "ud_oficial" | "ud_prensa" | "ud_historico";
 const BADGE: Record<BadgeKind, { t: string; cls: string }> = {
   oficial: { t: "OFICIAL", cls: "text-[#22c55e] border-[#22c55e]/60 bg-[#22c55e]/12" },
   estimado: { t: "ESTIMADO", cls: "text-[#f59e0b] border-[#f59e0b]/60 bg-[#f59e0b]/12" },
@@ -24,7 +26,51 @@ const BADGE: Record<BadgeKind, { t: string; cls: string }> = {
   historico: { t: "INFERIDO POR BASE HISTÓRICA", cls: "text-[#c4b5fd] border-[#c4b5fd]/50 bg-[#c4b5fd]/10" },
   validar: { t: "POR VALIDAR", cls: "text-[#fde68a] border-[#fde68a]/50 bg-[#fde68a]/8" },
   aprox: { t: "APROXIMADA", cls: "text-[#fde68a] border-[#fde68a]/50 bg-[#fde68a]/8" },
+  ud_oficial: { t: "ÚLTIMO AVISO OFICIAL", cls: "text-[#22d3ee] border-[#22d3ee]/70 bg-[#22d3ee]/12" },
+  ud_prensa: { t: "PRENSA · POR VALIDAR", cls: "text-[#fbbf24] border-[#fbbf24]/70 bg-[#fbbf24]/12" },
+  ud_historico: { t: "HISTÓRICO", cls: "text-slate-200 border-slate-400/70 bg-slate-400/15" },
 };
+
+const NIVEL_UD = { zona: null, alcaldia: "dato de la alcaldía", sistema: "dato de todo el sistema" } as const;
+/** "Último dato: <valor> · <fecha> · <fuente>" + chip de antigüedad (legible a 3 m) + nivel. Reemplaza "sin dato"/"sin aviso". */
+function UltimoDatoView({ u, now }: { u: UltimoDato; now: string }) {
+  const a = antiguedad(u.fecha, now);
+  const [pre, fuente] = [textoUltimoDato(u, now).replace(/ · [^·]+$/, ""), u.fuente];
+  return (
+    <div>
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge k={u.tipo === "oficial" ? "ud_oficial" : u.tipo === "prensa" ? "ud_prensa" : "ud_historico"} />
+        <span className="rounded-full bg-white/10 px-2.5 py-0.5 font-mono text-[13px] font-bold text-white">{a.etiqueta}</span>
+        {NIVEL_UD[u.nivel] && <span className="font-mono text-[11px] text-slate-400">{NIVEL_UD[u.nivel]}</span>}
+      </div>
+      <div className="mt-1 text-[15px] leading-snug text-white">
+        {pre} · {u.url ? <a href={u.url} target="_blank" rel="noreferrer" className="underline decoration-white/30 underline-offset-2 hover:text-[#38bdf8]">{fuente}</a> : fuente}
+      </div>
+      {u.nota && <div className="mt-0.5 text-[12.5px] text-slate-400">{u.nota}</div>}
+    </div>
+  );
+}
+
+/** Zonas en rojo: "Qué hacer en casa" (precaución; Sed no mide la llave). Con aviso químico, hervir no sirve. */
+function QueHacerEnCasa({ quimico }: { quimico: boolean }) {
+  const recs = RECOMENDACIONES_HOGAR_ROJO.filter((r) => !(quimico && r.id === "hervir"));
+  const orden = Object.keys(FUENTES_HOGAR) as (keyof typeof FUENTES_HOGAR)[];
+  return (
+    <div className="os-row rounded-xl border border-[#ef4444]/50 bg-[#ef4444]/[0.07] p-3" data-testid="que-hacer" style={{ animationDelay: "150ms" }}>
+      <div className="mb-1 font-mono text-[10.5px] uppercase tracking-[0.14em] text-[#fca5a5]">Qué hacer en casa</div>
+      {quimico && <div className="mb-1 text-[13px] font-semibold text-[#fca5a5]">{RECOMENDACION.quimico}</div>}
+      <ul className="grid gap-0.5 text-[13.5px] leading-snug text-slate-100">
+        {recs.map((r, i) => (
+          <li key={r.id} className="os-row before:mr-1.5 before:text-[#fca5a5] before:content-['•']" style={{ animationDelay: `${180 + i * 60}ms` }}>
+            {r.texto}
+            <sup className="ml-0.5"><a href={FUENTES_HOGAR[r.fuente].url} target="_blank" rel="noreferrer" title={FUENTES_HOGAR[r.fuente].nombre} className="font-mono text-[9.5px] text-[#38bdf8]">[{orden.indexOf(r.fuente) + 1}]</a></sup>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-1.5 font-mono text-[10.5px] leading-snug text-slate-400">Recomendaciones de precaución (SEGIAGUA, Secretaría de Salud/COFEPRIS, OMS). Sed no mide el agua de tu llave.</div>
+    </div>
+  );
+}
 
 export function Badge({ k, big, label }: { k: BadgeKind; big?: boolean; label?: string }) {
   return (
@@ -69,6 +115,7 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
   const cal = r.calidad;
   const calBadge: BadgeKind | null = cal ? (cal.es_demo ? "demo" : cal.origen === "planta" ? "planta" : cal.origen === "prensa" ? "nota" : "vecinos") : null;
   const reportesHoy = sig.reportes24h ?? { sin_agua: 0, calidad: 0 };
+  const ud = r.ultimo_dato;
 
   const rows: Row[] = [
     {
@@ -80,7 +127,7 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
       label: "Cutzamala",
       value: (
         <span>
-          {s ? `${s.cutzamala.total_pct.toFixed(1)}%` : sig.cutzamala ? `${sig.cutzamala.pct.toFixed(1)}%` : "sin dato"}
+          {s ? `${s.cutzamala.total_pct.toFixed(1)}%` : sig.cutzamala ? `${sig.cutzamala.pct.toFixed(1)}%` : "—"}
           {s && <span className="ml-1.5 font-mono text-[10.5px] text-slate-400">{s.cutzamala.presas.map((p) => `${p.nombre.split(" ").map((w) => w[0]).join("").replace("VdB", "VB")} ${p.pct?.toFixed(0)}`).join(" · ")}</span>}
         </span>
       ),
@@ -90,17 +137,17 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
       label: "Los Berros · planta",
       value: s
         ? s.berros.fuera_de_norma.length ? <span className="text-[#f59e0b]">fuera de norma: {s.berros.fuera_de_norma.join(", ")}</span> : "Dentro de norma"
-        : "sin dato",
+        : "—",
       src: <Src n="CONAGUA · no es tu llave" f={s?.berros.fecha} url={fz?.berros.url} />,
     },
     {
       label: "Lluvia 7 d",
-      value: sig.lluvia ? `${sig.lluvia.mm_7d} mm` : "sin dato",
+      value: sig.lluvia ? `${sig.lluvia.mm_7d} mm` : "—",
       src: <Src n="Open-Meteo (modelo)" f={sig.lluvia?.fuente.fecha} url={sig.lluvia?.fuente.url} />,
     },
     {
       label: "Sin agua entubada",
-      value: sig.vulnerabilidad?.pct_sin_agua_entubada != null ? `${sig.vulnerabilidad.pct_sin_agua_entubada}% viviendas (mín.)` : "sin dato",
+      value: sig.vulnerabilidad?.pct_sin_agua_entubada != null ? `${sig.vulnerabilidad.pct_sin_agua_entubada}% viviendas (mín.)` : "—",
       src: <Src n="INEGI Censo" f={fz?.inegi.fecha} url={fz?.inegi.url} />,
     },
     {
@@ -120,13 +167,13 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
     },
     {
       label: "Reportes hist.",
-      value: a?.reportes_hist ? <span>{a.reportes_hist.falta_de_agua.toLocaleString("es-MX")} <span className="font-mono text-[10.5px] text-slate-400">{Math.round(a.reportes_hist.por_1000)}/1000 viv{a.reportes_hist.sobre_p75 ? " · >p75" : ""}</span></span> : "sin dato",
+      value: a?.reportes_hist ? <span>{a.reportes_hist.falta_de_agua.toLocaleString("es-MX")} <span className="font-mono text-[10.5px] text-slate-400">{Math.round(a.reportes_hist.por_1000)}/1000 viv{a.reportes_hist.sobre_p75 ? " · >p75" : ""}</span></span> : "—",
       src: <Src n="SACMEX 2022–24" f={fz?.reportes.fecha} url={fz?.reportes.url} />,
     },
     {
       label: "Abastecimiento",
       badge: <Badge k="validar" />,
-      value: a?.abastecimiento ? a.abastecimiento.sistemas.map((x: string) => x.replace(" (proporción por validar)", "")).join(" · ") : "sin dato",
+      value: a?.abastecimiento ? a.abastecimiento.sistemas.map((x: string) => x.replace(" (proporción por validar)", "")).join(" · ") : "—",
       src: <Src n="curado de prensa" f={fz?.abast.fecha} url={a?.abastecimiento?.fuentes?.[0]?.url} />,
       wide: true,
     },
@@ -139,7 +186,7 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
         <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-slate-400">
           <span>{c.alcaldia}</span>
           {c.resultado.coord_nota && <Badge k="aprox" />}
-          {c.demo && <Badge k="demo" />}
+          {(c.demo || sig.reportes24h?.demo) && <Badge k="demo" />}
           {c.resultado.llamada && <span className="rounded-md border border-[#38bdf8]/60 bg-[#38bdf8]/10 px-1.5 py-[1px] font-mono text-[10.5px] font-bold text-[#38bdf8]">📞 {c.resultado.llamada.estado === "dry_run" ? "LLAMADA (PRUEBA)" : c.resultado.llamada.estado === "error" ? "LLAMADA FALLÓ" : "LLAMANDO"}</span>}
         </div>
         <div className="mt-0.5 text-[26px] font-semibold leading-tight text-white">{c.colonia ?? "Colonia sin identificar"}</div>
@@ -171,17 +218,23 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
       {/* cuándo llega */}
       <div className="os-row rounded-xl border border-white/8 bg-white/[0.03] p-3" style={{ animationDelay: "60ms" }}>
         <div className="mb-1 flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.14em] text-slate-400">
-          Cuándo llega <Badge k={llBadge} big />{r.llegada_demo && <Badge k="demo" />}
+          Cuándo llega {ll.tipo !== "sin_dato" && <Badge k={llBadge} big />}{r.llegada_demo && <Badge k="demo" />}
         </div>
-        <div className="text-[15.5px] leading-snug text-white">{llText}</div>
-        {ll.tipo === "oficial" && <div className="mt-1"><Src n={ll.fuente.nombre} f={ll.fuente.fecha} url={ll.fuente.url} /></div>}
-        {ll.tipo === "estimado" && <div className="mt-1 text-[12px] text-slate-400">No oficial · base: {ll.base}{r.llegada_demo ? " · fuente: caso de demostración" : ""}</div>}
+        {ll.tipo === "sin_dato" && ud?.llegada ? (
+          <UltimoDatoView u={ud.llegada} now={r.ahora} />
+        ) : (
+          <>
+            <div className="text-[15.5px] leading-snug text-white">{llText}</div>
+            {ll.tipo === "oficial" && <div className="mt-1"><Src n={ll.fuente.nombre} f={ll.fuente.fecha} url={ll.fuente.url} /></div>}
+            {ll.tipo === "estimado" && <div className="mt-1 text-[12px] text-slate-400">No oficial · base: {ll.base}{r.llegada_demo ? " · fuente: caso de demostración" : ""}</div>}
+          </>
+        )}
       </div>
 
       {/* calidad */}
       <div className={`os-row rounded-xl border p-3 ${cal?.es_demo ? "border-[#e879f9]/70 bg-[#c026d3]/12" : "border-white/8 bg-white/[0.03]"}`} style={{ animationDelay: "120ms" }}>
         <div className="mb-1 flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.14em] text-slate-400">
-          Calidad {calBadge ? <Badge k={calBadge} big /> : <Badge k="sindato" label="SIN AVISO" />}
+          Calidad {calBadge && <Badge k={calBadge} big />}
         </div>
         {cal ? (
           <>
@@ -191,9 +244,11 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
             {!cal.es_demo && cal.fuente && <div className="mt-1"><Src n={cal.fuente.nombre} f={cal.fuente.fecha} url={cal.fuente.url} /></div>}
           </>
         ) : (
-          <div className="text-[13.5px] text-slate-300">Sin aviso de calidad en la zona. Si sale turbia o con olor, no la tomes y repórtala.</div>
+          ud?.calidad ? <UltimoDatoView u={ud.calidad} now={r.ahora} /> : <div className="text-[13.5px] text-slate-300">Si sale turbia o con olor, no la tomes y repórtala.</div>
         )}
       </div>
+
+      {c.nivel === "rojo" && <QueHacerEnCasa quimico={!!cal?.recomendacion.includes("hervir no")} />}
 
       {/* razones */}
       {!compact && (
@@ -252,7 +307,7 @@ export function MultiList({ list, active }: { list: ConsultaPublica[]; active: s
             <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: n.c, boxShadow: `0 0 8px ${n.c}` }} />
             <span className="min-w-0 flex-1 truncate text-[14px] text-white">{c.colonia ?? c.alcaldia}<span className="ml-1.5 text-[12px] text-slate-400">{c.alcaldia}</span></span>
             {c.demo && <Badge k="demo" label="DEMO" />}
-            <Badge k={ll === "oficial" ? "oficial" : ll === "estimado" ? "estimado" : "sindato"} />
+            <Badge k={ll === "oficial" ? "oficial" : ll === "estimado" ? "estimado" : c.resultado.ultimo_dato?.llegada?.tipo === "oficial" ? "ud_oficial" : c.resultado.ultimo_dato?.llegada?.tipo === "prensa" ? "ud_prensa" : "ud_historico"} label={ll === "oficial" || ll === "estimado" ? undefined : "ÚLTIMO DATO"} />
           </div>
         );
       })}

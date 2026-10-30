@@ -8,6 +8,7 @@ import { estimarLlegada, type Llegada, type LlegadaInput } from "@/brain/rules/l
 import { avisoCalidad, type AvisoCalidad } from "@/brain/rules/calidad.ts";
 import { buildReply, type Foco } from "@/brain/rules/whatsapp.ts";
 import { origenDe, type OrigenAgua } from "@/brain/rules/origen.ts";
+import { ultimoDato, type UDData, type UltimoDato } from "@/brain/rules/ultimo_dato.ts";
 import { fechaCDMX, nowISO } from "@/lib/time";
 
 // ---------- tipos de datos ----------
@@ -44,6 +45,7 @@ interface BrainData {
   tandeo: { _meta: Meta; por_cve_mun: Record<string, { si: number; no: number; colonias_tandeo: string[]; pct_colonias_tandeo: number }> };
   tandeoSet: Record<string, Set<string>>;
   reportes: { _meta: Meta; p75_falta_por_1000_viviendas: number; por_cve_mun: Record<string, { falta_de_agua: number; mala_calidad: number; fuga: number; falta_por_1000_viviendas: number; sobre_p75: boolean; top_colonias_falta_agua: { colonia: string; n: number }[] }> };
+  ud: UDData;
   abast: { _meta: Meta; fuentes: Record<string, { t: string; url: string; fecha: string }>; por_cve_mun: Record<string, { alcaldia: string; cutzamala: boolean; sistemas: string[]; fuentes: string[] }> };
   demo: { _meta: { ahora_demo: { valor: string } }; casos: CasoDemo[]; escenarios_demo: EscenarioDemo[] };
 }
@@ -93,6 +95,7 @@ export function data(): BrainData {
     reportes: read("reportes_historicos_alcaldia.json"),
     abast: read("abastecimiento_alcaldia.json"),
     demo: read("demo-cases.json"),
+    ud: read("ultimo_dato_por_zona.json"),
   };
   return _data;
 }
@@ -209,7 +212,7 @@ export function notaCalidadPara(loc: Loc, casoId?: string): Signals["notaCalidad
 /** Sistema que abastece la alcaldía (aproximado, POR VALIDAR). */
 export const origenPara = (cve_mun: string): OrigenAgua => origenDe(data().abast.por_cve_mun[cve_mun]);
 
-export interface Reportes24h { sin_agua: number; calidad: number }
+export interface Reportes24h { sin_agua: number; calidad: number; demo?: boolean }
 
 export function signalsFor(loc: Loc, now: string, reportes24h: Reportes24h = { sin_agua: 0, calidad: 0 }, corteOficial?: Signals["corteOficial"], opt?: { casoId?: string }): Signals {
   const d = data();
@@ -294,6 +297,7 @@ export interface Evaluacion {
   origen: OrigenAgua;
   planta: { fuera_de_norma: string[]; fecha: string; fuente?: Fuente } | null;
   lugar: string;
+  ultimo_dato: { llegada: UltimoDato | null; calidad: UltimoDato | null };
 }
 
 export function evaluar(loc: Loc, opt: { now?: string; reportes24h?: Reportes24h; demo?: boolean; casoId?: string; foco?: Foco } = {}): Evaluacion {
@@ -316,12 +320,13 @@ export function evaluar(loc: Loc, opt: { now?: string; reportes24h?: Reportes24h
   const lugar = [loc.colonia, abreviaAlcaldia(loc.alcaldia)].filter(Boolean).join(", ");
   const origen = origenPara(loc.cve_mun);
   const planta = origen.planta ? { fuera_de_norma: data().berros.ultimo.parametros_fuera_de_norma ?? [], fecha: data().berros.ultimo.fecha, fuente: fuentes().berros } : null;
-  const reply = buildReply(resultado, { lugar, llegada, calidad, llegadaDemo: llegada_demo, origen, planta, foco: opt.foco });
+  const ultimo_dato = { llegada: ultimoDato(data().ud, "llegada", loc.cve_col, loc.cve_mun), calidad: ultimoDato(data().ud, "calidad", loc.cve_col, loc.cve_mun) };
+  const reply = buildReply(resultado, { lugar, llegada, calidad, llegadaDemo: llegada_demo, origen, planta, foco: opt.foco, ultimoLlegada: llegada.tipo === "sin_dato" ? ultimo_dato.llegada : null, now: ahora });
   const c = (opt.casoId && data().demo.casos.find((x) => x.id === opt.casoId)) || casoPorColonia(loc.cve_col);
   const esc = demoActivo(opt) ? escenariosPorColonia(loc.cve_col) : [];
   const av = avisoOficialPara(loc, ahora);
   return {
-    ahora, loc, signals, resultado, llegada, llegada_demo, calidad, reply, origen, planta, lugar,
+    ahora, loc, signals, resultado, llegada, llegada_demo, calidad, reply, origen, planta, lugar, ultimo_dato,
     aviso_fin: av?.vigente ? av.fin : undefined,
     caso: c && { id: c.id, tipo: c.tipo, frase: c.frase, descripcion: c.descripcion, fecha: c.fecha_nota, nota_fecha: c.nota_fecha, fuentes: c.fuentes.map((u) => ({ medio: medio(u), url: u })) },
     escenarios: esc.length ? esc.map((e) => ({ id: e.id, etiqueta: e.etiqueta, por_que: e.por_que })) : undefined,
@@ -420,6 +425,7 @@ export function summary() {
     },
     berros: { fecha: d.berros.ultimo.fecha, fuera_de_norma: d.berros.ultimo.parametros_fuera_de_norma, ultimo: d.berros.ultimo },
     alcaldias,
+    ultimo_dato: d.ud,
   };
 }
 export type Summary = ReturnType<typeof summary>;

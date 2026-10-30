@@ -23,6 +23,7 @@ export interface OSProps {
   waNumber?: string;
   idleMin: number;          // reposo tras X min sin eventos (?idle=)
   demoScenarios: boolean;   // DEMO_SCENARIOS=1 → botones de demo de discrepancias
+  qrParam?: "0" | "1";      // ?qr=0|1 (prioridad sobre localStorage)
 }
 
 function Clock() {
@@ -96,6 +97,13 @@ export default function OS(p: OSProps) {
   const [promedio, setPromedio] = useState<number | null>(null);
   const [ventana, setVentana] = useState(60);
   const fitRef = useFit(`${detail?.id}-${multi.length}`);
+  // QR visible/oculto: ?qr= > localStorage["sed.qr.visible"] > visible. Oculto = opacity 0 (el layout no se mueve).
+  const [qrOn, setQrOn] = useState(p.qrParam ? p.qrParam === "1" : true);
+  useEffect(() => {
+    if (p.qrParam) return;
+    try { const v = localStorage.getItem("sed.qr.visible"); if (v != null) setQrOn(v !== "false"); } catch {}
+  }, [p.qrParam]);
+  const toggleQr = useCallback(() => setQrOn((v) => { try { localStorage.setItem("sed.qr.visible", String(!v)); } catch {} return !v; }), []);
 
   // ---- consultas ----
   const ingest = useCallback((c: ConsultaPublica, o: { backfill: boolean }) => {
@@ -269,7 +277,7 @@ export default function OS(p: OSProps) {
   // atajos: espacio demo · D detener · R reset · B ×5 · X ×10 · I reposo · S satélite · 3/5 reportes demo · 0 reinicia demo de reportes
   useEffect(() => {
     const k = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.metaKey || e.ctrlKey) return;
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement || e.metaKey || e.ctrlKey) return;
       const key = e.key.toLowerCase();
       if (key === " ") { e.preventDefault(); if (demoTimer.current) stopDemoTimer(); else void startDemo(); }
       if (key === "d") detener();
@@ -281,10 +289,11 @@ export default function OS(p: OSProps) {
       if (key === "3") void simularReportes(3);
       if (key === "5") void simularReportes(5);
       if (key === "0") void reiniciarReportesDemo();
+      if (key === "q") toggleQr();
     };
     window.addEventListener("keydown", k);
     return () => window.removeEventListener("keydown", k);
-  }, [startDemo, stopDemoTimer, detener, reset, burst, simularReportes, reiniciarReportesDemo, p.satTiles]);
+  }, [startDemo, stopDemoTimer, detener, reset, burst, simularReportes, reiniciarReportesDemo, toggleQr, p.satTiles]);
 
   useEffect(() => { eng.current?.setSat(sat); }, [sat]);
 
@@ -397,16 +406,24 @@ export default function OS(p: OSProps) {
         </div>
       </div>
 
-      {/* abajo-der: QR */}
-      <div className="glass absolute bottom-6 right-6 flex items-center gap-4 p-3 pr-5">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={p.qrSrc} alt="QR WhatsApp Sed" width={124} height={124} className="rounded-lg bg-white p-1.5" />
-        <div className="max-w-[170px]">
-          <div className="text-[17px] font-semibold leading-tight text-white">¿Hoy hay agua?</div>
-          <div className="mt-1 text-[13px] leading-snug text-slate-300">Escanea y manda tu colonia o tu ubicación 📍</div>
-          {p.qrNota && <div className="mt-1.5 text-[11.5px] leading-snug text-[#86efac]">{p.qrNota}</div>}
-          {p.qrPlaceholder && <div className="mt-1.5 font-mono text-[10.5px] text-[#fde68a]">QR placeholder: corre pnpm qr</div>}
+      {/* abajo-der: QR (Q oculta/muestra; el nodo no se desmonta para que el layout no se mueva) */}
+      <div className="absolute bottom-6 right-6" data-testid="qr-wrap">
+        <div className="glass flex items-center gap-4 p-3 pr-5 transition-opacity duration-200" style={{ opacity: qrOn ? 1 : 0, pointerEvents: qrOn ? "auto" : "none" }} data-testid="qr">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={p.qrSrc} alt="QR WhatsApp Sed" width={124} height={124} className="rounded-lg bg-white p-1.5" />
+          <div className="max-w-[170px]">
+            <div className="text-[17px] font-semibold leading-tight text-white">¿Hoy hay agua?</div>
+            <div className="mt-1 text-[13px] leading-snug text-slate-300">Escanea y manda tu colonia o tu ubicación 📍</div>
+            {p.qrNota && <div className="mt-1.5 text-[11.5px] leading-snug text-[#86efac]">{p.qrNota}</div>}
+            {p.qrPlaceholder && <div className="mt-1.5 font-mono text-[10.5px] text-[#fde68a]">QR placeholder: corre pnpm qr</div>}
+          </div>
         </div>
+        <button onClick={toggleQr} aria-label={qrOn ? "Ocultar QR" : "Mostrar QR"} title={`${qrOn ? "Ocultar" : "Mostrar"} QR (Q)`}
+          className={`absolute right-1.5 top-1.5 flex h-6 w-6 items-center justify-center rounded-md text-slate-200 transition-opacity hover:opacity-100 ${qrOn ? "opacity-50" : "opacity-35"}`}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" />{!qrOn && <path d="M4 4l16 16" />}
+          </svg>
+        </button>
       </div>
 
       {/* toast WhatsApp */}

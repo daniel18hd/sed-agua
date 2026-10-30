@@ -21,6 +21,15 @@ export default function Dev() {
   const [from, setFrom] = useState("whatsapp:+5215512345678");
   const [busy, setBusy] = useState(false);
   const [dbg, setDbg] = useState<unknown>(null);
+  const [simLugar, setSimLugar] = useState("CTM El Risco, GAM");
+  const [simN, setSimN] = useState(5);
+  const [simTipo, setSimTipo] = useState<"sin_agua" | "calidad">("sin_agua");
+  const [simMsg, setSimMsg] = useState("");
+  const simular = async (body: object) => {
+    setSimMsg("…");
+    const j = await fetch(`/api/dev/reportes${location.search}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }).then((r) => r.json()).catch((e) => ({ error: String(e) }));
+    setSimMsg(j.error ? `Error: ${j.error}` : j.colonia ? `${j.n} reportes [DEMO] (${j.tipo}) en ${j.colonia}, ${j.alcaldia} · discrepancia: ${j.discrepancia}. Vuelve a consultar esa colonia.` : "Reportes [DEMO] eliminados");
+  };
   const end = useRef<HTMLDivElement>(null);
 
   useEffect(() => { fetch("/api/dev/simulate").then((r) => r.json()).then((j) => setEntradas(j.entradas)); }, []);
@@ -99,6 +108,19 @@ export default function Dev() {
               </div>
             ))}
           </div>
+        </div>
+        <div className="rounded-2xl border border-[#e879f9]/40 bg-[#c026d3]/5 p-4">
+          <div className="mb-2 text-sm font-semibold text-[#f0abfc]">Simular reportes [DEMO]</div>
+          <div className="grid grid-cols-[1fr_auto_auto] gap-2">
+            <input value={simLugar} onChange={(e) => setSimLugar(e.target.value)} placeholder="colonia o dirección" className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm" />
+            <select value={simN} onChange={(e) => setSimN(Number(e.target.value))} className="rounded-lg border border-slate-700 bg-slate-900 px-2 text-sm"><option value={5}>5</option><option value={15}>15</option></select>
+            <select value={simTipo} onChange={(e) => setSimTipo(e.target.value as "sin_agua" | "calidad")} className="rounded-lg border border-slate-700 bg-slate-900 px-2 text-sm"><option value="sin_agua">sin_agua</option><option value="calidad">calidad</option></select>
+          </div>
+          <div className="mt-2 flex gap-2">
+            <button className={btn} onClick={() => void simular({ lugar: simLugar, n: simN, tipo: simTipo })}>Simular reportes [DEMO]</button>
+            <button className={btn} onClick={() => void simular({ limpiar: true })}>Limpiar reportes [DEMO]</button>
+          </div>
+          {simMsg && <div className="mt-2 font-mono text-[11px] text-slate-300">{simMsg}</div>}
         </div>
       </section>
 

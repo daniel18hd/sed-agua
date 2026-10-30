@@ -20,7 +20,7 @@ export interface Signals {
     reportes_hist_sobre_p75?: boolean;           // SACMEX 2022-24
     fuentes: Fuente[];
   };
-  reportes24h?: { sin_agua: number; calidad: number };   // reportes vecinales únicos por número (texto, sin fotos)
+  reportes24h?: { sin_agua: number; calidad: number; demo?: boolean };   // reportes vecinales únicos por número (texto, sin fotos)
   corteOficial?: { vigente: boolean; descripcion: string; fuente: Fuente };
   calidadPlanta?: { fuera_de_norma: string[]; fuente: Fuente };     // Los Berros: salida de planta, NO grifo
   notaCalidad?: { fecha: string; descripcion: string; fuente: Fuente }; // nota de prensa sobre calidad en la colonia (demo-cases.json, categoria "calidad")

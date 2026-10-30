@@ -1,3 +1,4 @@
+import { RECOMENDACION_ROJO_CORTA } from "@/brain/rules/calidad.ts";
 // Variables dinámicas para el agente de voz de ElevenLabs ([Sed] Alerta de agua). Todas son strings.
 // Se arman SOLO desde la evaluación calculada; nunca afirman potabilidad (assertSafe).
 import { assertSafe } from "@/brain/rules/whatsapp.ts";
@@ -15,6 +16,7 @@ export interface VoiceVars {
   fecha_fuente: string;
   aviso_calidad: string;
   es_demo: "true" | "false";
+  recomendacion_casa: string; // zonas en rojo: precaución en casa (RECOMENDACION_ROJO_CORTA)
 }
 
 const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
@@ -94,6 +96,7 @@ export function buildVoiceVars(e: Evaluacion, o: { nombre?: string; demo?: boole
     fuente,
     fecha_fuente,
     aviso_calidad,
+    recomendacion_casa: e.resultado.nivel === "rojo" ? RECOMENDACION_ROJO_CORTA : "",
     es_demo: esDemo ? "true" : "false",
   };
   assertSafe(JSON.stringify(v));

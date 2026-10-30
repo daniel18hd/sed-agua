@@ -321,7 +321,7 @@ export async function responder(
   const reportes24h = await countReportes24h(loc);
   const ev = evaluar(loc, { now: o.now, reportes24h, demo: o.demo, casoId: o.casoId, foco: o.foco });
   ev.reply = await maybeLLM(ev);
-  const pub = toPublica(ev, { canal: o.canal, geo_fuente: o.geo_fuente, demo: !!o.demo || !!ev.calidad?.es_demo || ev.llegada_demo, coord_nota: o.coord_nota });
+  const pub = toPublica(ev, { canal: o.canal, geo_fuente: o.geo_fuente, demo: !!o.demo || !!ev.calidad?.es_demo || ev.llegada_demo || !!reportes24h.demo, coord_nota: o.coord_nota });
   if (o.publicar !== false) pub.id = await insertConsulta(pub, { phone_hash: o.phone_hash, texto: o.texto ?? undefined });
   const id = pub.id;
   let extra: string[] | undefined;

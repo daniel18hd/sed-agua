@@ -4,11 +4,12 @@
 // El LLM (opcional) solo puede reescribir este texto a partir de los JSON calculados; nunca inventa.
 import type { Resultado, Fuente } from "./semaforo.ts";
 import type { Llegada } from "./llegada.ts";
-import type { AvisoCalidad } from "./calidad.ts";
+import { type AvisoCalidad, RECOMENDACION_ROJO_CORTA } from "./calidad.ts";
+import { type UltimoDato, sufijoUltimoDato } from "./ultimo_dato.ts";
 import type { OrigenAgua } from "./origen.ts";
 
 const EMOJI = { verde: "🟢", ambar: "🟡", rojo: "🔴", gris: "⚪" } as const;
-export const PROHIBIDAS = [/apta para (beber|consumo)/i, /\bes potable\b/i, /\bse puede beber\b/i, /\bsegura para beber\b/i, /\bagua segura\b/i];
+export const PROHIBIDAS = [/apta para (beber|consumo)/i, /\bpotable\b/i, /\bse puede beber\b/i, /\bsegura para beber\b/i, /\bagua segura\b/i];
 
 export type Foco = "resumen" | "calidad" | "cuando";
 export type Accion = "te_llega" | "pipa" | "reporta_calidad" | "reportar" | "ninguna";
@@ -31,6 +32,8 @@ export interface ReplyCtx {
   origen?: OrigenAgua;
   planta?: { fuera_de_norma: string[]; fecha: string; fuente?: Fuente } | null; // Los Berros (salida de planta ≠ llave)
   foco?: Foco;
+  ultimoLlegada?: UltimoDato | null; // si no hay aviso, se cita el último dato al final de la línea de abasto
+  now?: string;
 }
 
 /** Razón del semáforo en palabras sencillas. */
@@ -59,9 +62,16 @@ export function abasto(res: Resultado, ctx: ReplyCtx): string {
   }
   if (c >= 3) return `${e} En ${lugar} ${c} vecinos reportan que no les llega agua; no hay aviso oficial de corte.`;
   if (l?.tipo === "sin_dato" && /terminó/.test(l.nota)) return `${e} En ${lugar} el aviso oficial de corte ya terminó. Si sigues sin agua, repórtalo.`;
-  if (res.nivel === "gris") return `${e} Aún no tengo avisos oficiales en tu zona (${lugar}). Te digo lo que sí sé:`;
+  if (res.nivel === "gris") return conUltimo(`${e} Aún no tengo avisos oficiales en tu zona (${lugar}).`, ctx);
   const r = res.nivel === "ambar" && !ctx.calidad ? res.razones.map(razonSimple).find(Boolean) : null; // si es por calidad, el aviso va en su línea
   return `${e} Tu zona (${lugar}) hoy sin avisos de corte${r ? `, pero ${r}` : ""}.`;
+}
+
+/** Agrega " Último dato: 1 feb 2024, SACMEX." si cabe en 160 caracteres. */
+function conUltimo(linea: string, ctx: ReplyCtx): string {
+  if (!ctx.ultimoLlegada || !ctx.now) return linea;
+  const x = linea + sufijoUltimoDato(ctx.ultimoLlegada, ctx.now);
+  return x.length <= 160 ? x : linea;
 }
 
 /** De dónde viene el agua y cómo sale de la planta (nunca de la llave). */
@@ -124,11 +134,12 @@ export function buildReply(res: Resultado, ctx: ReplyCtx): string {
   } else if (foco === "cuando") {
     const l = ctx.llegada;
     const l1 = l?.tipo === "oficial" || l?.tipo === "estimado" || (res.puntaje?.c ?? 0) >= 3 ? abasto(res, ctx)
-      : res.nivel === "gris" ? `${e} Aún no tengo avisos oficiales de cuándo llega el agua en ${ctx.lugar}.`
+      : res.nivel === "gris" ? conUltimo(`${e} Aún no tengo avisos oficiales de cuándo llega el agua en ${ctx.lugar}.`, ctx)
       : `${e} En ${ctx.lugar} no hay aviso de corte, así que no hay una fecha que esperar.`;
     lines = [l1, sinAgua(res, ctx) ? TIP.corte : "Si hoy no te llega, avísame: así lo ve el gobierno en su panel.", aviso, cierre];
   } else {
-    lines = [abasto(res, ctx), origen, aviso ?? (sinAgua(res, ctx) ? TIP.corte : TIP.tinaco), cierre];
+    const tip = res.nivel === "rojo" ? `💧 ${RECOMENDACION_ROJO_CORTA}.` : sinAgua(res, ctx) ? TIP.corte : TIP.tinaco;
+    lines = [abasto(res, ctx), origen, aviso ?? tip, cierre];
   }
   return assertSafe(lines.filter(Boolean).slice(0, 4).join("\n"));
 }

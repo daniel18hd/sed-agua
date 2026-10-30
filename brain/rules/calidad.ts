@@ -29,3 +29,21 @@ export function avisoCalidad(i: CalidadInput): AvisoCalidad | null {
     return { origen: "prensa", es_demo: false, texto: `Reportado en prensa el ${i.prensa.fecha}: agua turbia o con mal olor en tu zona`, recomendacion: RECOMENDACION.general, fuente: i.prensa.fuente };
   return null;
 }
+
+// Zonas en ROJO (sin aviso de calidad): precauciones en casa. Son recomendaciones generales de precaución;
+// Sed no mide el agua de la llave.
+export const FUENTES_HOGAR = {
+  segiagua: { nombre: "SEGIAGUA", url: "https://segiagua.cdmx.gob.mx/" },
+  salud: { nombre: "Secretaría de Salud / COFEPRIS", url: "https://www.gob.mx/cofepris" },
+  oms: { nombre: "OMS", url: "https://www.who.int/es/news-room/fact-sheets/detail/drinking-water" },
+} as const;
+export type FuenteHogar = keyof typeof FUENTES_HOGAR;
+export const RECOMENDACIONES_HOGAR_ROJO: { id: string; texto: string; fuente: FuenteHogar }[] = [
+  { id: "tapar", texto: "Tapa bien cubetas, tambos y tinacos donde guardes agua", fuente: "segiagua" },
+  { id: "hervir", texto: "Para tomar o cocinar, hiérvela 5 min o usa garrafón", fuente: "salud" },
+  { id: "turbia", texto: "Si sale turbia o huele raro, déjala correr y no la tomes", fuente: "salud" },
+  { id: "clorar", texto: "Para desinfectar: 2 gotas de cloro por litro y espera 30 min", fuente: "salud" },
+  { id: "tinaco", texto: "Cuando regrese, lava tinaco y cisterna antes de llenarlos", fuente: "segiagua" },
+  { id: "manos", texto: "Aparta agua limpia para lavarte las manos con jabón", fuente: "oms" },
+];
+export const RECOMENDACION_ROJO_CORTA = "Si guardas agua, tápala; para tomarla hiérvela 5 min o usa garrafón";
