@@ -113,3 +113,18 @@ describe("webhook Twilio", async () => {
     expect(create).not.toHaveBeenCalled();
   });
 });
+
+describe("alias /api/whatsapp", async () => {
+  const twilio = (await import("twilio")).default as any;
+  const { POST } = await import("@/app/api/whatsapp/route");
+  test("firma calculada sobre /api/whatsapp → TwiML", async () => {
+    process.env.TWILIO_AUTH_TOKEN = "tok";
+    process.env.PUBLIC_BASE_URL = "https://hackathon-clara.neolabs.art";
+    const url = "https://hackathon-clara.neolabs.art/api/whatsapp";
+    const params = { From: "whatsapp:+5215522222222", Body: "Hola", NumMedia: "0" };
+    const sig = twilio.getExpectedTwilioSignature("tok", url, params);
+    const r = await POST(new Request(url, { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded", "x-twilio-signature": sig }, body: new URLSearchParams(params).toString() }));
+    expect(r.status).toBe(200);
+    expect(await r.text()).toMatch(/Hola 👋/);
+  });
+});

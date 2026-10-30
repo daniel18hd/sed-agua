@@ -11,12 +11,13 @@ const NIVEL: Record<Nivel, { t: string; c: string }> = {
   gris: { t: "SIN DATOS", c: "#64748b" },
 };
 
-type BadgeKind = "oficial" | "estimado" | "sindato" | "planta" | "vecinos" | "demo" | "prensa" | "historico" | "validar" | "aprox";
+type BadgeKind = "oficial" | "estimado" | "sindato" | "planta" | "vecinos" | "nota" | "demo" | "prensa" | "historico" | "validar" | "aprox";
 const BADGE: Record<BadgeKind, { t: string; cls: string }> = {
   oficial: { t: "OFICIAL", cls: "text-[#22c55e] border-[#22c55e]/60 bg-[#22c55e]/12" },
   estimado: { t: "ESTIMADO", cls: "text-[#f59e0b] border-[#f59e0b]/60 bg-[#f59e0b]/12" },
   sindato: { t: "SIN DATO", cls: "text-slate-300 border-slate-500/60 bg-slate-500/15" },
   planta: { t: "PLANTA", cls: "text-[#38bdf8] border-[#38bdf8]/60 bg-[#38bdf8]/10" },
+  nota: { t: "PRENSA", cls: "text-[#f59e0b] border-[#f59e0b]/60 bg-[#f59e0b]/12" },
   vecinos: { t: "VECINOS", cls: "text-[#a78bfa] border-[#a78bfa]/60 bg-[#a78bfa]/12" },
   demo: { t: "CASO DE DEMOSTRACIÓN", cls: "text-white border-[#e879f9] bg-[#c026d3] shadow-[0_0_18px_rgba(232,121,249,.55)]" },
   prensa: { t: "REPORTADO EN PRENSA", cls: "text-[#38bdf8] border-[#38bdf8]/60 bg-[#38bdf8]/10" },
@@ -66,7 +67,7 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
   const llBadge: BadgeKind = ll.tipo === "oficial" ? "oficial" : ll.tipo === "estimado" ? "estimado" : "sindato";
   const llText = textoLlegada(ll).replace(/^⏱ /, "").replace(/^ESTIMADO \(no oficial\): /, "");
   const cal = r.calidad;
-  const calBadge: BadgeKind | null = cal ? (cal.es_demo ? "demo" : cal.origen === "planta" ? "planta" : "vecinos") : null;
+  const calBadge: BadgeKind | null = cal ? (cal.es_demo ? "demo" : cal.origen === "planta" ? "planta" : cal.origen === "prensa" ? "nota" : "vecinos") : null;
   const reportesHoy = sig.reportes24h ?? { sin_agua: 0, calidad: 0 };
 
   const rows: Row[] = [
@@ -169,6 +170,7 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
             <div className="text-[15px] leading-snug text-white">{cal.texto}</div>
             <div className="mt-0.5 text-[13px] text-slate-300">{cal.recomendacion}</div>
             {cal.es_demo && <div className="mt-1 font-mono text-[11px] text-[#f0abfc]">Fuente: caso de demostración — no es un hecho real</div>}
+            {!cal.es_demo && cal.fuente && <div className="mt-1"><Src n={cal.fuente.nombre} f={cal.fuente.fecha} url={cal.fuente.url} /></div>}
           </>
         ) : (
           <div className="text-[13.5px] text-slate-300">Sin señal de calidad. Si sale turbia o con olor, no la bebas y repórtala.</div>

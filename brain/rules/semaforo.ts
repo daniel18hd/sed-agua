@@ -23,6 +23,7 @@ export interface Signals {
   reportes24h?: { sin_agua: number; calidad: number };   // reportes vecinales únicos por número (texto, sin fotos)
   corteOficial?: { vigente: boolean; descripcion: string; fuente: Fuente };
   calidadPlanta?: { fuera_de_norma: string[]; fuente: Fuente };     // Los Berros: salida de planta, NO grifo
+  notaCalidad?: { fecha: string; descripcion: string; fuente: Fuente }; // nota de prensa sobre calidad en la colonia (demo-cases.json, categoria "calidad")
 }
 
 export interface Resultado {
@@ -35,6 +36,10 @@ export interface Resultado {
 }
 
 const DIAS_VIGENCIA = 30;
+// Una nota de prensa de calidad cuenta como señal ÁMBAR si tiene ≤ 7 días (convención de demo, decidida 2026-10-30).
+export const DIAS_NOTA_CALIDAD = 7;
+export const notaCalidadReciente = (fecha: string | undefined, hoy: string) =>
+  !!fecha && !isNaN(Date.parse(fecha)) && dias(fecha, hoy) >= 0 && dias(fecha, hoy) <= DIAS_NOTA_CALIDAD;
 const dias = (a: string, b: string) => (Date.parse(b) - Date.parse(a)) / 86_400_000;
 const fresca = (f: Fuente | undefined, hoy: string) => !!f && !isNaN(Date.parse(f.fecha)) && dias(f.fecha, hoy) <= DIAS_VIGENCIA;
 
@@ -80,7 +85,9 @@ export function evaluate(location: Location, s: Signals): Resultado {
   if (c > 0) razones.push(`${c} vecino(s) reportan falta de agua en 24 h`);
 
   const total = s1 + s2 + s3 + s4;
-  const alerta_calidad = r.calidad >= 3 || (s.calidadPlanta?.fuera_de_norma.length ?? 0) > 0;
+  const notaReciente = notaCalidadReciente(s.notaCalidad?.fecha, s.hoy);
+  const alerta_calidad = r.calidad >= 3 || (s.calidadPlanta?.fuera_de_norma.length ?? 0) > 0 || notaReciente;
+  if (s.notaCalidad && notaReciente) { fuentes.push(s.notaCalidad.fuente); razones.push(`Nota de prensa sobre calidad del agua (reportado el ${s.notaCalidad.fecha})`); }
   if (s.calidadPlanta) fuentes.push(s.calidadPlanta.fuente);
   if (r.calidad >= 3) razones.push(`${r.calidad} vecinos reportan agua turbia o con olor`);
   if (s.calidadPlanta?.fuera_de_norma.length) razones.push(`Planta Los Berros fuera de norma en: ${s.calidadPlanta.fuera_de_norma.join(", ")}`);

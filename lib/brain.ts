@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { evaluate, type Fuente, type Resultado, type Signals, type CategoriaSequia } from "@/brain/rules/semaforo.ts";
+import { evaluate, notaCalidadReciente, type Fuente, type Resultado, type Signals, type CategoriaSequia } from "@/brain/rules/semaforo.ts";
 import { estimarLlegada, type Llegada, type LlegadaInput } from "@/brain/rules/llegada.ts";
 import { avisoCalidad, type AvisoCalidad } from "@/brain/rules/calidad.ts";
 import { buildReply } from "@/brain/rules/whatsapp.ts";
@@ -188,10 +188,26 @@ function avisoOficialPara(loc: Loc, ahora: string) {
   };
 }
 
+/** Nota de prensa de calidad (caso con categoria "calidad"): por colonia, por casoId o a ≤ 1 km de la coordenada del caso. */
+export function notaCalidadPara(loc: Loc, casoId?: string): Signals["notaCalidad"] {
+  const c = data().demo.casos.find((x) => {
+    if (x.categoria !== "calidad") return false;
+    if (casoId && x.id === casoId) return true;
+    if (x.cve_col && x.cve_col === loc.cve_col) return true;
+    if (x.lat != null && x.lon != null) {
+      const dx = (x.lon - loc.lon) * 111.32 * Math.cos((loc.lat * Math.PI) / 180), dy = (x.lat - loc.lat) * 110.57;
+      return Math.hypot(dx, dy) <= 1;
+    }
+    return false;
+  });
+  if (!c) return undefined;
+  return { fecha: c.fecha_nota, descripcion: c.descripcion, fuente: { nombre: medio(c.fuentes[0]), fecha: c.fecha_nota, url: c.fuentes[0] } };
+}
+
 // ---------- signals ----------
 export interface Reportes24h { sin_agua: number; calidad: number }
 
-export function signalsFor(loc: Loc, now: string, reportes24h: Reportes24h = { sin_agua: 0, calidad: 0 }, corteOficial?: Signals["corteOficial"]): Signals {
+export function signalsFor(loc: Loc, now: string, reportes24h: Reportes24h = { sin_agua: 0, calidad: 0 }, corteOficial?: Signals["corteOficial"], opt?: { casoId?: string }): Signals {
   const d = data();
   const fz = fuentes();
   const cve = loc.cve_mun;
@@ -218,6 +234,9 @@ export function signalsFor(loc: Loc, now: string, reportes24h: Reportes24h = { s
   };
 
   if (aplica) s.calidadPlanta = { fuera_de_norma: d.berros.ultimo.parametros_fuera_de_norma ?? [], fuente: fz.berros };
+
+  const nota = notaCalidadPara(loc, opt?.casoId);
+  if (nota) s.notaCalidad = nota;
 
   if (corteOficial) s.corteOficial = corteOficial;
   else {
@@ -250,6 +269,7 @@ export function calidadFor(loc: Loc, s: Signals, opt?: { demo?: boolean }): Avis
     planta: s.calidadPlanta,
     reportesCalidad24h: s.reportes24h?.calidad,
     demo: esc?.alerta_calidad_demo ? { ...esc.alerta_calidad_demo, etiqueta: "caso de demostración" } : undefined,
+    prensa: s.notaCalidad && notaCalidadReciente(s.notaCalidad.fecha, s.hoy) ? { fecha: s.notaCalidad.fecha, fuente: s.notaCalidad.fuente } : undefined,
   });
 }
 
@@ -270,7 +290,7 @@ export interface Evaluacion {
 
 export function evaluar(loc: Loc, opt: { now?: string; reportes24h?: Reportes24h; demo?: boolean; casoId?: string } = {}): Evaluacion {
   const ahora = opt.now ?? nowISO();
-  const signals = signalsFor(loc, ahora, opt.reportes24h);
+  const signals = signalsFor(loc, ahora, opt.reportes24h, undefined, { casoId: opt.casoId });
   const resultado = evaluate(loc, signals);
   const { llegada, demo: llegada_demo } = llegadaFor(loc, ahora, opt);
   const calidad = calidadFor(loc, signals, opt);

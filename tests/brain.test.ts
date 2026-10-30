@@ -81,6 +81,34 @@ describe("evaluar con demo-cases", () => {
   });
 });
 
+describe("nota de prensa de calidad", () => {
+  test("Hacienda de las Flores (por casoId) → ámbar, aviso PRENSA, reportado el 2026-10-28", async () => {
+    const { consultaDemo } = await import("@/lib/bot");
+    const c = consultaDemo("izp-hacienda-flores", { now: DEMO_NOW })!;
+    expect(c.nivel).toBe("ambar");
+    expect(c.resultado.calidad?.origen).toBe("prensa");
+    expect(c.resultado.reply).toMatch(/Reportado en prensa el 2026-10-28/);
+    expect(c.resultado.reply).toMatch(/Fuente: N\+ \(2026-10-28\)/);
+  });
+  test("la nota caduca a los 7 días", async () => {
+    const { consultaDemo } = await import("@/lib/bot");
+    const c = consultaDemo("izp-hacienda-flores", { now: "2026-11-06T09:00-06:00" })!;
+    expect(c.resultado.calidad).toBeNull();
+    expect(c.nivel).toBe("verde");
+  });
+  test("una consulta a < 1 km de la coordenada del caso también la recibe", () => {
+    const caso = data().demo.casos.find((x) => x.id === "izp-hacienda-flores")!;
+    const prev = { lat: caso.lat, lon: caso.lon };
+    caso.lat = 19.3561; caso.lon = -99.0187; // punto de prueba en Iztapalapa (no se escribe al archivo)
+    try {
+      const e = evaluar(locate(19.3565, -99.0190)!, { now: DEMO_NOW });
+      expect(e.calidad?.origen).toBe("prensa");
+      const lejos = evaluar(locate(19.386, -99.143)!, { now: DEMO_NOW });
+      expect(lejos.calidad?.origen).not.toBe("prensa");
+    } finally { caso.lat = prev.lat; caso.lon = prev.lon; }
+  });
+});
+
 describe("presentación", () => {
   test("nombres de colonia legibles", async () => {
     const { bonito } = await import("@/lib/brain");

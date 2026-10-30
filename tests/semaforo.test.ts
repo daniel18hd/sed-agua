@@ -108,3 +108,24 @@ test("aviso oficial vencido no se presenta como vigente", () => {
 test("calidad planta dentro de norma (dato real 2026-10-26) → sin aviso", () => {
   assert.equal(avisoCalidad({ planta: { fuera_de_norma: [], fuente: F("CONAGUA Los Berros") } }), null);
 });
+
+// ---- Regla 2026-10-30: nota de prensa de calidad reciente (≤7 d) → ÁMBAR
+test("nota de prensa de calidad de hace 2 días → ámbar con alerta de calidad", () => {
+  const r = evaluate(loc, { ...base, notaCalidad: { fecha: "2026-10-28", descripcion: "agua turbia", fuente: F("N+", "2026-10-28") } });
+  assert.equal(r.nivel, "ambar"); assert.ok(r.alerta_calidad);
+  assert.ok(r.razones.some((x) => /reportado el 2026-10-28/.test(x)));
+});
+
+test("nota de prensa de calidad de hace 10 días ya no cuenta", () => {
+  const r = evaluate(loc, { ...base, notaCalidad: { fecha: "2026-10-20", descripcion: "agua turbia", fuente: F("N+", "2026-10-20") } });
+  assert.equal(r.nivel, "verde"); assert.ok(!r.alerta_calidad);
+});
+
+test("respuesta: nota de prensa → 'Reportado en prensa el', fuente del medio, recomendación precautoria", () => {
+  const cal = avisoCalidad({ prensa: { fecha: "2026-10-28", fuente: F("N+", "2026-10-28") } })!;
+  assert.equal(cal.origen, "prensa");
+  const r = evaluate(loc, { ...base, notaCalidad: { fecha: "2026-10-28", descripcion: "x", fuente: F("N+", "2026-10-28") } });
+  const t = chk(buildReply(r, { lugar: "U.H. Hacienda de las Flores", llegada: estimarLlegada({ ahora: AHORA }), calidad: cal }));
+  assert.match(t, /Reportado en prensa el 2026-10-28/); assert.match(t, /Fuente: N\+ \(2026-10-28\)/); assert.match(t, /no la bebas/);
+  assert.doesNotMatch(t, /hoy no hay agua/i);
+});
