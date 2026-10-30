@@ -286,6 +286,7 @@ export interface Evaluacion {
   reply: string;
   caso?: CasoInfo;
   escenarios?: { id: string; etiqueta: string; por_que: string }[];
+  aviso_fin?: string; // ISO del fin del aviso oficial vigente (para la voz)
 }
 
 export function evaluar(loc: Loc, opt: { now?: string; reportes24h?: Reportes24h; demo?: boolean; casoId?: string } = {}): Evaluacion {
@@ -309,8 +310,10 @@ export function evaluar(loc: Loc, opt: { now?: string; reportes24h?: Reportes24h
   const reply = buildReply(resultado, { lugar, llegada, calidad, llegadaDemo: llegada_demo });
   const c = (opt.casoId && data().demo.casos.find((x) => x.id === opt.casoId)) || casoPorColonia(loc.cve_col);
   const esc = demoActivo(opt) ? escenariosPorColonia(loc.cve_col) : [];
+  const av = avisoOficialPara(loc, ahora);
   return {
     ahora, loc, signals, resultado, llegada, llegada_demo, calidad, reply,
+    aviso_fin: av?.vigente ? av.fin : undefined,
     caso: c && { id: c.id, tipo: c.tipo, frase: c.frase, descripcion: c.descripcion, fecha: c.fecha_nota, nota_fecha: c.nota_fecha, fuentes: c.fuentes.map((u) => ({ medio: medio(u), url: u })) },
     escenarios: esc.length ? esc.map((e) => ({ id: e.id, etiqueta: e.etiqueta, por_que: e.por_que })) : undefined,
   };

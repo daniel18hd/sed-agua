@@ -40,6 +40,7 @@ export interface ConsultaPublica {
     escenarios?: { id: string; etiqueta: string; por_que: string }[];
     ahora: string;
     coord_nota?: string;
+    llamada?: { estado: "llamando" | "dry_run" | "error" }; // Fase 6: badge 📞
   };
 }
 

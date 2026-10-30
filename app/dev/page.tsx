@@ -31,11 +31,17 @@ export default function Dev() {
     try {
       const r = await fetch(`/api/dev/simulate${location.search}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ From: from, now: now || undefined, demo, ...body }) });
       const j = await r.json();
-      const meta = [j.kind, j.ms != null && `${j.ms} ms`, j.consulta && `${j.consulta.colonia ?? "—"}, ${j.consulta.alcaldia} · ${j.consulta.nivel}`].filter(Boolean).join(" · ");
-      setLog((l) => [...l, { dir: "out", text: j.reply ?? j.error ?? "(sin respuesta)", meta }]);
+      const meta = [j.kind, j.ms != null && `${j.ms} ms`, j.consulta && `${j.consulta.colonia ?? "—"}, ${j.consulta.alcaldia} · ${j.consulta.nivel}`, j.voz && `voz: ${JSON.stringify(j.voz).slice(0, 160)}`].filter(Boolean).join(" · ");
+      setLog((l) => [...l, { dir: "out", text: j.reply ?? j.error ?? "(sin respuesta)", meta }, ...(j.extra ?? []).map((x: string) => ({ dir: "out" as const, text: x }))]);
     } catch (e) {
       setLog((l) => [...l, { dir: "out", text: `Error: ${(e as Error).message}` }]);
     } finally { setBusy(false); }
+  }
+
+  async function simularLlamada(casoId: string) {
+    const r = await fetch(`/api/dev/voice${location.search}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ casoId, now: now || undefined, demo }) });
+    const j = await r.json();
+    setLog((l) => [...l, { dir: "out", text: `📞 Simular llamada (no llama)\n${JSON.stringify(j.dynamic_variables ?? { critico: false }, null, 2)}`, meta: `crítico: ${j.critico} · dry-run en prod: ${j.dry_run_en_produccion}` }]);
   }
 
   const btn = "rounded-lg border border-slate-700 px-3 py-1.5 text-left text-[13px] hover:border-[#38bdf8] disabled:opacity-40";
@@ -72,6 +78,8 @@ export default function Dev() {
           <button disabled={busy} className={btn}>Enviar ubicación 📍</button>
           <button type="button" disabled={busy} className={btn} onClick={() => void send({ Body: "", NumMedia: "1" }, "🖼️ (imagen)")}>Simular imagen</button>
           <button type="button" disabled={busy} className={btn} onClick={() => void send({ Body: "REPORTAR" }, "REPORTAR")}>REPORTAR</button>
+          <button type="button" disabled={busy} className={btn} onClick={() => void send({ Body: "SÍ" }, "SÍ")}>SÍ (llamada)</button>
+          <button type="button" disabled={busy} className={btn} onClick={() => void send({ Body: "NO" }, "NO")}>NO</button>
           {["1", "2", "3"].map((n) => <button key={n} type="button" disabled={busy} className={btn} onClick={() => void send({ Body: n }, n)}>{n}</button>)}
         </form>
 
@@ -85,6 +93,7 @@ export default function Dev() {
                   <span className="block text-[11px] text-slate-400">{e.alcaldia} · {e.tipo}{e.coord_nota ? " · sin coord" : ""}</span>
                 </button>
                 <button title="Enviar como texto (geocodifica)" disabled={busy} className={`${btn} px-2`} onClick={() => void send({ Body: e.texto }, e.texto)}>Aa</button>
+                <button title="Simular llamada: muestra las variables de voz, no llama" disabled={busy} className={`${btn} px-2`} onClick={() => void simularLlamada(e.id)}>📞</button>
               </div>
             ))}
           </div>

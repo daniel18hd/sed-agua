@@ -81,7 +81,14 @@ export default function OS(p: OSProps) {
   const ingest = useCallback((c: ConsultaPublica, o: { backfill: boolean }) => {
     const e = eng.current;
     if (!e) return;
-    if (!e.push(c, { animate: !o.backfill })) return;
+    if (!e.push(c, { animate: !o.backfill })) {
+      // Fase 6: actualización de una consulta existente (badge 📞 cuando se dispara la llamada)
+      if (c.resultado?.llamada) {
+        setTicker((t) => t.map((x) => (x.id === c.id ? c : x)));
+        setDetail((d) => (d?.id === c.id ? c : d));
+      }
+      return;
+    }
     setTicker((t) => [c, ...t].slice(0, 7));
     setCount((n) => n + 1);
   }, []);
@@ -236,6 +243,7 @@ export default function OS(p: OSProps) {
               <span className="text-slate-500 tabular-nums">{new Date(c.created_at).toLocaleTimeString("es-MX", { timeZone: "America/Mexico_City", hour12: false })}</span>
               <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: DOT[c.nivel], boxShadow: `0 0 6px ${DOT[c.nivel]}` }} />
               <span className="min-w-0 flex-1 truncate text-slate-100">{c.colonia ?? "—"}<span className="text-slate-500"> · {c.alcaldia}</span></span>
+              {c.resultado.llamada && <span title={`llamada: ${c.resultado.llamada.estado}`} className="text-[13px]">📞</span>}
               {c.demo && <Badge k="demo" label="DEMO" />}
             </div>
           ))}

@@ -8,13 +8,21 @@ import type { Evaluacion, Loc, Reportes24h } from "@/lib/brain";
 
 export type TipoReporte = "sin_agua" | "turbia" | "fuga";
 export type EstadoSesion = "idle" | "esperando_direccion" | "esperando_tipo_reporte";
-export interface Sesion { phone_hash: string; estado: EstadoSesion; ultima_consulta_id?: string | null; ctx?: { lat: number; lon: number; cve_mun: string; cve_col?: string | null } | null; updated_at?: string }
+export interface VozEstado {
+  pending?: { to: string; vars: import("@/lib/voice/vars").VoiceVars; exp: number; consulta_id?: string } | null; // oferta "¿Te llamo?" (10 min)
+  declined_at?: number | null; // "NO": no se vuelve a ofrecer en 24 h
+  opt_out?: boolean;           // "NO LLAMES": nunca
+  last_inbound_at?: number;
+}
+export interface Sesion { phone_hash: string; estado: EstadoSesion; ultima_consulta_id?: string | null; ctx?: { lat: number; lon: number; cve_mun: string; cve_col?: string | null } | null; voz?: VozEstado | null; updated_at?: string }
+export interface VoiceCall { at: string; phone_hash: string; to_masked: string; colonia: string; nivel: string; motivo: string; es_demo: boolean; ok: boolean; dry_run: boolean; conversation_id: string | null; call_sid: string | null; error: string | null; consulta_id?: string | null }
 interface Reporte { created_at: string; phone_hash: string; tipo: TipoReporte; lat: number; lon: number; cve_mun: string; cve_col: string | null }
 
 type Listener = (c: ConsultaPublica) => void;
-interface Mem { consultas: ConsultaPublica[]; reportes: Reporte[]; sesiones: Map<string, Sesion>; listeners: Set<Listener> }
+interface Mem { consultas: ConsultaPublica[]; reportes: Reporte[]; sesiones: Map<string, Sesion>; listeners: Set<Listener>; calls: VoiceCall[] }
 const g = globalThis as unknown as { __sedMem?: Mem; __sedSb?: SupabaseClient | null };
-export const mem: Mem = (g.__sedMem ??= { consultas: [], reportes: [], sesiones: new Map(), listeners: new Set() });
+export const mem: Mem = (g.__sedMem ??= { consultas: [], reportes: [], sesiones: new Map(), listeners: new Set(), calls: [] });
+mem.calls ??= [];
 
 export function sb(): SupabaseClient | null {
   if (g.__sedSb !== undefined) return g.__sedSb;
@@ -122,4 +130,42 @@ export async function setSesion(s: Sesion) {
     console.error("[store] upsert sesiones falló:", error.message);
   }
   mem.sesiones.set(s.phone_hash, row);
+}
+
+// ---------- llamadas de voz ----------
+export const maskPhone = (to: string) => to.replace(/^whatsapp:/, "").replace(/^(\+\d{2})\d+(\d{4})$/, "$1******$2");
+
+export async function logVoiceCall(c: Omit<VoiceCall, "at">) {
+  const row = { ...c, at: new Date().toISOString() };
+  const client = sb();
+  if (client) {
+    const { error } = await client.from("voice_calls").insert(row);
+    if (!error) return;
+    console.error("[store] insert voice_calls falló:", error.message);
+  }
+  mem.calls.push(row);
+}
+
+/** Llamadas reales (no dry-run, ok) a ese número desde `desde` (ms). */
+export async function callsSince(phone_hash: string, desde: number): Promise<number> {
+  const iso = new Date(desde).toISOString();
+  const client = sb();
+  if (client) {
+    const { count } = await client.from("voice_calls").select("id", { count: "exact", head: true }).eq("phone_hash", phone_hash).eq("dry_run", false).gte("at", iso);
+    return count ?? 0;
+  }
+  return mem.calls.filter((c) => c.phone_hash === phone_hash && !c.dry_run && c.at >= iso).length;
+}
+
+/** Marca en el OS que se disparó una llamada para esa consulta (badge 📞). */
+export async function marcarLlamada(consulta_id: string | undefined, info: { estado: "llamando" | "dry_run" | "error" }) {
+  if (!consulta_id) return;
+  const client = sb();
+  if (client) {
+    const { data } = await client.from("consultas_publicas").select("resultado").eq("id", consulta_id).maybeSingle();
+    if (data) await client.from("consultas_publicas").update({ resultado: { ...(data.resultado as object), llamada: info } }).eq("id", consulta_id);
+    return;
+  }
+  const c = mem.consultas.find((x) => x.id === consulta_id);
+  if (c) { c.resultado.llamada = info; for (const l of mem.listeners) try { l({ ...c }); } catch {} }
 }

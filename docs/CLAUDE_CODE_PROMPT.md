@@ -190,3 +190,23 @@ Ruta `/os`: pantalla completa, sin scroll, 1920×1080 primero.
 - El look dark/globo es requisito de UI; no lo metas en textos de producto ni en el bot.
 - No compres números ni mandes mensajes reales en tests. Mockea `twilio` en vitest.
 - Commits pequeños por fase; al final de cada fase lista qué quedó, cómo probarlo y qué falta.
+
+## Fase 6 — Llamada de alerta (opcional, voz ElevenLabs)
+Detalle completo en `VOZ_ALERTA.md`. El agente ya existe; no lo crees ni lo modifiques.
+- Env: `ELEVENLABS_API_KEY` (solo server), `ELEVENLABS_AGENT_ID=agent_9501m674z09mfptt3z954cmmfrbg`, `ELEVENLABS_PHONE_NUMBER_ID=phnum_8701m5gat1j3f38s59jpfmdg2145`. Nunca uses ni toques `phnum_5701m4vx6vvsfz1bn8bz4nzn4320` (KL/WhatsApp).
+- `lib/voice/vars.ts` → `buildVoiceVars(resultado, llegada, calidad, nombre?)` devuelve **strings**: nombre, colonia, alcaldia, nivel (rojo|ambar), motivo (corte programado|fuga|sin dato|alerta de calidad), dias_estimados (texto hablado; <48 h en horas), tipo_dias (oficial|estimado|sin_dato), fuente, fecha_fuente, aviso_calidad, es_demo ("true"/"false"). Reusa `assertSafe`.
+- `isCritical(r)` = nivel rojo || corte programado vigente || alerta de calidad (incluye [DEMO]).
+- En el webhook WhatsApp, si es crítico agrega la línea: "Zona crítica. ¿Te llamo para explicarte? Responde SÍ". Guarda `pending_call(from, vars, exp=10 min)`.
+  - "SÍ"/"SI" → POST interno a `/api/voice-alert`; responde "Te llamo en unos segundos 📞".
+  - "NO" → cancela, no vuelvas a ofrecer en 24 h. "NO LLAMES" → `voiceOptIn=false` permanente.
+- `app/api/voice-alert/route.ts` (snippet en VOZ_ALERTA.md §3):
+  - Guards: header interno, el número escribió antes y aceptó, crítico, ≤1 llamada/número/hora, regex sin "apta para beber|agua segura|potable".
+  - `POST https://api.elevenlabs.io/v1/convai/twilio/outbound-call`, header `xi-api-key`, body `{agent_id, agent_phone_number_id, to_number, conversation_initiation_client_data:{dynamic_variables}}`.
+  - Loguea en `voice_calls` (to, colonia, nivel, motivo, es_demo, ok, conversation_id, call_sid, error, at).
+- `to_number` = siempre el `From` del WhatsApp. Nunca hardcodees ni inventes números.
+- `/dev`: botón "Simular llamada" que muestra el JSON de variables y **no** llama (dry-run por defecto; `VOICE_DRY_RUN=1`).
+- Tests (vitest, `fetch` mockeado, cero llamadas reales):
+  - CTM El Risco @ DEMO_NOW → tipo_dias oficial, "27 horas".
+  - [DEMO] azufre → motivo "alerta de calidad", es_demo "true".
+  - Rate limit → 429. Sin opt-in → 403. Verde → 422.
+- **Aceptación**: la llamada real solo se prueba con el celular de Daniel y su OK. En `/os` se ve un badge 📞 en el evento cuando se dispara.

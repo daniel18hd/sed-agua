@@ -30,14 +30,15 @@ export async function POST(req: Request) {
   });
   const timer = new Promise<null>((r) => setTimeout(() => r(null), BUDGET_MS));
   const first = await Promise.race([work, timer]);
-  if (first) return twiml(first.reply);
+  if (first) return twiml(first.reply, ...(first.extra ?? []));
 
   after(async () => {
     const res = await work;
     const sid = process.env.TWILIO_ACCOUNT_SID;
     const from = process.env.TWILIO_WHATSAPP_NUMBER;
     if (!sid || !token || !from || !params.From) return;
-    await twilio(sid, token).messages.create({ from: `whatsapp:${from.replace(/^whatsapp:/, "")}`, to: params.From, body: res.reply });
+    const client = twilio(sid, token);
+    for (const body of [res.reply, ...(res.extra ?? [])]) await client.messages.create({ from: `whatsapp:${from.replace(/^whatsapp:/, "")}`, to: params.From, body });
   });
   return twiml(MSG.espera);
 }

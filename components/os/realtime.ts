@@ -33,6 +33,7 @@ export function subscribe(onEvent: OnEvent, onStatus: (s: Status, via: string) =
       const ch = sb
         .channel("os")
         .on("postgres_changes", { event: "INSERT", schema: "public", table: "consultas_publicas" }, (p) => onEvent(p.new as ConsultaPublica, { backfill: false }))
+        .on("postgres_changes", { event: "UPDATE", schema: "public", table: "consultas_publicas" }, (p) => onEvent(p.new as ConsultaPublica, { backfill: false }))
         .subscribe((st) => {
           if (st === "SUBSCRIBED") { onStatus("live", "supabase"); void backfill(); } // también tras reconectar
           else if (st === "CHANNEL_ERROR" || st === "TIMED_OUT" || st === "CLOSED") onStatus("offline", "supabase");

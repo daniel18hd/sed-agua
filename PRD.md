@@ -81,7 +81,9 @@ Sin app, sin registro, sin fotos. Solo texto o ubicación.
 
 **Alcance MVP (sí):** webhook, geocodificación (dirección/CP/ubicación), semáforo, cuándo llega y aviso de calidad con etiquetas, OS con secuencia y multi-punto, 10 casos reales + 2 escenarios demo, reportes por texto, modo mock.
 
-**Fuera:** fotos, visión e imágenes; login; predicción ML; datos por calle en tiempo real (no existen abiertos); calidad en la llave; app nativa; notificaciones proactivas (requieren plantillas aprobadas); pago de pipas.
+**Opcional (voz):** llamada de alerta con ElevenLabs para zonas críticas. Solo con opt‑in "SÍ" por WhatsApp y máximo 1 por hora por número, al mismo número que escribió (ver `VOZ_ALERTA.md`).
+
+**Fuera:** fotos, visión e imágenes; login; predicción ML; datos por calle en tiempo real (no existen abiertos); calidad en la llave; app nativa; notificaciones proactivas no solicitadas (requieren plantillas aprobadas); pago de pipas.
 
 ## 7. Arquitectura (técnico)
 **Stack elegido: Next.js (App Router, TS) + MapLibre GL JS v5 (`projection: globe`) + deck.gl (`MapboxOverlay` interleaved: TripsLayer/PathLayer/ScatterplotLayer) + Supabase (Postgres + Realtime) + Vercel.**

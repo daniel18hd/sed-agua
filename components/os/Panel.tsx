@@ -140,6 +140,7 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
           <span>{c.alcaldia}</span>
           {c.resultado.coord_nota && <Badge k="aprox" />}
           {c.demo && <Badge k="demo" />}
+          {c.resultado.llamada && <span className="rounded-md border border-[#38bdf8]/60 bg-[#38bdf8]/10 px-1.5 py-[1px] font-mono text-[10.5px] font-bold text-[#38bdf8]">📞 {c.resultado.llamada.estado === "dry_run" ? "LLAMADA (PRUEBA)" : c.resultado.llamada.estado === "error" ? "LLAMADA FALLÓ" : "LLAMANDO"}</span>}
         </div>
         <div className="mt-0.5 text-[26px] font-semibold leading-tight text-white">{c.colonia ?? "Colonia sin identificar"}</div>
         <div className="mt-2 flex items-center gap-3">
