@@ -95,3 +95,10 @@ WhatsApp → Twilio → POST /api/twilio/webhook  (lib/bot.ts: router; mismo có
 ```
 
 Reglas duras (tests): ≤ 4 líneas; "ESTIMADO (no oficial)" en todo estimado; `[DEMO]` + "Fuente: caso de demostración" en escenarios; nunca "apta para beber"/"es potable" (Los Berros = salida de planta, no tu llave); nunca "hoy no hay agua" sin fuente.
+
+## OS · operación (oct-2026)
+- Atajos: **espacio** demo · **D** detener (limpia sin recargar) · **R** reset · **B** ráfaga ×5 · **X** ×10 · **I** reposo · **3/5** reportes [DEMO] en Agrícola Oriental · **0** reinicia esa demo.
+- `?idle=N` minutos sin eventos antes del reposo (default 10). El reposo nunca borra puntos ni paneles; la demo no termina sola.
+- Cámara: una sola, cola serializada, coalescencia de 1.5 s, tolerancia antes de re-encuadrar. Diagnóstico: `__sedEngine.stats()`.
+- Discrepancias: `brain/rules/discrepancia.ts` (umbrales `DISCREPANCIA_*`), panel `/api/casos`, cambio de estado `POST /api/casos/:id` (si existe `OPS_KEY`, header `x-ops-key`). Migración `0003_discrepancias.sql`.
+- WhatsApp: `lib/intent.ts` (typos, fonético, audio con ElevenLabs STT), memoria en `sesiones.ctx`. `/dev` muestra intent, estado y JSON usado. `pnpm test` incluye 38 conversaciones con evaluación automática.
