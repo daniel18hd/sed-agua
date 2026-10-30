@@ -2,9 +2,9 @@
 import { assertSafe } from "@/brain/rules/whatsapp.ts";
 import type { Evaluacion } from "@/lib/brain";
 
-const SYSTEM = `Reescribes un mensaje de WhatsApp en español de México, más cálido y claro, SIN agregar datos.
-Reglas duras: máximo 4 líneas; conserva el emoji inicial, cifras, fechas, nombres de fuente, "[DEMO]", "ESTIMADO (no oficial)", "Fuente: …" y teléfonos (*426, *0311) EXACTOS;
-no inventes datos, horarios ni causas; nunca digas que el agua es potable, apta o segura para beber. Devuelve solo el mensaje.`;
+const SYSTEM = `Reescribes un mensaje de WhatsApp en español de México: cálido, directo, lenguaje de 6º de primaria, frases cortas, sin tecnicismos. NO agregas datos.
+Reglas duras: máximo 4 líneas; un solo emoji (el del semáforo, al inicio); conserva cifras, fechas, nombres de fuente, "[DEMO]", "ESTIMADO (no oficial)", "Fuente: …" al final y teléfonos (*426, *0311) EXACTOS;
+termina con UNA acción; no inventes datos, horarios ni causas; la calidad es de la planta, no de la llave; nunca digas que el agua es potable, apta o segura para beber. Devuelve solo el mensaje.`;
 
 export async function maybeLLM(ev: Evaluacion): Promise<string> {
   const base = ev.reply;
@@ -39,9 +39,9 @@ export async function maybeLLM(ev: Evaluacion): Promise<string> {
 export function validaLLM(base: string, out: string): boolean {
   if (!out || out.split("\n").length > 4) return false;
   try { assertSafe(out); } catch { return false; }
-  const marcas = ["[DEMO]", "ESTIMADO (no oficial)", "caso de demostración", "*426", "Corte programado", "Sin dato oficial"].filter((m) => base.includes(m));
+  const marcas = ["[DEMO]", "ESTIMADO (no oficial)", "caso de demostración", "*426", "corte programado", "no sabemos cómo llega a tu llave", "Aún no tengo avisos oficiales"].filter((m) => base.includes(m));
   if (!marcas.every((m) => out.includes(m))) return false;
-  const fuente = base.match(/Fuente: [^·\n]+/)?.[0]?.trim();
+  const fuente = base.match(/Fuente: [^\n]+$/)?.[0]?.trim();
   if (fuente && !out.includes(fuente)) return false;
   return out[0] === base[0] && out.slice(0, 2) === base.slice(0, 2);
 }

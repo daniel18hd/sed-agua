@@ -35,8 +35,8 @@ describe("evaluar con demo-cases", () => {
     const e = evaluar(locate(19.50941, -99.09519)!, { now: DEMO_NOW });
     expect(e.resultado.nivel).toBe("rojo");
     expect(e.llegada.tipo).toBe("oficial");
-    expect(e.reply).toMatch(/Corte programado hasta 30 oct 12:00/);
-    expect(e.reply).toMatch(/Fuente: SEGIAGUA vía adn40 \(2026-10-27\)/);
+    expect(e.reply).toMatch(/corte programado hasta el 30 oct, 12:00/);
+    expect(e.reply).toMatch(/Fuente: SEGIAGUA vía adn40, 27 oct/);
     expect(lines(e.reply).length).toBeLessThanOrEqual(4);
   });
   test("CTM El Risco con hora real posterior → aviso vencido, no rojo por corte", () => {
@@ -54,13 +54,13 @@ describe("evaluar con demo-cases", () => {
     expect(demo.resultado.nivel).toBe("ambar");
     expect(demo.reply).toMatch(/\[DEMO\]/);
     expect(demo.reply).toMatch(/Fuente: caso de demostración/);
-    expect(demo.reply).toMatch(/\*426/);
+    expect(demo.reply).toMatch(/No la tomes/);
   });
   test("Escenario B (fuga sin fin Sta. Úrsula) → [DEMO] ESTIMADO 2–3 días", () => {
     const e = evaluar(locate(19.31088, -99.15403)!, { now: DEMO_NOW, demo: true });
     expect(e.llegada.tipo).toBe("estimado");
     expect(e.llegada_demo).toBe(true);
-    expect(e.reply).toMatch(/\[DEMO\] ESTIMADO \(no oficial\).*2–3 días/);
+    expect(e.reply).toMatch(/\[DEMO\] .*ESTIMADO \(no oficial\).*2–3 días/);
     expect(e.reply).toMatch(/Fuente: caso de demostración/);
   });
   test("todas las respuestas: ≤4 líneas, sin potabilidad, estimado siempre etiquetado", () => {
@@ -87,8 +87,8 @@ describe("nota de prensa de calidad", () => {
     const c = consultaDemo("izp-hacienda-flores", { now: DEMO_NOW })!;
     expect(c.nivel).toBe("ambar");
     expect(c.resultado.calidad?.origen).toBe("prensa");
-    expect(c.resultado.reply).toMatch(/Reportado en prensa el 2026-10-28/);
-    expect(c.resultado.reply).toMatch(/Fuente: N\+ \(2026-10-28\)/);
+    expect(c.resultado.reply).toMatch(/en las noticias reportaron agua turbia o con mal olor en tu zona \(28 oct\)/);
+    expect(c.resultado.reply).toMatch(/Fuente: N\+, 28 oct/);
   });
   test("la nota caduca a los 7 días", async () => {
     const { consultaDemo } = await import("@/lib/bot");
@@ -116,5 +116,43 @@ describe("presentación", () => {
     expect(bonito("C T M El Risco")).toBe("CTM El Risco");
     expect(bonito("Del Valle Centro")).toBe("Del Valle Centro");
     expect(bonito("Lomas De La Era")).toBe("Lomas de la Era");
+  });
+});
+
+describe("mensaje WhatsApp: abasto · origen y calidad de planta · tip · acción + fuente", () => {
+  test("Cutzamala (BJ): 4 líneas, planta en palabras simples, no de la llave, 1 acción y fuente corta", () => {
+    const e = evaluar(locate(19.38632, -99.14318)!, { now: DEMO_NOW });
+    const [l1, l2, l3, l4] = lines(e.reply);
+    expect(lines(e.reply)).toHaveLength(4);
+    expect(l1).toBe("🟢 Tu zona (Niños Heroes, BJ) hoy sin avisos de corte.");
+    expect(l2).toBe("El agua viene del Cutzamala y sale bien de la planta Los Berros (26 oct), pero no sabemos cómo llega a tu llave.");
+    expect(l3).toBe("Tip: lava tu tinaco cada 6 meses.");
+    expect(l4).toBe("¿Te llega agua hoy? Responde SÍ o NO. Fuente: CONAGUA Los Berros, 26 oct");
+    expect((e.reply.match(/[🟢🟡🔴⚪]/gu) ?? []).length).toBe(1);
+    expect(e.origen).toMatchObject({ sistema: "Cutzamala", nombre: "Presa Valle de Bravo", nodo: "presa_valle_de_bravo" });
+  });
+  test("GAM con corte: abasto primero, origen local sin medición pública, tip de almacenamiento, pipa *426", () => {
+    const e = evaluar(locate(19.50941, -99.09519)!, { now: DEMO_NOW });
+    const [l1, l2, l3, l4] = lines(e.reply);
+    expect(l1).toMatch(/^🔴 En CTM El Risco, GAM hay corte programado hasta el 30 oct, 12:00/);
+    expect(l2).toMatch(/viene de pozos locales y tanques Chalmita; no hay medición pública/);
+    expect(l3).toMatch(/guarda agua/i);
+    expect(l4).toBe("Pide pipa gratis al *426. Fuente: SEGIAGUA vía adn40, 27 oct");
+  });
+  test("foco calidad: responde calidad primero", () => {
+    const e = evaluar(locate(19.38632, -99.14318)!, { now: DEMO_NOW, foco: "calidad" });
+    expect(lines(e.reply)[0]).toMatch(/^🟢 Sobre la calidad en Niños Heroes, BJ: el agua viene del Cutzamala y sale bien de la planta/);
+    expect(e.reply).toMatch(/no sabemos cómo llega a tu llave/);
+  });
+  test("foco cuándo: con corte da la hora de fin; sin corte lo dice sin inventar", () => {
+    expect(evaluar(locate(19.50941, -99.09519)!, { now: DEMO_NOW, foco: "cuando" }).reply).toMatch(/hasta el 30 oct, 12:00/);
+    const v = evaluar(locate(19.38632, -99.14318)!, { now: DEMO_NOW, foco: "cuando" }).reply;
+    expect(v).toMatch(/no hay aviso de corte, así que no hay una fecha que esperar/);
+    expect(v).not.toMatch(/\d+ días/);
+  });
+  test("Milpa Alta / Xochimilco: pozos y manantiales (sin ruta)", () => {
+    const l = locate(19.19, -99.02)!;
+    expect(l.cve_mun).toBe("009");
+    expect(evaluar(l, { now: DEMO_NOW }).origen).toMatchObject({ nodo: null, nombre: "Pozos y manantiales locales" });
   });
 });

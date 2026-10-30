@@ -6,7 +6,8 @@ import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { evaluate, notaCalidadReciente, type Fuente, type Resultado, type Signals, type CategoriaSequia } from "@/brain/rules/semaforo.ts";
 import { estimarLlegada, type Llegada, type LlegadaInput } from "@/brain/rules/llegada.ts";
 import { avisoCalidad, type AvisoCalidad } from "@/brain/rules/calidad.ts";
-import { buildReply } from "@/brain/rules/whatsapp.ts";
+import { buildReply, type Foco } from "@/brain/rules/whatsapp.ts";
+import { origenDe, type OrigenAgua } from "@/brain/rules/origen.ts";
 import { fechaCDMX, nowISO } from "@/lib/time";
 
 // ---------- tipos de datos ----------
@@ -205,6 +206,9 @@ export function notaCalidadPara(loc: Loc, casoId?: string): Signals["notaCalidad
 }
 
 // ---------- signals ----------
+/** Sistema que abastece la alcaldía (aproximado, POR VALIDAR). */
+export const origenPara = (cve_mun: string): OrigenAgua => origenDe(data().abast.por_cve_mun[cve_mun]);
+
 export interface Reportes24h { sin_agua: number; calidad: number }
 
 export function signalsFor(loc: Loc, now: string, reportes24h: Reportes24h = { sin_agua: 0, calidad: 0 }, corteOficial?: Signals["corteOficial"], opt?: { casoId?: string }): Signals {
@@ -287,9 +291,12 @@ export interface Evaluacion {
   caso?: CasoInfo;
   escenarios?: { id: string; etiqueta: string; por_que: string }[];
   aviso_fin?: string; // ISO del fin del aviso oficial vigente (para la voz)
+  origen: OrigenAgua;
+  planta: { fuera_de_norma: string[]; fecha: string; fuente?: Fuente } | null;
+  lugar: string;
 }
 
-export function evaluar(loc: Loc, opt: { now?: string; reportes24h?: Reportes24h; demo?: boolean; casoId?: string } = {}): Evaluacion {
+export function evaluar(loc: Loc, opt: { now?: string; reportes24h?: Reportes24h; demo?: boolean; casoId?: string; foco?: Foco } = {}): Evaluacion {
   const ahora = opt.now ?? nowISO();
   const signals = signalsFor(loc, ahora, opt.reportes24h, undefined, { casoId: opt.casoId });
   const resultado = evaluate(loc, signals);
@@ -307,16 +314,72 @@ export function evaluar(loc: Loc, opt: { now?: string; reportes24h?: Reportes24h
     resultado.razones.unshift("[DEMO] Corte por fuga sin fecha de fin");
   }
   const lugar = [loc.colonia, abreviaAlcaldia(loc.alcaldia)].filter(Boolean).join(", ");
-  const reply = buildReply(resultado, { lugar, llegada, calidad, llegadaDemo: llegada_demo });
+  const origen = origenPara(loc.cve_mun);
+  const planta = origen.planta ? { fuera_de_norma: data().berros.ultimo.parametros_fuera_de_norma ?? [], fecha: data().berros.ultimo.fecha, fuente: fuentes().berros } : null;
+  const reply = buildReply(resultado, { lugar, llegada, calidad, llegadaDemo: llegada_demo, origen, planta, foco: opt.foco });
   const c = (opt.casoId && data().demo.casos.find((x) => x.id === opt.casoId)) || casoPorColonia(loc.cve_col);
   const esc = demoActivo(opt) ? escenariosPorColonia(loc.cve_col) : [];
   const av = avisoOficialPara(loc, ahora);
   return {
-    ahora, loc, signals, resultado, llegada, llegada_demo, calidad, reply,
+    ahora, loc, signals, resultado, llegada, llegada_demo, calidad, reply, origen, planta, lugar,
     aviso_fin: av?.vigente ? av.fin : undefined,
     caso: c && { id: c.id, tipo: c.tipo, frase: c.frase, descripcion: c.descripcion, fecha: c.fecha_nota, nota_fecha: c.nota_fecha, fuentes: c.fuentes.map((u) => ({ medio: medio(u), url: u })) },
     escenarios: esc.length ? esc.map((e) => ({ id: e.id, etiqueta: e.etiqueta, por_que: e.por_que })) : undefined,
   };
+}
+
+// ---------- búsqueda tolerante de colonias ("agrikola oriental", "colonya agricola", "istapalapa") ----------
+const RELLENO = new Set(["MI", "LA", "EL", "LOS", "LAS", "COLONIA", "COL", "ES", "EN", "VIVO", "ESTOY", "SOY", "DE", "DEL", "AGUA", "HAY", "Y", "QUE", "CALIDAD", "CUANDO", "LLEGA", "AQUI", "POR", "FAVOR", "ALCALDIA", "DELEGACION", "CDMX", "CIUDAD", "MEXICO", "OYE", "PUES", "NOMAS", "DIME", "SI", "TIENE", "ESTA", "BUENA", "ZONA", "CASA", "MAMA", "COLONYA", "KOLONIA", "AI", "KE", "UNIDAD", "HABITACIONAL"]);
+const tri = (s: string) => { const t = `  ${s} `; const out = new Set<string>(); for (let i = 0; i < t.length - 2; i++) out.add(t.slice(i, i + 3)); return out; };
+const dice = (a: Set<string>, b: Set<string>) => { let c = 0; for (const x of a) if (b.has(x)) c++; return (2 * c) / (a.size + b.size || 1); };
+const lev = (a: string, b: string) => { const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]); for (let j = 1; j <= b.length; j++) d[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[a.length][b.length]; };
+let _tri: { f: ColFeature; n: string; t: Set<string> }[] | null = null;
+
+/** Alcaldía escrita con errores ("istapalapa", "coyoakan", "gam"). */
+export function alcaldiaFuzzy(texto: string): AlcFeature | null {
+  const words = normaliza(texto).split(" ");
+  if (words.includes("GAM")) return data().alcaldias.find((a) => a.properties.cve_mun === "005") ?? null;
+  let best: AlcFeature | null = null, bd = Infinity;
+  for (const a of data().alcaldias) {
+    const n = sinPrefijo(normaliza(a.properties.nombre)).replace(/^(LA MAGDALENA|DE MORELOS)\s*/, "");
+    const k = n.split(" ").length;
+    for (let i = 0; i + k <= words.length; i++) {
+      const w = words.slice(i, i + k).join(" ");
+      const d = lev(w, n);
+      if (d <= (n.length <= 6 ? 1 : 2) && d < bd) { bd = d; best = a; }
+    }
+  }
+  return best;
+}
+
+export interface Candidata { loc: Loc; nombre: string; score: number }
+/** Colonias del catálogo parecidas al texto (trigramas). Sirve para escritura sin autocorrector. */
+export function colonyCandidates(texto: string, k = 3): Candidata[] {
+  const alc = alcaldiaFuzzy(texto);
+  let words = normaliza(texto).split(" ").filter((w) => w && !RELLENO.has(w) && !/^\d+$/.test(w));
+  if (alc) { const an = normaliza(alc.properties.nombre).split(" "); words = words.filter((w) => !an.some((x) => lev(w, x) <= 2)); }
+  const t = words.join(" ");
+  if (t.replace(/ /g, "").length < 4) return [];
+  _tri ??= data().colonias.map((f) => { const n = sinPrefijo(normaliza(f.properties.colonia)); return { f, n, t: tri(n) }; });
+  const tt = tri(t);
+  const scored = _tri
+    .filter((c) => !alc || c.f.properties.cve_mun === alc.properties.cve_mun)
+    .map((c) => ({ c, score: Math.max(dice(tt, c.t), c.n.startsWith(t + " ") || c.n === t ? 0.66 + 0.34 * (t.length / c.n.length) : 0, c.n.length >= 6 && ` ${t} `.includes(` ${c.n} `) ? 0.9 + 0.1 * (c.n.length / t.length) : 0) }))
+    .filter((x) => x.score >= 0.45)
+    .sort((a, b) => b.score - a.score);
+  const seen = new Set<string>();
+  const out: Candidata[] = [];
+  for (const { c, score } of scored) {
+    const key = `${c.n}|${c.f.properties.cve_mun}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const [lon, lat] = c.f._c!;
+    const l = locate(lat, lon);
+    const loc = l && l.cve_col === c.f.properties.cve_col ? l : { lat, lon, cve_mun: c.f.properties.cve_mun, alcaldia: c.f.properties.alcaldia, cve_col: c.f.properties.cve_col, colonia: c.f.properties.colonia };
+    out.push({ loc: { ...loc, colonia: bonito(c.f.properties.colonia) }, nombre: `${bonito(c.f.properties.colonia)}, ${abreviaAlcaldia(c.f.properties.alcaldia)}`, score: Math.round(score * 100) / 100 });
+    if (out.length >= k) break;
+  }
+  return out;
 }
 
 const ABREV: Record<string, string> = { "Gustavo A. Madero": "GAM", "Benito Juárez": "BJ", "Cuajimalpa de Morelos": "Cuajimalpa", "La Magdalena Contreras": "Magdalena Contreras" };

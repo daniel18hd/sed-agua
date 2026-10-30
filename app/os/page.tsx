@@ -18,7 +18,9 @@ export default async function Page({ searchParams }: { searchParams: Promise<Rec
       satTiles={process.env.NEXT_PUBLIC_SAT_TILES || undefined}
       mock={sp.mock === "1"}
       burst={Math.min(20, Number(sp.burst) || 0)}
-      every={Math.max(1, Number(sp.every) || 4)}
+      every={Math.max(1, Number(sp.every) || 15)}
+      idleMin={Math.max(1, Number(sp.idle) || Number(process.env.OS_IDLE_MIN) || 10)}
+      demoScenarios={process.env.DEMO_SCENARIOS === "1"}
       qrSrc={hasQR ? "/qr.png" : "/qr-demo.png"}
       qrPlaceholder={!hasQR}
       qrNota={qrInfo?.sandbox ? `Se abre WhatsApp con «${qrInfo.texto}»: envíalo y luego manda tu colonia` : undefined}

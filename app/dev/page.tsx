@@ -20,6 +20,7 @@ export default function Dev() {
   const [demo, setDemo] = useState(true);
   const [from, setFrom] = useState("whatsapp:+5215512345678");
   const [busy, setBusy] = useState(false);
+  const [dbg, setDbg] = useState<unknown>(null);
   const end = useRef<HTMLDivElement>(null);
 
   useEffect(() => { fetch("/api/dev/simulate").then((r) => r.json()).then((j) => setEntradas(j.entradas)); }, []);
@@ -31,8 +32,9 @@ export default function Dev() {
     try {
       const r = await fetch(`/api/dev/simulate${location.search}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ From: from, now: now || undefined, demo, ...body }) });
       const j = await r.json();
-      const meta = [j.kind, j.ms != null && `${j.ms} ms`, j.consulta && `${j.consulta.colonia ?? "—"}, ${j.consulta.alcaldia} · ${j.consulta.nivel}`, j.voz && `voz: ${JSON.stringify(j.voz).slice(0, 160)}`].filter(Boolean).join(" · ");
-      setLog((l) => [...l, { dir: "out", text: j.reply ?? j.error ?? "(sin respuesta)", meta }, ...(j.extra ?? []).map((x: string) => ({ dir: "out" as const, text: x }))]);
+      setDbg({ intent: j.debug?.intent_prd, seguro: j.debug?.seguro, transcrito: j.debug?.transcrito, estado: j.debug?.estado, pregunta: j.debug?.pregunta, memoria: j.debug?.ctx, folio: j.folio, avisos_a_otros: j.avisos?.length ?? 0, json_usado: j.consulta && { nivel: j.consulta.nivel, razones: j.consulta.resultado.resultado.razones, llegada: j.consulta.resultado.llegada, calidad: j.consulta.resultado.calidad, origen: j.consulta.resultado.origen, planta: j.consulta.resultado.planta, fuentes: j.consulta.resultado.resultado.fuentes } });
+      const meta = [j.debug?.intent_prd && `intent: ${j.debug.intent_prd}${j.debug.seguro === false ? " (aprox.)" : ""}`, j.kind, j.ms != null && `${j.ms} ms`, j.consulta && `${j.consulta.colonia ?? "—"}, ${j.consulta.alcaldia} · ${j.consulta.nivel}`, j.voz && `voz: ${JSON.stringify(j.voz).slice(0, 160)}`].filter(Boolean).join(" · ");
+      setLog((l) => [...l, { dir: "out", text: j.reply || j.error || "(sin mensaje: la conversación se cierra)", meta }, ...(j.extra ?? []).map((x: string) => ({ dir: "out" as const, text: x }))]);
     } catch (e) {
       setLog((l) => [...l, { dir: "out", text: `Error: ${(e as Error).message}` }]);
     } finally { setBusy(false); }
@@ -114,6 +116,12 @@ export default function Dev() {
           ))}
           <div ref={end} />
         </div>
+        {dbg != null && (
+          <details open className="border-t border-slate-800 px-4 py-2 text-[11px]">
+            <summary className="cursor-pointer font-mono text-slate-400">intent · estado · memoria · JSON usado</summary>
+            <pre className="mt-1 max-h-64 overflow-auto whitespace-pre-wrap font-mono text-slate-300">{JSON.stringify(dbg, null, 2)}</pre>
+          </details>
+        )}
       </section>
     </main>
   );

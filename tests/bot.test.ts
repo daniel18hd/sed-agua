@@ -43,7 +43,7 @@ describe("handleIncoming", async () => {
     const r = await handleIncoming({ From: from(), Latitude: "19.50941", Longitude: "-99.09519" }, opts);
     expect(r.kind).toBe("consulta");
     expect(r.reply.split("\n").length).toBeLessThanOrEqual(4);
-    expect(r.reply).toMatch(/Corte programado hasta 30 oct 12:00/);
+    expect(r.reply).toMatch(/corte programado hasta el 30 oct, 12:00/);
     expect(r.consulta?.geo_fuente).toBe("ubicacion");
     expect(fetchMock).not.toHaveBeenCalled();
   });
@@ -51,7 +51,7 @@ describe("handleIncoming", async () => {
     const r = await handleIncoming({ From: from(), Body: "Niños Héroes, Benito Juárez" }, opts);
     expect(r.kind).toBe("consulta");
     expect(r.consulta?.cve_col).toBe("014-034");
-    expect(r.reply).toMatch(/Fuente: .+\(\d{4}-\d{2}-\d{2}\)/);
+    expect(r.reply).toMatch(/Fuente: .+, \d{1,2} [a-z]{3}/);
   });
   test("CP → geocode postal_code", async () => {
     const r = await handleIncoming({ From: from(), Body: "03100" }, opts);
@@ -69,16 +69,19 @@ describe("handleIncoming", async () => {
   test("REPORTAR → menú → 1 → registrado, y cuenta en el semáforo", async () => {
     const tel = from();
     expect((await handleIncoming({ From: tel, Body: "REPORTAR" }, opts)).reply).toBe(MSG.reporteSinUbicacion);
-    await handleIncoming({ From: tel, Latitude: "19.38632", Longitude: "-99.14318" }, opts);
-    expect((await handleIncoming({ From: tel, Body: "reportar" }, opts)).reply).toBe(MSG.menuReporte);
-    expect((await handleIncoming({ From: tel, Body: "1" }, opts)).reply).toBe(MSG.gracias);
+    const c = await handleIncoming({ From: tel, Latitude: "19.38632", Longitude: "-99.14318" }, opts);
+    expect(c.extra?.[0]).toMatch(/¿Qué pasa en Niños Heroes, BJ\?.*1 No llega agua/); // retoma el reporte en la dirección recién dada
+    expect((await handleIncoming({ From: tel, Body: "reportar" }, opts)).reply).toBe(MSG.menuReporteEn("Niños Heroes, BJ"));
+    const r1 = await handleIncoming({ From: tel, Body: "1" }, opts);
+    expect(r1.kind).toBe("reporte");
+    expect(r1.reply).toMatch(/^Gracias, ya registré que hoy no te llega agua en Niños Heroes, BJ\. .* Folio SED-\d{4}\.$/);
     const after = await handleIncoming({ From: from(), Latitude: "19.38632", Longitude: "-99.14318" }, opts);
     expect(after.consulta?.resultado.resultado.puntaje.c).toBe(1);
   });
   test("mismo vecino reportando 2 veces cuenta 1 (únicos por phone_hash)", async () => {
     const tel = from();
     await handleIncoming({ From: tel, Latitude: "19.31341", Longitude: "-99.06557" }, opts);
-    for (let i = 0; i < 2; i++) { await handleIncoming({ From: tel, Body: "REPORTAR" }, opts); await handleIncoming({ From: tel, Body: "2" }, opts); }
+    for (let i = 0; i < 2; i++) { await handleIncoming({ From: tel, Body: "REPORTAR" }, opts); await handleIncoming({ From: tel, Body: "3" }, opts); }
     const r = await handleIncoming({ From: from(), Latitude: "19.31341", Longitude: "-99.06557" }, opts);
     expect(r.consulta?.resultado.signals.reportes24h?.calidad).toBe(1);
   });
@@ -128,3 +131,4 @@ describe("alias /api/whatsapp", async () => {
     expect(await r.text()).toMatch(/Hola 👋/);
   });
 });
+

@@ -151,6 +151,23 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
         </div>
       </div>
 
+      {/* de dónde viene + calidad en planta */}
+      {r.origen && (
+        <div className="os-row rounded-xl border border-[#38bdf8]/30 bg-[#38bdf8]/[0.06] p-3" style={{ animationDelay: "30ms" }}>
+          <div className="mb-1 flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.14em] text-[#7dd3fc]">
+            De dónde viene <Badge k="aprox" label="RUTA APROXIMADA" />
+          </div>
+          <div className="text-[15.5px] leading-snug text-white">{r.origen.nombre} <span className="text-slate-400">· {r.origen.texto.replace(/^Viene (del|de) /, "")}</span></div>
+          <div className="mt-0.5 text-[13px] text-slate-300">
+            {r.planta
+              ? r.planta.fuera_de_norma.length
+                ? <span className="text-[#f59e0b]">Planta {r.origen.planta}: fuera de norma en {r.planta.fuera_de_norma.join(", ")} ({r.planta.fecha})</span>
+                : <>Planta {r.origen.planta}: en norma ({r.planta.fecha}) · <i>medido en planta, no en la llave</i></>
+              : "Sin medición pública de calidad de esta fuente"}
+          </div>
+        </div>
+      )}
+
       {/* cuándo llega */}
       <div className="os-row rounded-xl border border-white/8 bg-white/[0.03] p-3" style={{ animationDelay: "60ms" }}>
         <div className="mb-1 flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.14em] text-slate-400">
@@ -174,7 +191,7 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
             {!cal.es_demo && cal.fuente && <div className="mt-1"><Src n={cal.fuente.nombre} f={cal.fuente.fecha} url={cal.fuente.url} /></div>}
           </>
         ) : (
-          <div className="text-[13.5px] text-slate-300">Sin señal de calidad. Si sale turbia o con olor, no la bebas y repórtala.</div>
+          <div className="text-[13.5px] text-slate-300">Sin aviso de calidad en la zona. Si sale turbia o con olor, no la tomes y repórtala.</div>
         )}
       </div>
 

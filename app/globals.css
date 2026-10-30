@@ -49,3 +49,13 @@ html, body { background: #05070b; color: #e2e8f0; }
 .os-node-dot { display: none; }
 .os-route-tag { font: 600 10.5px/1 "JetBrains Mono Variable", ui-monospace, monospace; letter-spacing: 0.14em; text-transform: uppercase; color: #fde68a;
   background: rgba(10, 14, 22, 0.78); border: 1px solid rgba(253, 230, 138, 0.35); border-radius: 6px; padding: 4px 7px; pointer-events: none; white-space: nowrap; animation: os-fade 500ms ease-out both; }
+
+/* Origen del agua ("Viene de: Presa Valle de Bravo") */
+.os-origin { pointer-events: none; padding: 7px 10px 8px; border-radius: 10px; background: rgba(6, 12, 20, 0.86); border: 1px solid rgba(56, 189, 248, 0.55);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.35); white-space: nowrap; animation: os-fade 600ms ease-out both; }
+.os-origin .k { font: 700 10px/1 "JetBrains Mono Variable", ui-monospace, monospace; letter-spacing: 0.22em; text-transform: uppercase; color: #7dd3fc; }
+.os-origin .n { margin-top: 4px; font: 700 17px/1.1 "Inter Variable", system-ui, sans-serif; color: #fff; }
+.os-origin .s { margin-top: 3px; font: 600 10.5px/1 "JetBrains Mono Variable", ui-monospace, monospace; letter-spacing: 0.08em; color: #fde68a; }
+/* Tarjeta "Requiere atención" */
+@keyframes os-alert { 0%, 100% { box-shadow: 0 0 0 1px rgba(255, 46, 136, 0.6), 0 0 18px rgba(255, 46, 136, 0.25); } 50% { box-shadow: 0 0 0 1px rgba(255, 46, 136, 0.9), 0 0 34px rgba(255, 46, 136, 0.5); } }
+.os-alert { animation: os-alert 1.6s ease-in-out infinite, os-in 420ms cubic-bezier(.2, .7, .2, 1) both; }

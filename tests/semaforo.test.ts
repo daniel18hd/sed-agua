@@ -61,7 +61,7 @@ test("calidad: 3 vecinos reportan agua turbia eleva a ámbar", () => {
 test("respuesta WhatsApp: ≤4 líneas, emoji, fuente, nunca 'apta para beber'", () => {
   const txt = buildReply(evaluate(loc, base), { lugar: "Niños Héroes, BJ" });
   const lines = txt.split("\n");
-  assert.ok(lines.length <= 4); assert.ok(txt.startsWith("🟢")); assert.match(txt, /Fuente: .+\(\d{4}-\d{2}-\d{2}\)/);
+  assert.ok(lines.length <= 4); assert.ok(txt.startsWith("🟢")); assert.match(txt, /Fuente: .+, \d{1,2} [a-z]{3}/);
   assert.doesNotMatch(txt, /apta para beber/i);
   assert.throws(() => assertSafe("El agua es apta para beber"));
 });
@@ -75,7 +75,7 @@ test("respuesta: aviso oficial con fecha fin → 'Corte programado hasta', fuent
   assert.equal(ll.tipo, "oficial");
   const r = evaluate(loc, { ...base, corteOficial: { vigente: true, descripcion: "obra 08:00–12:00", fuente: SEG } });
   const t = chk(buildReply(r, { lugar: "CTM El Risco, GAM", llegada: ll }));
-  assert.match(t, /Corte programado hasta 30 oct 12:00/); assert.match(t, /Fuente: SEGIAGUA vía adn40 \(2026-10-27\)/);
+  assert.match(t, /corte programado hasta el 30 oct, 12:00/); assert.match(t, /Fuente: SEGIAGUA vía adn40, 27 oct/);
   assert.doesNotMatch(t, /ESTIMADO/);
 });
 
@@ -90,14 +90,14 @@ test("respuesta: alerta de calidad demo → marcada [DEMO], recomendación preca
   const cal = avisoCalidad({ demo: { parametro: "posible exceso de azufre (olor a huevo)", tipo: "quimico", etiqueta: "caso de demostración" } })!;
   const r = evaluate(loc, { ...base, reportes24h: { sin_agua: 0, calidad: 3 } });
   const t = chk(buildReply(r, { lugar: "Agrícola Oriental", llegada: estimarLlegada({ ahora: AHORA }), calidad: cal }));
-  assert.match(t, /\[DEMO\]/); assert.match(t, /No la bebas/); assert.match(t, /\*426/); assert.match(t, /caso de demostración/);
+  assert.match(t, /\[DEMO\]/); assert.match(t, /No la tomes/); assert.match(t, /REPORTAR/); assert.match(t, /caso de demostración/);
 });
 
 test("respuesta: sin datos → 'Sin dato oficial', sin inventar días", () => {
   const ll = estimarLlegada({ ahora: AHORA });
   assert.equal(ll.tipo, "sin_dato");
   const t = chk(buildReply(evaluate(loc, { hoy: "2026-10-30" }), { lugar: "Colonia X", llegada: ll }));
-  assert.ok(t.startsWith("⚪")); assert.match(t, /Sin dato oficial/); assert.doesNotMatch(t, /\d+ días|ESTIMADO/);
+  assert.ok(t.startsWith("⚪")); assert.match(t, /Aún no tengo avisos oficiales/); assert.doesNotMatch(t, /\d+ días|ESTIMADO/);
 });
 
 test("aviso oficial vencido no se presenta como vigente", () => {
@@ -126,6 +126,6 @@ test("respuesta: nota de prensa → 'Reportado en prensa el', fuente del medio, 
   assert.equal(cal.origen, "prensa");
   const r = evaluate(loc, { ...base, notaCalidad: { fecha: "2026-10-28", descripcion: "x", fuente: F("N+", "2026-10-28") } });
   const t = chk(buildReply(r, { lugar: "U.H. Hacienda de las Flores", llegada: estimarLlegada({ ahora: AHORA }), calidad: cal }));
-  assert.match(t, /Reportado en prensa el 2026-10-28/); assert.match(t, /Fuente: N\+ \(2026-10-28\)/); assert.match(t, /no la bebas/);
+  assert.match(t, /en las noticias reportaron agua turbia o con mal olor en tu zona \(28 oct\)/); assert.match(t, /Fuente: N\+, 28 oct/); assert.match(t, /no la tomes/);
   assert.doesNotMatch(t, /hoy no hay agua/i);
 });

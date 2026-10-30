@@ -23,6 +23,17 @@ async function sendExtras(to: string | undefined, msgs: string[], delayMs: numbe
   }
 }
 
+/** Avisos a otros vecinos (zona marcada en el panel de atención). */
+async function sendAvisos(list: { to: string; body: string }[] | undefined) {
+  const sid = process.env.TWILIO_ACCOUNT_SID, token = process.env.TWILIO_AUTH_TOKEN, from = process.env.TWILIO_WHATSAPP_NUMBER;
+  if (!sid || !token || !from || !list?.length) return;
+  const client = twilio(sid, token);
+  for (const a of list) {
+    try { await client.messages.create({ from: `whatsapp:${from.replace(/^whatsapp:/, "")}`, to: a.to, body: a.body }); }
+    catch (e) { console.error("[twilio] aviso no enviado:", (e as Error).message); }
+  }
+}
+
 export async function POST(req: Request) {
   const raw = await req.text();
   const params = Object.fromEntries(new URLSearchParams(raw)) as Record<string, string>;
@@ -47,7 +58,8 @@ export async function POST(req: Request) {
   if (first) {
     // El Sandbox limita a ~1 msg/3 s: la respuesta va en TwiML y los extras (oferta de llamada) por REST 3.5 s después.
     if (first.extra?.length) after(() => sendExtras(params.From, first.extra!, 3500));
-    return twiml(first.reply);
+    if (first.avisos?.length) after(() => sendAvisos(first.avisos));
+    return twiml(first.reply || undefined); // "gracias" → cierra sin mandar más
   }
 
   after(async () => {
@@ -55,8 +67,9 @@ export async function POST(req: Request) {
     const sid = process.env.TWILIO_ACCOUNT_SID;
     const from = process.env.TWILIO_WHATSAPP_NUMBER;
     if (!sid || !token || !from || !params.From) return;
-    await twilio(sid, token).messages.create({ from: `whatsapp:${from.replace(/^whatsapp:/, "")}`, to: params.From, body: res.reply });
+    if (res.reply) await twilio(sid, token).messages.create({ from: `whatsapp:${from.replace(/^whatsapp:/, "")}`, to: params.From, body: res.reply });
     if (res.extra?.length) await sendExtras(params.From, res.extra, 3500);
+    await sendAvisos(res.avisos);
   });
   return twiml(MSG.espera);
 }

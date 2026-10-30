@@ -112,7 +112,9 @@ describe("flujo WhatsApp: oferta y SÍ/NO", async () => {
     const from2 = "whatsapp:+5215511100004";
     await handleIncoming({ From: from2, Latitude: "19.50941", Longitude: "-99.09519" }, opts);
     expect((await handleIncoming({ From: from2, Body: "NO LLAMES" }, opts)).reply).toBe(MSG.noLlamesNunca);
-    expect((await handleIncoming({ From: from2, Body: "SÍ" }, opts)).reply).toBe(MSG.sinOferta);
+    const si = await handleIncoming({ From: from2, Body: "SÍ" }, opts); // ya no hay oferta: "sí" se aclara, no llama
+    expect(si.kind).not.toBe("voz");
+    expect(si.reply).toBe(MSG.siSinPregunta("CTM El Risco, GAM"));
   });
   test("SÍ sin oferta previa → no llama", async () => {
     expect((await handleIncoming({ From: "whatsapp:+5215511100005", Body: "si" }, opts)).reply).toBe(MSG.sinOferta);
