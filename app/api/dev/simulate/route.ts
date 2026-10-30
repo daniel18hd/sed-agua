@@ -7,7 +7,11 @@ export const dynamic = "force-dynamic";
 
 // POST {Body?, Latitude?, Longitude?, From?, NumMedia?, now?, demo?, casoId?}
 // casoId → dispara un demo-case/escenario por id con sus coordenadas, y lo publica al OS como una consulta más.
+// En producción, si DEV_KEY está definida, exige ?key=DEV_KEY (evita que cualquiera publique al OS).
+const autorizado = (req: Request) => !process.env.DEV_KEY || new URL(req.url).searchParams.get("key") === process.env.DEV_KEY;
+
 export async function POST(req: Request) {
+  if (!autorizado(req)) return NextResponse.json({ error: "DEV_KEY requerida" }, { status: 401 });
   const b = await req.json().catch(() => ({}));
   const t0 = Date.now();
   if (b.casoId) {

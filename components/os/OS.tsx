@@ -192,7 +192,7 @@ export default function OS(p: OSProps) {
           </span>
         </div>
         <div className="mt-1 flex gap-3 font-mono text-[11.5px] text-slate-400">
-          <Clock /><span className="text-slate-600">|</span><span>{status.via || "—"}</span>
+          <Clock /><span className="text-slate-600">|</span><span>{status.via === "supabase" ? "SUPABASE RT" : status.via === "sse" ? "BUS LOCAL" : status.via === "local" ? "MOCK LOCAL" : "—"}</span>
           {offline && <><span className="text-slate-600">|</span><span className="text-[#fde68a]">mapa offline</span></>}
           <span className="text-slate-600">|</span><span className="uppercase">{mode}</span>
         </div>

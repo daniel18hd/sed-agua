@@ -10,8 +10,8 @@
     "test": "vitest run",
     "test:brain": "node --test brain/rules/semaforo.test.ts",
     "typecheck": "tsc --noEmit",
-    "qr": "tsx scripts/qr.ts",
-    "geocode:demo": "tsx scripts/geocode-demo.ts"
+    "qr": "tsx scripts/qr.mts",
+    "geocode:demo": "tsx scripts/geocode-demo.mts"
   },
   "dependencies": {
     "@deck.gl/core": "~9.4.1",

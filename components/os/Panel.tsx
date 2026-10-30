@@ -132,7 +132,7 @@ export const Detail = memo(function Detail({ c, s, compact }: { c: ConsultaPubli
   ];
 
   return (
-    <div key={c.id} className="flex flex-col gap-3.5">
+    <div key={c.id} className={`flex flex-col gap-3.5 ${compact ? "os-static" : ""}`}>
       {/* encabezado */}
       <div className="os-row" style={{ animationDelay: "0ms" }}>
         <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-slate-400">
