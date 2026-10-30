@@ -80,7 +80,7 @@ describe("triggerVoiceAlert (guardas)", async () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
     const body = JSON.parse(fetchMock.mock.calls[0][1].body);
     expect(body.agent_id).toBe("agent_9501m674z09mfptt3z954cmmfrbg");
-    expect(body.agent_phone_number_id).toBe("phnum_8701m5gat1j3f38s59jpfmdg2145");
+    expect(body.agent_phone_number_id).toBe("phnum_5701m4vx6vvsfz1bn8bz4nzn4320");
     expect(body.to_number).toBe(t.to.replace("whatsapp:", ""));
     expect(body.conversation_initiation_client_data.dynamic_variables.tipo_dias).toBe("oficial");
     expect((await triggerVoiceAlert({ ...t, vars, optIn: true })).status).toBe(429);

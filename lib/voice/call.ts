@@ -5,9 +5,11 @@ import type { VoiceVars } from "@/lib/voice/vars";
 
 export const BANNED = /apta para (beber|consumo)|agua (segura|potable)|es potable/i;
 export const AGENT_ID = () => process.env.ELEVENLABS_AGENT_ID || "agent_9501m674z09mfptt3z954cmmfrbg";
-export const PHONE_ID = () => process.env.ELEVENLABS_PHONE_NUMBER_ID || "phnum_8701m5gat1j3f38s59jpfmdg2145";
-// Nunca usar el número de KL/WhatsApp para llamar.
-const PROHIBIDO_PHONE_ID = "phnum_5701m4vx6vvsfz1bn8bz4nzn4320";
+// Número de Sed: +1 832 346 6398 (antes "Demo KL Residences", reasignado al agente de Sed el 30-oct-2026 con OK de Daniel).
+// Se lee de ELEVENLABS_SED_PHONE_ID; ELEVENLABS_PHONE_NUMBER_ID quedó obsoleta (apuntaba al outbound de Sofía).
+export const PHONE_ID = () => process.env.ELEVENLABS_SED_PHONE_ID || "phnum_5701m4vx6vvsfz1bn8bz4nzn4320";
+// Nunca usar el número de Sofía · Devoluciones (otro proyecto).
+const PROHIBIDO_PHONE_ID = "phnum_8701m5gat1j3f38s59jpfmdg2145";
 // Llamadas reales con VOICE_LIVE=1 (o VOICE_DRY_RUN=0) y la API key; si no, dry-run.
 export const dryRun = () => !(process.env.VOICE_LIVE === "1" || process.env.VOICE_DRY_RUN === "0") || !process.env.ELEVENLABS_API_KEY;
 

@@ -76,7 +76,7 @@ Ver `.env.example`. Notas:
 Detalle en [`VOZ_ALERTA.md`](VOZ_ALERTA.md); prompt del agente en `voz/prompt_alerta.md` (el agente ya existe, no se modifica).
 - Si la consulta es **crítica** (rojo, corte programado vigente o alerta de calidad, incluida [DEMO]), WhatsApp manda un **segundo mensaje**: "Zona crítica. ¿Te llamo para explicarte? Responde SÍ" (así la respuesta principal sigue en ≤ 4 líneas).
 - "SÍ"/"SI" en ≤ 10 min → `triggerVoiceAlert` → `POST api.elevenlabs.io/v1/convai/twilio/outbound-call` al mismo `From`. "NO" → no se ofrece en 24 h. "NO LLAMES" → nunca.
-- Guardas: opt-in, crítico, ≤ 1 llamada real por número por hora, regex sin potabilidad, nunca `phnum_5701…` (KL).
+- Guardas: opt-in, crítico, ≤ 1 llamada real por número por hora, regex sin potabilidad, nunca `phnum_8701…` (Sofía · Devoluciones). Llama desde **+1 832 346 6398** (`phnum_5701…`, reasignado a Sed el 30-oct-2026).
 - **Dry-run por defecto**: sin `VOICE_DRY_RUN=0` + `ELEVENLABS_API_KEY` no se marca a nadie (bitácora `voice_calls` con `dry_run=true`, badge 📞 "PRUEBA" en el OS).
 - `/dev`: botón 📞 por caso muestra las variables dinámicas sin llamar; botones SÍ / NO.
 - Supabase: corre también `supabase/migrations/0002_voz.sql`.
