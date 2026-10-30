@@ -10,6 +10,8 @@ const DEFAULT_STYLE = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/sty
 export default async function Page({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
   const hasQR = fs.existsSync(path.join(process.cwd(), "public", "qr.png"));
+  let qrInfo: { numero: string; texto: string; sandbox: boolean } | null = null;
+  try { qrInfo = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "qr.json"), "utf8")); } catch {}
   return (
     <OS
       styleUrl={process.env.NEXT_PUBLIC_MAP_STYLE || DEFAULT_STYLE}
@@ -19,6 +21,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<Rec
       every={Math.max(1, Number(sp.every) || 4)}
       qrSrc={hasQR ? "/qr.png" : "/qr-demo.png"}
       qrPlaceholder={!hasQR}
+      qrNota={qrInfo?.sandbox ? `Se abre WhatsApp con «${qrInfo.texto}»: envíalo y luego manda tu colonia` : undefined}
     />
   );
 }

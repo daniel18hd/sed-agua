@@ -19,7 +19,10 @@ if (num.length < 10) {
   console.error("Falta TWILIO_WHATSAPP_NUMBER (formato internacional, p. ej. +5215512345678). Daniel confirma cuál número.");
   process.exit(1);
 }
-const url = `https://wa.me/${num}?text=Hola`;
+// QR_TEXT permite el Sandbox: QR_TEXT="join bring-tune" TWILIO_WHATSAPP_NUMBER=+14155238886 pnpm qr
+const texto = process.env.QR_TEXT || "Hola";
+const url = `https://wa.me/${num}?text=${encodeURIComponent(texto)}`;
 const out = path.join(process.cwd(), "public", "qr.png");
 await QRCode.toFile(out, url, { width: 720, margin: 1, errorCorrectionLevel: "M", color: { dark: "#05070b", light: "#ffffff" } });
+fs.writeFileSync(path.join(process.cwd(), "public", "qr.json"), JSON.stringify({ numero: `+${num}`, texto, url, sandbox: num === "14155238886" }, null, 2) + "\n");
 console.log(`QR → ${out}\n${url}`);

@@ -17,6 +17,7 @@ export interface OSProps {
   every: number;
   qrSrc: string;
   qrPlaceholder: boolean;
+  qrNota?: string;
   waNumber?: string;
 }
 
@@ -257,6 +258,7 @@ export default function OS(p: OSProps) {
         <div className="max-w-[170px]">
           <div className="text-[17px] font-semibold leading-tight text-white">¿Hoy hay agua?</div>
           <div className="mt-1 text-[13px] leading-snug text-slate-300">Escanea y manda tu colonia o tu ubicación 📍</div>
+          {p.qrNota && <div className="mt-1.5 text-[11.5px] leading-snug text-[#86efac]">{p.qrNota}</div>}
           {p.qrPlaceholder && <div className="mt-1.5 font-mono text-[10.5px] text-[#fde68a]">QR placeholder: corre pnpm qr</div>}
         </div>
       </div>
