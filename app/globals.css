@@ -15,3 +15,35 @@
 }
 
 html, body { background: #05070b; color: #e2e8f0; }
+
+/* ---------- OS ---------- */
+.glass {
+  background: rgba(10, 14, 22, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.os-halo { background: radial-gradient(ellipse 55% 60% at 50% 52%, rgba(56, 189, 248, 0.10), rgba(56, 189, 248, 0.03) 45%, transparent 70%); }
+.os-vignette { background: radial-gradient(ellipse at center, transparent 55%, rgba(5, 7, 11, 0.55) 100%); }
+.os-root .maplibregl-canvas { outline: none; }
+.os-root .maplibregl-ctrl-attrib { background: rgba(10, 14, 22, 0.6) !important; color: #64748b; font-size: 10px; }
+.os-root .maplibregl-ctrl-attrib a { color: #94a3b8; }
+.os-root .maplibregl-ctrl-bottom-right { bottom: 210px; right: 18px; }
+.os-root .maplibregl-ctrl-attrib-button { filter: invert(0.8); }
+
+@keyframes os-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.os-row { opacity: 0; animation: os-in 380ms cubic-bezier(.2, .7, .2, 1) forwards; }
+.os-tick { animation: os-in 420ms ease-out both; }
+@keyframes os-toast { from { opacity: 0; transform: translate(-50%, 14px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.os-toast { animation: os-toast 420ms cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes os-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes os-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+.os-blink { animation: os-blink 1.6s ease-in-out infinite; }
+
+.os-node { display: flex; align-items: center; gap: 6px; font: 600 11px/1 "JetBrains Mono Variable", ui-monospace, monospace; color: #bae6fd; letter-spacing: 0.04em;
+  text-shadow: 0 0 6px #05070b, 0 0 2px #05070b; pointer-events: none; padding-left: 2px; white-space: nowrap; animation: os-fade 500ms ease-out both; }
+.os-node-dot { display: none; }
+.os-route-tag { font: 600 10.5px/1 "JetBrains Mono Variable", ui-monospace, monospace; letter-spacing: 0.14em; text-transform: uppercase; color: #fde68a;
+  background: rgba(10, 14, 22, 0.78); border: 1px solid rgba(253, 230, 138, 0.35); border-radius: 6px; padding: 4px 7px; pointer-events: none; white-space: nowrap; animation: os-fade 500ms ease-out both; }

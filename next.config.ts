@@ -7,5 +7,6 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: { "/api/**": ["./brain/data/**"] },
   outputFileTracingRoot: path.join(__dirname),
   serverExternalPackages: ["twilio"],
+  agentRules: false, // no generar AGENTS.md
 };
 export default nextConfig;

@@ -49,8 +49,13 @@ interface BrainData {
 
 let _data: BrainData | null = null;
 
+/** "C T M El Risco" → "CTM El Risco" (siglas separadas en el catálogo) */
+export const juntaSiglas = (s: string) => s.replace(/\b([A-Za-z])\s(?=[A-Za-z]\b)/g, "$1");
+/** "Pedregal De Santa Ursula" → "Pedregal de Santa Ursula" (solo para mostrar) */
+export const bonito = (s: string) =>
+  juntaSiglas(s).replace(/(?<=\S\s)(De|Del|Y)(?=\s)/g, (w) => w.toLowerCase()).replace(/(?<=\sde\s)(La|Las|Los|El)(?=\s)/g, (w) => w.toLowerCase());
 export const normaliza = (s: string) =>
-  s.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().replace(/[^A-Z0-9]+/g, " ").trim();
+  juntaSiglas(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().replace(/[^A-Z0-9]+/g, " ").trim();
 const sinPrefijo = (s: string) => s.replace(/^(PUEBLO|BARRIO|COL|COLONIA|U H|UNIDAD HABITACIONAL|FRACC|FRACCIONAMIENTO)\s+/, "");
 
 function bboxOf(coords: any): BBox {
@@ -130,7 +135,7 @@ export function locate(lat: number, lon: number): Loc | null {
     for (const c of cands) { const dd = (c._c![0] - lon) ** 2 + (c._c![1] - lat) ** 2; if (dd < bd) { bd = dd; best = c; } }
     if (best && Math.sqrt(bd) < 0.006) col = best;
   }
-  return { lat, lon, cve_mun, alcaldia: nombre, cve_col: col?.properties.cve_col, colonia: col?.properties.colonia };
+  return { lat, lon, cve_mun, alcaldia: nombre, cve_col: col?.properties.cve_col, colonia: col && bonito(col.properties.colonia) };
 }
 
 /**
@@ -274,6 +279,11 @@ export function evaluar(loc: Loc, opt: { now?: string; reportes24h?: Reportes24h
     resultado.alerta_calidad = true;
     if (resultado.nivel === "verde" || resultado.nivel === "gris") resultado.nivel = "ambar";
     resultado.razones.push(calidad.es_demo ? "[DEMO] Alerta de calidad (caso de demostración)" : calidad.texto);
+  }
+  // Escenario demo "fuga sin fecha fin": es un corte anunciado (demo) → al menos ÁMBAR, nunca ROJO (no es un aviso oficial real).
+  if (llegada_demo) {
+    if (resultado.nivel === "verde" || resultado.nivel === "gris") resultado.nivel = "ambar";
+    resultado.razones.unshift("[DEMO] Corte por fuga sin fecha de fin");
   }
   const lugar = [loc.colonia, abreviaAlcaldia(loc.alcaldia)].filter(Boolean).join(", ");
   const reply = buildReply(resultado, { lugar, llegada, calidad, llegadaDemo: llegada_demo });

@@ -80,3 +80,13 @@ describe("evaluar con demo-cases", () => {
     for (const f of e.resultado.fuentes) expect(f.fecha, f.nombre).toBeTruthy();
   });
 });
+
+describe("presentación", () => {
+  test("nombres de colonia legibles", async () => {
+    const { bonito } = await import("@/lib/brain");
+    expect(bonito("Pedregal De Santa Ursula")).toBe("Pedregal de Santa Ursula");
+    expect(bonito("C T M El Risco")).toBe("CTM El Risco");
+    expect(bonito("Del Valle Centro")).toBe("Del Valle Centro");
+    expect(bonito("Lomas De La Era")).toBe("Lomas de la Era");
+  });
+});
